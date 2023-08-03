@@ -13,6 +13,7 @@ export default {
         gray: {
           placeholder: "#959EAD",
           detail: "#B3BAC5",
+          background: "#F2F4F5",
         },
         success: "#36B37E",
       },
