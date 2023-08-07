@@ -1,8 +1,8 @@
 import React from "react";
 import MainLayout from "../../components/MainLayout";
-import Hero from "./Container/Hero";
-import Articles from "./Container/Articles";
-import CTA from "./Container/CTA";
+import Hero from "./container/Hero";
+import Articles from "./container/Articles";
+import CTA from "./container/CTA";
 
 const HomePage = () => {
   return (

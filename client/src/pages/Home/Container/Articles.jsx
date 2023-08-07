@@ -1,5 +1,5 @@
 import React from "react";
-import {FaArrowRight} from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 import ArticleCard from "../../../components/ArticleCard";
 
