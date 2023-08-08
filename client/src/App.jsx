@@ -18,7 +18,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/blog/:id" element={<ArticleDetailPage />} />
+        <Route path="/blog/:slug" element={<ArticleDetailPage />} />
       </Routes>
       <Toaster />
     </div>
