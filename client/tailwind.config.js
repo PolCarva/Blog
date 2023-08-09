@@ -16,7 +16,10 @@ export default {
           background: "#F2F4F5",
           border: "#C3CAD9",
         },
-        success: "#36B37E",
+        green: {
+          success: "#36B37E",
+          dark: "#115C31",
+        },
       },
       fontFamily: {
         opensans: ["'Open Sans'", "sans-serif"],

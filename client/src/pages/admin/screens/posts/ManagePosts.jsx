@@ -1,13 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { getAllPosts } from "../../../../services/index/posts";
+import { deletePost, getAllPosts } from "../../../../services/index/posts";
 import { stable, images } from "../../../../constants";
 import Pagination from "../../../../components/Pagination";
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 let isFirstRun = true;
 
 const ManagePosts = () => {
+  const userState = useSelector((state) => state.user);
+
+  const queryClient = useQueryClient();
   const [searchKeyword, setSearchKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,6 +26,24 @@ const ManagePosts = () => {
     queryFn: () => getAllPosts(searchKeyword, currentPage),
     queryKey: ["posts"],
   });
+
+  const { mutate: mutateDeletePost, isLoading: isLoadingDeletePost } =
+    useMutation({
+      mutationFn: ({ slug, token }) => {
+        return deletePost({
+          slug,
+          token,
+        });
+      },
+      onSuccess: (data) => {
+        queryClient.invalidateQueries("posts");
+        toast.success("Post removed successfully");
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    });
+
   useEffect(() => {
     if (isFirstRun) {
       isFirstRun = false;
@@ -37,6 +61,10 @@ const ManagePosts = () => {
     e.preventDefault();
     setCurrentPage(1);
     refetch();
+  };
+
+  const deletePostHandler = ({ slug, token }) => {
+    mutateDeletePost({ slug, token });
   };
 
   return (
@@ -112,13 +140,19 @@ const ManagePosts = () => {
                         Loading...
                       </td>
                     </tr>
+                  ) : postsData?.data?.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="text-center py-10 w-full">
+                        No posts found{" "}
+                      </td>
+                    </tr>
                   ) : (
                     postsData?.data.map((post, index) => (
                       <tr key={index}>
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                           <div className="flex items-center">
                             <div className="flex-shrink-0">
-                              <a href="/" className="relative block">
+                              <Link to="/" className="relative block">
                                 <img
                                   alt={post?.title}
                                   src={
@@ -129,7 +163,7 @@ const ManagePosts = () => {
                                   }
                                   className="mx-auto object-cover rounded-lg aspect-square w-10 "
                                 />
-                              </a>
+                              </Link>
                             </div>
                             <div className="ml-3">
                               <p className="text-gray-900 whitespace-no-wrap">
@@ -164,13 +198,26 @@ const ManagePosts = () => {
                             )}
                           </div>
                         </td>
-                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                          <a
-                            href="/"
-                            className="text-indigo-600 hover:text-indigo-900"
+                        <td className="space-x-5 px-5 py-5 text-sm bg-white border-b border-gray-200">
+                          <button
+                            disabled={isLoadingDeletePost}
+                            type="button"
+                            className="text-red-600 hover:text-red-900 disabled:opacity-60 disabled:cursor-not-allowed"
+                            onClick={() =>
+                              deletePostHandler({
+                                token: userState.userInfo.token,
+                                slug: post.slug,
+                              })
+                            }
+                          >
+                            Delete
+                          </button>
+                          <Link
+                            to={`/admin/posts/manage/edit/${post.slug}`}
+                            className="text-green-success hover:text-green-dark"
                           >
                             Edit
-                          </a>
+                          </Link>
                         </td>
                       </tr>
                     ))

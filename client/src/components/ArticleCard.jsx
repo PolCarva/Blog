@@ -49,11 +49,11 @@ const ArticleCard = ({ post, className }) => {
               <div className="flex items-center gap-x-2">
                 <span
                   className={`${
-                    post.user.verified ? "bg-success" : "bg-gray-detail"
+                    post.user.verified ? "bg-green-success" : "bg-gray-detail"
                   } w-fit bg-opacity-20 p-1 rounded-full`}
                 >
                   {post.user.verified ? (
-                    <BsCheckLg className="w-2 h-2 text-success" />
+                    <BsCheckLg className="w-2 h-2 text-green-success bold" />
                   ) : (
                     <AiOutlineClose className="w-2 h-2 text-gray-placeholder" />
                   )}

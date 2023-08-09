@@ -32,9 +32,15 @@ export const getSinglePost = async ({ slug }) => {
   }
 };
 
-export const deletePost = async ({ slug }) => {
+export const deletePost = async ({ slug, token }) => {
   try {
-    const { data } = await api.delete(`/api/posts/${slug}`);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await api.delete(`/api/posts/${slug}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {
@@ -44,3 +50,20 @@ export const deletePost = async ({ slug }) => {
   }
 };
 
+export const updatePost = async ({ updatedData, slug, token }) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await api.put(`/api/posts/${slug}`, updatedData, config);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message);
+  }
+};
