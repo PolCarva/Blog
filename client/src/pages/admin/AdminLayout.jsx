@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserProfile } from "../../services/index/users";
 import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -33,9 +34,11 @@ const AdminLayout = () => {
   });
 
   if (profileIsLoading) {
-    return <div className="w-full h-screen flex justify-center items-center">
-      <h3 className="text-2xl text-slate-700">Loading...</h3>
-    </div>
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <h3 className="text-2xl text-slate-700">Loading...</h3>
+      </div>
+    );
   }
 
   return (
