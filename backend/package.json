@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node -r esm server.js",
     "dev": "nodemon -r esm server.js",
+    "build": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
