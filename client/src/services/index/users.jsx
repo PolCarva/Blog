@@ -1,6 +1,7 @@
 import axios from "axios";
+import { stable } from "../../constants";
 
-const baseURL = "http://localhost:5000";
+const baseURL = stable.BASE_URL;
 
 const api = axios.create({
   baseURL,

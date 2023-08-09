@@ -34,7 +34,7 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message="Oops! Something went wrong" />
         ) : (
-          data?.map((post) => (
+          data?.data.map((post) => (
             <ArticleCard
               key={post._id}
               post={post}

@@ -18,7 +18,17 @@ connectDB();
 const app = express();
 app.use(express.json());
 
-app.use(cors());
+const corsOptions = {
+  exposedHeaders: [
+    "x-totalpagecount",
+    "x-filter",
+    "x-totalcount",
+    "x-currentpage",
+    "x-pagesize",
+  ],
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Server is running");
