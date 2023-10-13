@@ -1,5 +1,5 @@
 const LOCAL_URL = "http://localhost:5000/";
-const SOCIALMULTIMEDIA_URL = "https://socialmultimedia.onrender.com/";
+const SOCIALMULTIMEDIA_URL = "https://msm-api.vercel.app/";
 
 const isProduction = process.env.NODE_ENV === "production";
 
