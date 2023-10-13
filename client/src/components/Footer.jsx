@@ -89,7 +89,7 @@ const Footer = () => {
           <img
             src={images.Logo}
             alt="Logo"
-            className="brightness-0 invert mx-auto md:mx-0"
+            className="brightness-0 invert mx-auto md:mx-0 h-16 lg:h-20"
           />
           <p className="text-sm text-dark-light text-center mt-4 md:text-left md:text-base lg:text-sm">
             Build a modern and creative website with crealand

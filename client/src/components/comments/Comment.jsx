@@ -48,8 +48,12 @@ const Comment = ({
             day: "numeric",
             month: "short",
             year: "numeric",
-            hour: "2-digit",
-          })}
+          }) +
+            ", " +
+            new Date(comment.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
         </span>
         {!isEditing && (
           <p className="font-opensans mt-[10px] text-dark-light">
@@ -106,7 +110,7 @@ const Comment = ({
             formCancelHandler={() => setAffectedComment(null)}
           />
         )}
-        {replies.length > 0 && (
+        {replies?.length > 0 && (
           <div>
             {replies.map((reply) => (
               <Comment

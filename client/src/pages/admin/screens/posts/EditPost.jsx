@@ -4,7 +4,6 @@ import { getSinglePost, updatePost } from "../../../../services/index/posts";
 import { Link, useParams } from "react-router-dom";
 import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
 import ErrorMessage from "../../../../components/ErrorMessage";
-import parseJsonToHtml from "../../../../utils/parseJsonToHtml";
 import { stable } from "../../../../constants";
 import { HiOutlineCamera } from "react-icons/hi";
 import { toast } from "react-hot-toast";
@@ -17,7 +16,9 @@ const EditPost = () => {
   const userState = useSelector((state) => state.user);
   const [initialPhoto, setInitialPhoto] = useState(null);
   const [photo, setPhoto] = useState(null);
-  const [body, setBody] = useState(null)
+  const [body, setBody] = useState(null);
+  const [title, setTitle] = useState("");
+  const [caption, setCaption] = useState("");
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
@@ -48,6 +49,8 @@ const EditPost = () => {
   useEffect(() => {
     if (!isLoading && !isError) {
       setInitialPhoto(data?.photo);
+      setTitle(data?.title);
+      setCaption(data?.caption);
     }
   }, [data, isError, isLoading]);
 
@@ -75,7 +78,7 @@ const EditPost = () => {
       updatedData.append("postPicture", picture);
     }
 
-    updatedData.append("document", JSON.stringify({ body }));
+    updatedData.append("document", JSON.stringify({ body, title, caption }));
 
     mutateUpdatePostDetail({
       updatedData,
@@ -85,7 +88,7 @@ const EditPost = () => {
   };
 
   const handleDeleteImage = () => {
-    if (window.confirm("Do you want to delete your Post picture?")) {
+    if (window.confirm("Do you want to delete your post?")) {
       setInitialPhoto(null);
       setPhoto(null);
     }
@@ -94,7 +97,7 @@ const EditPost = () => {
   return (
     <div>
       {isLoading ? (
-        <ArticleDetailSkeleton />
+        <ArticleDetailSkeleton isManage />
       ) : isError ? (
         <ErrorMessage message="Couldn't fetch the post detail" />
       ) : (
@@ -105,16 +108,16 @@ const EditPost = () => {
                 <img
                   src={URL.createObjectURL(photo)}
                   alt={data?.title}
-                  className="rounded-xl w-full"
+                  className="rounded-xl w-full aspect-video object-cover"
                 />
               ) : initialPhoto ? (
                 <img
                   src={stable.UPLOAD_FOLDER_BASE_URL + data?.photo}
                   alt={data?.title}
-                  className="rounded-xl w-full"
+                  className="rounded-xl w-full aspect-video object-cover"
                 />
               ) : (
-                <div className="w-full min-h-[200px] bg-blue-50/50 flex justify-center items-center">
+                <div className="w-full min-h-[200px] border-2 border-dashed rounded-lg border-gray-placeholder bg-blue-50/50 flex justify-center items-center">
                   <HiOutlineCamera className="w-7 h-auto text-primary" />
                 </div>
               )}
@@ -142,14 +145,31 @@ const EditPost = () => {
                 </Link>
               ))}
             </div>
-            <h1 className="text-xl font-medium font-roboto mt-4 text-dark-hard md:text-[26px]">
-              {data?.title}
-            </h1>
+            <input
+              onChange={(e) => setTitle(e.target.value)}
+              type="text"
+              value={title}
+              placeholder="Title"
+              maxLength={50}
+              className="block bg-transparent p-1 border rounded-md border-gray-placeholder outline-none text-xl w-full font-medium font-roboto my-4 text-dark-hard md:text-[26px]"
+            />
+
+            <textarea
+              onChange={(e) => setCaption(e.target.value)}
+              value={caption}
+              maxLength={120}
+              placeholder="Caption"
+              className="resize-none mb-2 bg-transparent p-1 h-10 w-full border rounded-md border-gray-placeholder outline-none"
+            />
             <div className="w-full">
               {!isLoading && !isError && (
-                <Editor content={data?.body} editable={true} onDataChange={(data) => {
-                  setBody(data)
-                }} />
+                <Editor
+                  content={data?.body}
+                  editable={true}
+                  onDataChange={(data) => {
+                    setBody(data);
+                  }}
+                />
               )}
             </div>
             <button

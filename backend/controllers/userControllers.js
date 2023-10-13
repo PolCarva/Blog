@@ -27,6 +27,7 @@ const registerUser = async (req, res, next) => {
       email: user.email,
       verified: user.verified,
       admin: user.admin,
+      op: user.op,
       token: await user.generateJWT(),
     });
   } catch (error) {
@@ -54,6 +55,7 @@ const loginUser = async (req, res, next) => {
         email: user.email,
         verified: user.verified,
         admin: user.admin,
+        op: user.op,
         token: await user.generateJWT(),
       });
     } else {
@@ -76,6 +78,7 @@ const userProfile = async (req, res, next) => {
         email: user.email,
         verified: user.verified,
         admin: user.admin,
+        op: user.op,
       });
     } else {
       let error = new Error("User not found");
@@ -113,6 +116,7 @@ const updateProfile = async (req, res, next) => {
       email: updatedUserProfile.email,
       verified: updatedUserProfile.verified,
       admin: updatedUserProfile.admin,
+      op: updatedUserProfile.op,
       token: await updatedUserProfile.generateJWT(),
     });
   } catch (error) {
@@ -148,6 +152,7 @@ const updateProfilePicture = async (req, res, next) => {
             email: updatedUser.email,
             verified: updatedUser.verified,
             admin: updatedUser.admin,
+            op: updatedUser.op,
             token: await updatedUser.generateJWT(),
           });
         } else {
@@ -164,6 +169,7 @@ const updateProfilePicture = async (req, res, next) => {
             email: updatedUser.email,
             verified: updatedUser.verified,
             admin: updatedUser.admin,
+            op: updatedUser.op,
             token: await updatedUser.generateJWT(),
           });
         }

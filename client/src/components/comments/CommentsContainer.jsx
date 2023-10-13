@@ -70,9 +70,9 @@ const CommentsContainer = ({
       token: userState.userInfo.token,
       slug: postSlug,
     });
-    queryClient.invalidateQueries(["blog", postSlug]);
 
     setAffectedComment(null);
+    queryClient.invalidateQueries(["blog", postSlug]);
   };
 
   const updateCommentHandler = (value, commentId) => {

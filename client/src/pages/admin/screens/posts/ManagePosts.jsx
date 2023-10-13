@@ -17,13 +17,19 @@ const ManagePosts = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  let userId = "";
+
+  if (userState.userInfo && !userState.userInfo.op) {
+    userId = userState.userInfo._id;
+  }
+
   const {
     data: postsData,
     isLoading,
     isFetching,
     refetch,
   } = useQuery({
-    queryFn: () => getAllPosts(searchKeyword, currentPage),
+    queryFn: () => getAllPosts(searchKeyword, currentPage, userId),
     queryKey: ["posts"],
   });
 
@@ -64,7 +70,8 @@ const ManagePosts = () => {
   };
 
   const deletePostHandler = ({ slug, token }) => {
-    mutateDeletePost({ slug, token });
+    if (window.confirm("Are you sure you want to delete this post?"))
+      mutateDeletePost({ slug, token });
   };
 
   return (
@@ -83,14 +90,14 @@ const ManagePosts = () => {
                   <input
                     type="text"
                     id='"form-subscribe-Filter'
-                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:blue-600 focus:border-transparent"
                     placeholder="Post title..."
                     onChange={searchKeywordHandler}
                     value={searchKeyword}
                   />
                 </div>
                 <button
-                  className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200"
+                  className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-primary rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:blue-500 focus:ring-offset-2 focus:blue-200"
                   type="submit"
                 >
                   Filter

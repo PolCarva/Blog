@@ -144,10 +144,18 @@ const getPost = async (req, res, next) => {
 const getAllPosts = async (req, res, next) => {
   try {
     const filter = req.query.searchKeyword;
+    const userId = req.query.userId;
+
     let where = {};
+
+    if (userId) {
+      where.user = userId;
+    }
+
     if (filter) {
       where.title = { $regex: filter, $options: "i" };
     }
+
     let query = Post.find(where);
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.limit) || 10;

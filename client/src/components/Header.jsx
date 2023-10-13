@@ -93,7 +93,7 @@ const Header = () => {
     <section className="sticky top-0 left-0 right-0 z-50 bg-white">
       <header className="container mx-auto px-5 flex justify-between py-4 items-center">
         <Link to={"/"}>
-          <img src={images.Logo} alt="Logo HiTech" className="h-6 lg:h-8" />
+          <img src={images.Logo} alt="Logo HiTech" className="h-10 lg:h-16" />
         </Link>
         <div className="text-dark-hard z-50 visible lg:hidden">
           {navIsVisible ? (
@@ -142,7 +142,7 @@ const Header = () => {
                             navigate("/admin");
                           }}
                           type="button"
-                          className="bg-dark-soft text-white hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
+                          className="bg-dark-soft text-white border  hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
                         >
                           Admin Dashboard
                         </button>
@@ -153,7 +153,7 @@ const Header = () => {
                           navigate("/profile");
                         }}
                         type="button"
-                        className="bg-dark-soft text-white hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
+                        className="bg-dark-soft text-white -translate-y-[1px] hover:text-white  hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
                       >
                         Profile Page
                       </button>
@@ -162,7 +162,7 @@ const Header = () => {
                           logOutHandler();
                         }}
                         type="button"
-                        className="bg-dark-soft text-white hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard  px-4 py-2"
+                        className="bg-dark-soft text-white -translate-y-[2px] hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard  px-4 py-2"
                       >
                         Log Out
                       </button>

@@ -7,10 +7,15 @@ const api = axios.create({
   baseURL,
 });
 
-export const getAllPosts = async (searchKeyword = "", page = 1, limit = 10) => {
+export const getAllPosts = async (
+  searchKeyword = "",
+  page = 1,
+  userId = "",
+  limit = 10
+) => {
   try {
     const { data, headers } = await api.get(
-      `/api/posts?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`
+      `/api/posts?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}&userId=${userId}`
     );
     return { data, headers };
   } catch (error) {
@@ -59,6 +64,24 @@ export const updatePost = async ({ updatedData, slug, token }) => {
     };
 
     const { data } = await api.put(`/api/posts/${slug}`, updatedData, config);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message);
+  }
+};
+
+export const createPost = async ({ token }) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await api.post(`/api/posts`, {}, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {

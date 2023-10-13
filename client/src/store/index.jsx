@@ -11,7 +11,6 @@ const initialState = {
 
 const store = configureStore({
   reducer: {
-    // Here we will be adding reducers
     user: userReducer,
   },
   preloadedState: initialState,

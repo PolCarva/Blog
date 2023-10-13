@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NavItemCollapse = ({
   title,
-  content,
+  children,
   icon,
   name,
   activeNavName,
@@ -22,7 +22,7 @@ const NavItemCollapse = ({
   },[])
 
   return (
-    <div className="collapse collapse-arrow bg-base-200 min-h-0 rounded-none py-2">
+    <div className="d-collapse d-collapse-arrow bg-base-200 min-h-0 rounded-none py-2">
       <input
         type="checkbox"
         className="min-h-0 py-0"
@@ -43,11 +43,7 @@ const NavItemCollapse = ({
       </div>
       <div className="collapse-content">
         <div className="mt-2 flex flex-col gap-y-2">
-          {content.map((item, index) => (
-            <Link to={item.link} key={index}>
-              {item.icon} {item.title}
-            </Link>
-          ))}
+          {children}
         </div>
       </div>
     </div>
