@@ -17,7 +17,7 @@ const ArticleCard = ({ post, className }) => {
               ? stables.UPLOAD_FOLDER_BASE_URL + post.photo
               : images.samplePostImage
           }
-          alt="title"
+          alt={post.title}
           className="w-full object-cover object-center h-auto md:h-52 lg:h-48 xl:h-60"
         />{" "}
       </Link>

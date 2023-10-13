@@ -50,7 +50,7 @@ const CTA = () => {
               <div className="rounded-xl w-full bg-white p-3 z-[1] relative">
                 <img
                   src={images.CTAImg}
-                  alt="title"
+                  alt="Facebook and messanger logo"
                   className="w-full object-cover object-center h-auto md:h-52 lg:h-48 xl:h-60"
                 />
                 <div className="p-5">
