@@ -26,6 +26,9 @@ const corsOptions = {
     "x-currentpage",
     "x-pagesize",
   ],
+  credentials: true,
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 
 app.use(cors(corsOptions));
