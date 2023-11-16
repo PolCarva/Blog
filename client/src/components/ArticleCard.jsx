@@ -4,6 +4,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import stables from "../constants/stable";
 import { Link } from "react-router-dom";
+import { stable } from "../constants";
 
 const ArticleCard = ({ post, className }) => {
   return (
@@ -41,6 +42,10 @@ const ArticleCard = ({ post, className }) => {
               }
               alt="Post profile"
               className="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover object-center"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = images.defaultProfile;
+              }}
             />
             <div className="flex flex-col">
               <h4 className="font-bold italic text-dark-soft text-sm md:text-base">

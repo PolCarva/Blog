@@ -169,6 +169,10 @@ const ManagePosts = () => {
                                       : images.samplePostImage
                                   }
                                   className="mx-auto object-cover rounded-lg aspect-square w-10 "
+                                  onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = images.defaultProfile;
+                                  }}
                                 />
                               </Link>
                             </div>

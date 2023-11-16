@@ -4,7 +4,7 @@ import { getSinglePost, updatePost } from "../../../../services/index/posts";
 import { Link, useParams } from "react-router-dom";
 import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
 import ErrorMessage from "../../../../components/ErrorMessage";
-import { stable } from "../../../../constants";
+import { images, stable } from "../../../../constants";
 import { HiOutlineCamera } from "react-icons/hi";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -109,12 +109,20 @@ const EditPost = () => {
                   src={URL.createObjectURL(photo)}
                   alt={data?.title}
                   className="rounded-xl w-full aspect-video object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = images.defaultProfile;
+                  }}
                 />
               ) : initialPhoto ? (
                 <img
                   src={stable.UPLOAD_FOLDER_BASE_URL + data?.photo}
                   alt={data?.title}
                   className="rounded-xl w-full aspect-video object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = stable.NO_IMAGE_URL;
+                  }}
                 />
               ) : (
                 <div className="w-full min-h-[200px] border-2 border-dashed rounded-lg border-gray-placeholder bg-blue-50/50 flex justify-center items-center">
