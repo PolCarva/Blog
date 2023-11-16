@@ -171,7 +171,7 @@ const ManagePosts = () => {
                                   className="mx-auto object-cover rounded-lg aspect-square w-10 "
                                   onError={(e) => {
                                     e.target.onerror = null;
-                                    e.target.src = images.defaultProfile;
+                                    e.target.src = images.samplePostImage;
                                   }}
                                 />
                               </Link>

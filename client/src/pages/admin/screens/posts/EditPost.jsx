@@ -111,7 +111,7 @@ const EditPost = () => {
                   className="rounded-xl w-full aspect-video object-cover"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = images.defaultProfile;
+                    e.target.src = images.samplePostImage;
                   }}
                 />
               ) : initialPhoto ? (
@@ -121,7 +121,7 @@ const EditPost = () => {
                   className="rounded-xl w-full aspect-video object-cover"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = stable.NO_IMAGE_URL;
+                    e.target.src = images.samplePostImage;
                   }}
                 />
               ) : (
