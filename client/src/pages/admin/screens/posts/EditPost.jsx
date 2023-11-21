@@ -11,7 +11,10 @@ import { useSelector } from "react-redux";
 import Editor from "../../../../components/editor/Editor";
 import MultiSelectTagDropdown from "../../../../components/select-dropdown/MultiSelectTagDropdown";
 import { getAllCategories } from "../../../../services/postCategories";
-import { filterCategories } from "../../../../utils/multiSelectTagUtils";
+import {
+  categoryToOption,
+  filterCategories,
+} from "../../../../utils/multiSelectTagUtils";
 
 const promiseOptions = async (inputValue) => {
   const categoriesData = await getAllCategories();
@@ -27,6 +30,7 @@ const EditPost = () => {
   const [body, setBody] = useState(null);
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
+  const [categories, setCategories] = useState(null);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
@@ -59,6 +63,7 @@ const EditPost = () => {
       setInitialPhoto(data?.photo);
       setTitle(data?.title);
       setCaption(data?.caption);
+      setCategories(data?.categories.map((category) => category.value));
     }
   }, [data, isError, isLoading]);
 
@@ -86,7 +91,10 @@ const EditPost = () => {
       updatedData.append("postPicture", picture);
     }
 
-    updatedData.append("document", JSON.stringify({ body, title, caption }));
+    updatedData.append(
+      "document",
+      JSON.stringify({ body, title, caption, categories })
+    );
 
     mutateUpdatePostDetail({
       updatedData,
@@ -156,6 +164,7 @@ const EditPost = () => {
             <div className="mt-4 flex gap-2">
               {data?.categories.map((category) => (
                 <Link
+                  key={category._id}
                   to={`/blog?category=${category.name}`}
                   className="text-primary text-sm font-roboto inline-block md:text-base"
                 >
@@ -181,7 +190,13 @@ const EditPost = () => {
             />
             <div className="my-5">
               {isPostDataLoaded && (
-                <MultiSelectTagDropdown loadOptions={promiseOptions} />
+                <MultiSelectTagDropdown
+                  defaultValue={data?.categories.map(categoryToOption)}
+                  loadOptions={promiseOptions}
+                  onChange={(newValue) =>
+                    setCategories(newValue.map((item) => item.value))
+                  }
+                />
               )}
             </div>
 

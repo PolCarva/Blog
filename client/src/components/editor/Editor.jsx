@@ -21,7 +21,7 @@ const Editor = ({ onDataChange, content, editable }) => {
   });
 
   return (
-    <div className="w-full relative">
+    <div className="w-full relative bg-white rounded-lg p-2">
       {editable && <MenuBar editor={editor} />}
       <EditorContent editor={editor} />
     </div>
