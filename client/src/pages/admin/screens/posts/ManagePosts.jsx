@@ -155,7 +155,7 @@ const ManagePosts = () => {
                     </tr>
                   ) : (
                     postsData?.data.map((post, index) => (
-                      <tr key={index}>
+                      <tr key={index} className={post.isNew && "opacity-60"}>
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                           <div className="flex items-center">
                             <div className="flex-shrink-0">

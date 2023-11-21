@@ -31,7 +31,6 @@ const HeaderAdmin = () => {
       },
       onSuccess: (data) => {
         queryClient.invalidateQueries("posts");
-        toast.success("Post Created successfully");
         navigate(`/admin/posts/manage/edit/${data.slug}`);
       },
       onError: (error) => {

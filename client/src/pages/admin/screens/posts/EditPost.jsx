@@ -1,7 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { getSinglePost, updatePost } from "../../../../services/index/posts";
-import { Link, useParams } from "react-router-dom";
+import {
+  deletePost,
+  getSinglePost,
+  updatePost,
+} from "../../../../services/index/posts";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
 import ErrorMessage from "../../../../components/ErrorMessage";
 import { images, stable } from "../../../../constants";
@@ -23,6 +27,7 @@ const promiseOptions = async (inputValue) => {
 
 const EditPost = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const userState = useSelector((state) => state.user);
   const [initialPhoto, setInitialPhoto] = useState(null);
@@ -31,6 +36,7 @@ const EditPost = () => {
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [categories, setCategories] = useState(null);
+  const [isNewPost, setIsNewPost] = useState(false);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
@@ -50,7 +56,7 @@ const EditPost = () => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries(["blog", slug]);
-      toast.success("Post is updated");
+      toast.success(isNewPost ? "Post created" : "Post updated");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -64,6 +70,7 @@ const EditPost = () => {
       setTitle(data?.title);
       setCaption(data?.caption);
       setCategories(data?.categories.map((category) => category.value));
+      setIsNewPost(data?.isNew);
     }
   }, [data, isError, isLoading]);
 
@@ -110,8 +117,20 @@ const EditPost = () => {
     }
   };
 
-  let isPostDataLoaded = !isLoading && !isError;
+  const handleCancelPost = async () => {
+    if (data.isNew) {
+      console.log("delete post");
+      await deletePost({ slug, token: userState.userInfo.token }).then(() => {
+        toast.success("Post is deleted");
+        navigate("/admin/posts/manage");
+      });
+    } else {
+      toast.success("Canceled editing post");
+      navigate("/admin/posts/manage");
+    }
+  };
 
+  let isPostDataLoaded = !isLoading && !isError;
   return (
     <div>
       {isLoading ? (
@@ -211,14 +230,24 @@ const EditPost = () => {
                 />
               )}
             </div>
-            <button
-              disabled={isLoadingUpdatePostDetail}
-              type="button"
-              onClick={handleUpdatePost}
-              className="w-full bg-green-500 text-white font-semibold rounded-lg px-4 py-2 mt-5 disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              Update Post
-            </button>
+            <div className="flex justify-between gap-5">
+              <button
+                disabled={isLoadingUpdatePostDetail}
+                type="button"
+                onClick={handleCancelPost}
+                className="flex-1 bg-red-500 text-white font-semibold rounded-lg px-4 py-2 mt-5 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isNewPost ? "Delete" : "Cancel"}
+              </button>
+              <button
+                disabled={isLoadingUpdatePostDetail}
+                type="button"
+                onClick={handleUpdatePost}
+                className="flex-1 bg-green-500 text-white font-semibold rounded-lg px-4 py-2 mt-5 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isNewPost ? "Publish" : "Update"}
+              </button>
+            </div>
           </article>
         </section>
       )}

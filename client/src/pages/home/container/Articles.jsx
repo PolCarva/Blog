@@ -34,13 +34,15 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message="Oops! Something went wrong" />
         ) : (
-          data?.data.map((post) => (
-            <ArticleCard
-              key={post._id}
-              post={post}
-              className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
-            />
-          ))
+          data?.data
+            .filter((post) => !post.isNew)
+            .map((post) => (
+              <ArticleCard
+                key={post._id}
+                post={post}
+                className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
+              />
+            ))
         )}
       </div>
       <button className="mx-auto flex items-center gap-x-2 font-bold border-2 text-primary border-primary px-6 py-3 rounded-lg">
