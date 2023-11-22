@@ -10,7 +10,7 @@ const Editor = ({ onDataChange, content, editable }) => {
     editorProps: {
       attributes: {
         class:
-          "min-h-[20em] rounded-lg !prose !dark:prose-invert prose-sm sm:prose-base max-w-none mt-5 focus:outline-none prose-pre:bg-[#282c34] prose-pre:text-[#abb2bf]",
+          "min-h-[20em] rounded-lg !prose !dark:prose-invert prose-sm sm:prose-base !max-w-none mt-5 focus:outline-none prose-pre:bg-[#282c34] prose-pre:text-[#abb2bf]",
       },
     },
     onUpdate: ({ editor }) => {
@@ -23,7 +23,7 @@ const Editor = ({ onDataChange, content, editable }) => {
   return (
     <div className="w-full relative bg-white rounded-lg p-2">
       {editable && <MenuBar editor={editor} />}
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor}/>
     </div>
   );
 };

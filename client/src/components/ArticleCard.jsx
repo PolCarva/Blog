@@ -18,6 +18,10 @@ const ArticleCard = ({ post, className }) => {
               ? stables.UPLOAD_FOLDER_BASE_URL + post.photo
               : images.samplePostImage
           }
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = images.samplePostImage;
+          }}
           alt={post.title}
           className="w-full object-cover object-center h-auto md:h-52 lg:h-48 xl:h-60"
         />{" "}
@@ -55,12 +59,12 @@ const ArticleCard = ({ post, className }) => {
                 <span
                   className={`${
                     post.user.verified ? "bg-green-success" : "bg-gray-detail"
-                  } w-fit bg-opacity-20 p-1 rounded-full`}
+                  } w-fit bg-opacity-20 p-0.5 rounded-full`}
                 >
                   {post.user.verified ? (
-                    <BsCheckLg className="w-2 h-2 text-green-success bold" />
+                    <BsCheckLg className="w-3 h-3 text-green-success bold" />
                   ) : (
-                    <AiOutlineClose className="w-2 h-2 text-gray-placeholder" />
+                    <AiOutlineClose className="w-3 h-3 text-gray-placeholder" />
                   )}
                 </span>
                 <span className="italic text-dark-light md:text-sm">

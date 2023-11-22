@@ -207,7 +207,8 @@ const EditPost = () => {
               placeholder="Caption"
               className="resize-none mb-2 bg-transparent p-1 h-10 w-full border rounded-md border-gray-placeholder outline-none"
             />
-            <div className="my-5">
+            <div className="my-5 flex flex-col gap-3">
+              <span className="font-bold">Categories:</span>
               {isPostDataLoaded && (
                 <MultiSelectTagDropdown
                   defaultValue={data?.categories.map(categoryToOption)}
