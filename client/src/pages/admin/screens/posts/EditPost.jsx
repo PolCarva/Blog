@@ -20,8 +20,6 @@ import {
   categoryToOption,
   filterCategories,
 } from "../../../../utils/multiSelectTagUtils";
-import { useEffect } from "react";
-import { useRef } from "react";
 
 const promiseOptions = async (inputValue) => {
   const categoriesData = await getAllCategories();
@@ -29,7 +27,6 @@ const promiseOptions = async (inputValue) => {
 };
 
 const EditPost = () => {
-  const isMounted = useRef(true);
   const { slug } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -44,25 +41,18 @@ const EditPost = () => {
   const [tags, setTags] = useState(null);
   const [postSlug, setPostSlug] = useState(slug);
 
-  useEffect(() => {
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
     queryKey: ["blog", slug],
     onSuccess: (data) => {
-      if (isMounted.current) {
-        setInitialPhoto(data?.photo);
-        setTitle(data?.title);
-        setCaption(data?.caption);
-        setCategories(data?.categories.map((category) => category._id));
-        setIsNewPost(data?.isNew);
-        setTags(data?.tags);
-      }
+      setInitialPhoto(data?.photo);
+      setTitle(data?.title);
+      setCaption(data?.caption);
+      setCategories(data?.categories.map((category) => category._id));
+      setIsNewPost(data?.isNew);
+      setTags(data?.tags);
     },
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -143,17 +133,6 @@ const EditPost = () => {
     }
   };
 
-  useEffect(() => {
-    const handleWindowBlur = () => {
-      console.log("Ventana fuera de foco");
-    };
-
-    window.addEventListener("blur", handleWindowBlur);
-
-    return () => {
-      window.removeEventListener("blur", handleWindowBlur);
-    };
-  }, []);
 
   let isPostDataLoaded = !isLoading && !isError;
   return (
