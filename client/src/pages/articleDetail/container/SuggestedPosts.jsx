@@ -22,6 +22,10 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
                   ? stable.UPLOAD_FOLDER_BASE_URL + item.photo
                   : images.samplePostImage
               }
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = images.samplePostImage;
+              }}
               alt={item.title}
               className="aspect-square object-cover rounded-lg w-1/5"
             />

@@ -74,8 +74,9 @@ const ManagePosts = () => {
       mutateDeletePost({ slug, token });
   };
 
+
   return (
-    <div>
+    <div className="h-full">
       <h1 className="text-2xl font-semibold">Manage Posts</h1>
       <div className="w-full px-4 mx-auto">
         <div className="py-8">
@@ -159,7 +160,7 @@ const ManagePosts = () => {
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                           <div className="flex items-center">
                             <div className="flex-shrink-0">
-                              <Link to="/" className="relative block">
+                              <Link to={`/blog/${post?.slug}`} className="relative block">
                                 <img
                                   alt={post?.title}
                                   src={

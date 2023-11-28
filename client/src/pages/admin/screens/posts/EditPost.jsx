@@ -1,10 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   deletePost,
   getSinglePost,
   updatePost,
 } from "../../../../services/index/posts";
+import CreatableSelect from "react-select/creatable";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
 import ErrorMessage from "../../../../components/ErrorMessage";
@@ -19,6 +20,8 @@ import {
   categoryToOption,
   filterCategories,
 } from "../../../../utils/multiSelectTagUtils";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 const promiseOptions = async (inputValue) => {
   const categoriesData = await getAllCategories();
@@ -26,6 +29,7 @@ const promiseOptions = async (inputValue) => {
 };
 
 const EditPost = () => {
+  const isMounted = useRef(true);
   const { slug } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -37,10 +41,28 @@ const EditPost = () => {
   const [caption, setCaption] = useState("");
   const [categories, setCategories] = useState(null);
   const [isNewPost, setIsNewPost] = useState(false);
+  const [tags, setTags] = useState(null);
+  const [postSlug, setPostSlug] = useState(slug);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
     queryKey: ["blog", slug],
+    onSuccess: (data) => {
+      if (isMounted.current) {
+        setInitialPhoto(data?.photo);
+        setTitle(data?.title);
+        setCaption(data?.caption);
+        setCategories(data?.categories.map((category) => category._id));
+        setIsNewPost(data?.isNew);
+        setTags(data?.tags);
+      }
+    },
   });
 
   const {
@@ -57,22 +79,13 @@ const EditPost = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries(["blog", slug]);
       toast.success(isNewPost ? "Post created" : "Post updated");
+      navigate(`/admin/posts/manage/edit/${data?.slug}`, { replace: true });
     },
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
     },
   });
-
-  useEffect(() => {
-    if (!isLoading && !isError) {
-      setInitialPhoto(data?.photo);
-      setTitle(data?.title);
-      setCaption(data?.caption);
-      setCategories(data?.categories.map((category) => category.value));
-      setIsNewPost(data?.isNew);
-    }
-  }, [data, isError, isLoading]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -100,7 +113,7 @@ const EditPost = () => {
 
     updatedData.append(
       "document",
-      JSON.stringify({ body, title, caption, categories })
+      JSON.stringify({ body, title, caption, categories, tags, slug: postSlug })
     );
 
     mutateUpdatePostDetail({
@@ -130,9 +143,21 @@ const EditPost = () => {
     }
   };
 
+  useEffect(() => {
+    const handleWindowBlur = () => {
+      console.log("Ventana fuera de foco");
+    };
+
+    window.addEventListener("blur", handleWindowBlur);
+
+    return () => {
+      window.removeEventListener("blur", handleWindowBlur);
+    };
+  }, []);
+
   let isPostDataLoaded = !isLoading && !isError;
   return (
-    <div>
+    <div className="h-full">
       {isLoading ? (
         <ArticleDetailSkeleton isManage />
       ) : isError ? (
@@ -140,6 +165,30 @@ const EditPost = () => {
       ) : (
         <section className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">
+            <div className="d-form-control w-full">
+              <label htmlFor="title" className="d-label">
+                <span className="d-label-text text-lg">Slug:</span>
+              </label>
+              <input
+                id="slug"
+                onChange={(e) =>
+                  /* replace áéíóú */
+                  setPostSlug(
+                    e.target.value
+                      .normalize("NFD") // Normaliza los caracteres a su forma descompuesta
+                      .replace(/[\u0300-\u036f]/g, "") // Elimina los diacríticos
+                      .replace(/\s+/g, "-") // Reemplaza espacios con guiones
+                      .replace(/[^\w-]/g, "") // Elimina caracteres especiales
+                      .toLowerCase()
+                  )
+                }
+                type="text"
+                value={postSlug}
+                placeholder="Post Slug"
+                maxLength={50}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto mb-4 text-dark-hard"
+              />
+            </div>
             <label htmlFor="postPicture" className="w-full cursor-pointer">
               {photo ? (
                 <img
@@ -191,24 +240,41 @@ const EditPost = () => {
                 </Link>
               ))}
             </div>
-            <input
-              onChange={(e) => setTitle(e.target.value)}
-              type="text"
-              value={title}
-              placeholder="Title"
-              maxLength={50}
-              className="block bg-transparent p-1 border rounded-md border-gray-placeholder outline-none text-xl w-full font-medium font-roboto my-4 text-dark-hard md:text-[26px]"
-            />
+            <div className="d-form-control w-full">
+              <label htmlFor="title" className="d-label">
+                <span className="d-label-text text-lg">Title:</span>
+              </label>
+              <input
+                id="title"
+                onChange={(e) => {
+                  console.log("Title changed:", e.target.value);
+                  setTitle(e.target.value);
+                }}
+                type="text"
+                value={title}
+                placeholder="Title"
+                maxLength={50}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto mb-4 text-dark-hard"
+              />
+            </div>
 
-            <textarea
-              onChange={(e) => setCaption(e.target.value)}
-              value={caption}
-              maxLength={120}
-              placeholder="Caption"
-              className="resize-none mb-2 bg-transparent p-1 h-10 w-full border rounded-md border-gray-placeholder outline-none"
-            />
-            <div className="my-5 flex flex-col gap-3">
-              <span className="font-bold">Categories:</span>
+            <div className="d-form-control w-full">
+              <label htmlFor="caption" className="d-label">
+                <span className="d-label-text text-lg">Caption:</span>
+              </label>
+              <textarea
+                id="caption"
+                onChange={(e) => setCaption(e.target.value)}
+                value={caption}
+                maxLength={120}
+                placeholder="Caption"
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 resize-none mb-2 bg-transparent p-1 h-10 w-full border rounded-md outline-none"
+              />
+            </div>
+            <div className="mt-2">
+              <label className="d-label">
+                <span className="d-label-text text-lg">Categories:</span>
+              </label>
               {isPostDataLoaded && (
                 <MultiSelectTagDropdown
                   defaultValue={data?.categories.map(categoryToOption)}
@@ -216,6 +282,25 @@ const EditPost = () => {
                   onChange={(newValue) =>
                     setCategories(newValue.map((item) => item.value))
                   }
+                />
+              )}
+            </div>
+
+            <div className="mb-5 mt-2 z-10">
+              <label className="d-label">
+                <span className="d-label-text text-lg">Tags:</span>
+              </label>
+              {isPostDataLoaded && (
+                <CreatableSelect
+                  defaultValue={data?.tags.map((tag) => ({
+                    value: tag,
+                    label: tag,
+                  }))}
+                  isMulti
+                  onChange={(newValue) =>
+                    setTags(newValue.map((item) => item.value))
+                  }
+                  className="relative z-20"
                 />
               )}
             </div>

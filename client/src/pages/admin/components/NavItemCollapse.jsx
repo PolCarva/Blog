@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const NavItemCollapse = ({
   title,
@@ -17,9 +16,7 @@ const NavItemCollapse = ({
     }
   }, [activeNavName, name]);
 
-  useEffect(() => {
-    
-  },[])
+  useEffect(() => {}, []);
 
   return (
     <div className="d-collapse d-collapse-arrow bg-base-200 min-h-0 rounded-none py-2">
@@ -42,9 +39,7 @@ const NavItemCollapse = ({
         {icon} {title}
       </div>
       <div className="collapse-content">
-        <div className="mt-2 flex flex-col gap-y-2">
-          {children}
-        </div>
+        <div className="mt-2 flex flex-col gap-y-2">{children}</div>
       </div>
     </div>
   );

@@ -69,15 +69,14 @@ const HeaderAdmin = () => {
         )}
       </div>
       {/* Sidebar container */}
-      {isMenuActive && (
         <div className="fixed inset-0 lg:static lg:h-full lg:w-full">
           {/* Underlay */}
           <div
-            className="fixed inset-0 bg-black opacity-50 lg:hidden"
+            className={`${isMenuActive ? "opacity-50" : "opacity-0"} transition-opacity ease-in-out duration-300 fixed inset-0 bg-black lg:hidden`}
             onClick={toggleMenuHandler}
           />
           {/* Sidebar */}
-          <div className="fixed top-0 bottom-0 left-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-fill lg:w-full lg:p-6">
+          <div className={`${isMenuActive ? "translate-x-0" : "-translate-x-full"} transition-transform ease-in-out duration-300  fixed top-0 left-0 bottom-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-fill lg:w-full lg:p-6`}>
             <Link to="/">
               <img src={images.Logo} alt="Logo" className="w-16" />
             </Link>
@@ -121,7 +120,6 @@ const HeaderAdmin = () => {
             </div>
           </div>
         </div>
-      )}
     </header>
   );
 };
