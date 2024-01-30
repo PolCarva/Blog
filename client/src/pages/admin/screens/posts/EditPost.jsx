@@ -22,7 +22,7 @@ import {
 } from "../../../../utils/multiSelectTagUtils";
 
 const promiseOptions = async (inputValue) => {
-  const {data: categoriesData} = await getAllCategories();
+  const { data: categoriesData } = await getAllCategories();
   return filterCategories(inputValue, categoriesData);
 };
 
@@ -132,7 +132,6 @@ const EditPost = () => {
       navigate("/admin/posts/manage");
     }
   };
-
 
   let isPostDataLoaded = !isLoading && !isError;
   return (
