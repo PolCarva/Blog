@@ -18,7 +18,7 @@ const Articles = () => {
   });
 
   return (
-    <section className="flex flex-col container mx-auto px-5 py-10">
+    <section className="flex flex-col container mx-auto px-5 py-10 w-full">
       <div className="flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
         {isLoading ? (
           [...Array(3)].map((item, index) => {

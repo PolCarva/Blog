@@ -19,8 +19,8 @@ const CTA = () => {
           fill="#0D2436"
         />
       </svg>
-      <section className="relative bg-dark-hard px-5">
-        <div className="container grid grid-cols-12 mx-auto py-10 md:pb-20 lg:place-items-center">
+      <section className="relative bg-dark-hard">
+        <div className="container px-5 grid grid-cols-12 mx-auto py-10 md:pb-20 lg:place-items-center">
           <div className="col-span-12 lg:col-span-6">
             <h2 className="text-2xl font-bold text-white md:text-4xl md:text-center md:leading-normal lg:text-left">
               Get our stories delivered From us to your inbox weekly.
