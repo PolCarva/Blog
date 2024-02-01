@@ -13,7 +13,7 @@ import images from "../constants/images";
 const Footer = () => {
   return (
     <section className="bg-dark-hard">
-      <footer className="container px-5 mx-auto grid grid-cols-10 py-10 gap-y-10 gap-x-5 md:pt-20 md:grid-cols-12 lg:grid-cols-10 lg:gap-x-10">
+      <footer className="container px-5 md:px-12 mx-auto grid grid-cols-10 py-10 gap-y-10 gap-x-5 md:pt-20 md:grid-cols-12 lg:grid-cols-10 lg:gap-x-10">
         <div className="col-span-5 md:col-span-4 lg:col-span-2">
           <h3 className="text-dark-light font-bold md:text-lg">Product</h3>
           <ul className="text-gray-placeholder text-sm mt-5 space-y-4 md:text-sm">

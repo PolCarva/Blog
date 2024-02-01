@@ -51,7 +51,7 @@ const LoginPage = () => {
 
   return (
     <MainLayout>
-      <section className="container px-5 mx-auto py-10">
+      <section className="container px-5 md:px-12 mx-auto py-10">
         <div className="w-full max-w-sm mx-auto">
           <h1 className="font-roboto text-2xl font-bold text-center text-dark-hard mb-8">
             Log In{" "}

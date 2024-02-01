@@ -75,7 +75,7 @@ const ProfilePage = () => {
 
   return (
     <MainLayout>
-      <section className="container px-5 mx-auto py-10">
+      <section className="container px-5 md:px-12 mx-auto py-10">
         <div className="w-full max-w-sm mx-auto">
           <ProfilePicture avatar={profileData?.avatar} />
           <form onSubmit={handleSubmit(submitHandler)}>

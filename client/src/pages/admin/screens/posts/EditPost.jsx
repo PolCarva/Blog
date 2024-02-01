@@ -141,7 +141,7 @@ const EditPost = () => {
       ) : isError ? (
         <ErrorMessage message="Couldn't fetch the post detail" />
       ) : (
-        <section className="container px-5 mx-auto max-w-5xl flex flex-col py-5 lg:flex-row lg:gap-x-5 lg:items-start">
+        <section className="container px-5 md:px-12 mx-auto max-w-5xl flex flex-col py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">
             <div className="d-form-control w-full">
               <label htmlFor="title" className="d-label">

@@ -5,7 +5,7 @@ import { images } from "../../../constants";
 
 const Hero = () => {
   return (
-    <section className="container px-5 mx-auto flex flex-col py-5 lg:flex-row">
+    <section className="container px-5 md:px-12 mx-auto flex flex-col py-5 lg:flex-row">
       <div className="mt-10 lg:w-1/2">
         <h1 className="font-roboto text-3xl text-center font-bold text-dark-soft md:text-5xl lg:text-4xl xl:text-5xl lg:text-left lg:max-w[540px]">
           Multimedia Social Media
