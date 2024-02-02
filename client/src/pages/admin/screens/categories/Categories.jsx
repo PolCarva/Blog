@@ -63,24 +63,26 @@ const Categories = () => {
     <div className="grid grid-cols-12 gap-x-4">
       <div className="col-span-4 py-8">
         <h4 className="text-2xl leading-tight">Add New Category</h4>
-        <input
-          onChange={(e) => {
-            setCategoryTitle(e.target.value);
-          }}
-          type="text"
-          value={categoryTitle}
-          placeholder="Category title"
-          maxLength={50}
-          className="d-input mt-6 d-input-bordered bg-white border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto text-dark-hard"
-        />
-        <button
-          disabled={isLoadingCreateCategory}
-          type="button"
-          onClick={handleUpdateCategory}
-          className="w-fit mt-3 bg-green-500 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-70"
-        >
-          Add Category
-        </button>
+        <div className="d-form-control w-full">
+          <input
+            onChange={(e) => {
+              setCategoryTitle(e.target.value);
+            }}
+            type="text"
+            value={categoryTitle}
+            placeholder="Category title"
+            maxLength={50}
+            className="d-input mt-6 d-input-bordered bg-white border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto text-dark-hard"
+          />
+          <button
+            disabled={isLoadingCreateCategory}
+            type="button"
+            onClick={handleUpdateCategory}
+            className="w-fit mt-3 bg-green-500 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            Add Category
+          </button>
+        </div>
       </div>
       <div className="col-span-8">
         <DataTable
