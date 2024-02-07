@@ -6,21 +6,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actions/user";
 import { Link, useNavigate } from "react-router-dom";
-
-const navItemsInfo = [
-  { name: "Home", type: "link", href: "/" },
-  { name: "Articles", type: "link", href: "/articles" },
-  {
-    name: "Pages",
-    type: "dropdown",
-    items: [
-      { title: "About us", href: "/about" },
-      { title: "Contact us", href: "/contact" },
-    ],
-  },
-  { name: "Pricing", type: "link", href: "/pricing" },
-  { name: "FAQ", type: "link", href: "/faq" },
-];
+import { useTranslation } from "react-i18next";
 
 const NavItem = ({ item }) => {
   const [dropdown, setDropdown] = useState(false);
@@ -75,6 +61,7 @@ const NavItem = ({ item }) => {
 };
 
 const Header = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [navIsVisible, setNavIsVisible] = useState(false);
@@ -88,6 +75,21 @@ const Header = () => {
   const logOutHandler = () => {
     dispatch(logOut());
   };
+
+  const navItemsInfo = [
+    { name: t("navBar.home"), type: "link", href: "/" },
+    { name: t("navBar.articles"), type: "link", href: "/articles" },
+    {
+      name: t("navBar.pages.main"),
+      type: "dropdown",
+      items: [
+        { title: t("navBar.pages.about"), href: "/about" },
+        { title: t("navBar.pages.contact"), href: "/contact" },
+      ],
+    },
+    { name: t("navBar.pricing"), type: "link", href: "/pricing" },
+    { name: t("navBar.faq"), type: "link", href: "/faq" },
+  ];
 
   return (
     <section className="sticky top-0 left-0 right-0 z-50 bg-white">
@@ -126,7 +128,7 @@ const Header = () => {
                     className="flex gap-x-1 items-center px-4 transition-all duration-500  group-hover:text-primary"
                   >
                     <span className="text-white mt-4 lg:text-dark-hard lg:mt-0">
-                      Account
+                      {t('navBar.account.main')}
                     </span>
                     <MdKeyboardArrowDown className="text-white lg:text-dark-hard" />
                   </button>
@@ -144,7 +146,7 @@ const Header = () => {
                           type="button"
                           className="bg-dark-soft text-white border  hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
                         >
-                          Admin Dashboard
+                          {t("navBar.account.admin")}
                         </button>
                       )}
 
@@ -155,7 +157,7 @@ const Header = () => {
                         type="button"
                         className="bg-dark-soft text-white -translate-y-[1px] hover:text-white  hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
                       >
-                        Profile Page
+                        {t("navBar.account.profile")}	
                       </button>
                       <button
                         onClick={() => {
@@ -164,7 +166,7 @@ const Header = () => {
                         type="button"
                         className="bg-dark-soft text-white -translate-y-[2px] hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard  px-4 py-2"
                       >
-                        Log Out
+                        {t("navBar.account.logout")}
                       </button>
                     </ul>
                   </div>
@@ -178,7 +180,7 @@ const Header = () => {
               }}
               className=" transition-all duration-300 mt-5 lg:mt-0 border-2 border-primary px-6 py-2 rounded-full text-primary font-semibold hover:bg-primary hover:text-white"
             >
-              Sign In
+              {t("navBar.account.login")}
             </button>
           )}
         </div>

@@ -14,9 +14,13 @@ import ManagePosts from "./pages/admin/screens/posts/ManagePosts";
 import EditPost from "./pages/admin/screens/posts/EditPost";
 import Categories from "./pages/admin/screens/categories/Categories";
 import EditCategories from "./pages/admin/screens/categories/EditCategories";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 
 function App() {
   return (
+    <I18nextProvider i18n={i18n}>
+
     <div className="App font-opensans">
       <Routes>
         <Route index path="/" element={<HomePage />} />
@@ -35,6 +39,7 @@ function App() {
       </Routes>
       <Toaster />
     </div>
+    </I18nextProvider>
   );
 }
 

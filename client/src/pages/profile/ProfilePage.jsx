@@ -10,8 +10,10 @@ import ProfilePicture from "../../components/ProfilePicture";
 import { userActions } from "../../store/reducers/userReducers";
 import { toast } from "react-hot-toast";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 const ProfilePage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
@@ -84,7 +86,7 @@ const ProfilePage = () => {
                 htmlFor="name"
                 className="text-[#5a7184] font-semibold block"
               >
-                Name
+                {t("profile.name")}
               </label>
               <input
                 type="text"
@@ -92,14 +94,14 @@ const ProfilePage = () => {
                 {...register("name", {
                   minLength: {
                     value: 1,
-                    message: "Name length must be at least 1 character",
+                    message:  t("profile.errors.name.length"),
                   },
                   required: {
                     value: true,
-                    message: "Name is required",
+                    message: t("profile.errors.name.required"),
                   },
                 })}
-                placeholder="Enter name"
+                placeholder={t("profile.placeholders.name")}
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -115,7 +117,7 @@ const ProfilePage = () => {
                 htmlFor="email"
                 className="text-[#5a7184] font-semibold block"
               >
-                Email
+               {t("profile.email")}
               </label>
               <input
                 type="email"
@@ -124,14 +126,14 @@ const ProfilePage = () => {
                   pattern: {
                     value:
                       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "Enter a valid email",
+                    message: t("profile.errors.email.pattern"),
                   },
                   required: {
                     value: true,
-                    message: "Email is required",
+                    message: t("profile.errors.email.required"),
                   },
                 })}
-                placeholder="Enter email"
+                placeholder={t("profile.placeholders.email")}
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -147,13 +149,13 @@ const ProfilePage = () => {
                 htmlFor="password"
                 className="text-[#5a7184] font-semibold block"
               >
-                New Password (optional)
+                {t("profile.newPassword")}
               </label>
               <input
                 type="password"
                 id="password"
                 {...register("password")}
-                placeholder="Enter new password"
+                placeholder={t("profile.placeholders.password")}
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -169,7 +171,7 @@ const ProfilePage = () => {
               disabled={!isValid || profileIsLoading || updateProfileIsLoading}
               className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Update
+              {t("profile.update")}
             </button>
           </form>
         </div>
