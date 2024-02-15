@@ -16,6 +16,7 @@ import Categories from "./pages/admin/screens/categories/Categories";
 import EditCategories from "./pages/admin/screens/categories/EditCategories";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
+import Users from "./pages/admin/screens/users/Users";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="posts/manage/edit/:slug" element={<EditPost />} />
           <Route path="categories/manage" element={<Categories />} />
           <Route path="categories/manage/edit/:slug" element={<EditCategories />} />
+          <Route path="users/manage/" element={<Users />} />
         </Route>
       </Routes>
       <Toaster />

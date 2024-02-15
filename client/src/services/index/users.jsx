@@ -101,4 +101,47 @@ export const updateProfilePicture = async ({ token, formData }) => {
   }
 };
 
+export const getAllUsers = async (
+  token,
+  searchKeyword = "",
+  page = 1,
+  userId = "",
+  limit = 10
+) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data, headers } = await api.get(
+      `/api/users?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}&userId=${userId}`, config
+    );
+    return { data, headers };
+  } catch (error) {
+    if (error.response && error.response.data.message)
+      throw new Error(error.response.data.message);
+    throw new Error(error.message);
+  }
+};
+
+export const deleteUser = async ({ slug, token }) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await api.delete(`/api/users/${slug}`, config);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message);
+  }
+};
+
 export default api;
