@@ -94,10 +94,24 @@ const userProfile = async (req, res, next) => {
 
 const updateProfile = async (req, res, next) => {
   try {
-    let user = await User.findById(req.user._id);
+    const userToUpdate = req.params.userId;
+
+    let userId = req.user._id;
+
+    if (!req.user.admin && userId === userToUpdate) {
+      let error = new Error("You are not authorized to update this user");
+      error.statusCode = 403;
+      throw error;
+    }
+
+    let user = await User.findById(userToUpdate);
 
     if (!user) {
       throw new Error("User not found");
+    }
+
+    if(typeof req.body.admin !== "undefined" && req.user.admin) {
+      user.admin = req.body.admin;
     }
 
     user.name = req.body.name || user.name;
@@ -242,7 +256,13 @@ const deleteUser = async (req, res, next) => {
 
     await Post.deleteMany({_id: { $in: postIdsToDelete }});
 
+    postsToDelete.forEach(post => {
+      fileRemover(post.photo);
+    });
+
     await user.remove();
+
+    fileRemover(user.avatar);
 
     res.status(204).json({ message: "User removed"});
   }

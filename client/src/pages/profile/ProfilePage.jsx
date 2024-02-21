@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +31,7 @@ const ProfilePage = () => {
       return updateProfile({
         token: userState.userInfo.token,
         userData: { name, email, password },
+        userId: userState.userInfo._id,
       });
     },
     onSuccess: (data) => {

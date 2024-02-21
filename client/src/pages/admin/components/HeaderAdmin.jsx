@@ -72,16 +72,14 @@ const HeaderAdmin = () => {
       <div className="fixed inset-0 lg:static lg:h-full lg:w-full">
         {/* Underlay */}
         <div
-          className={`${
-            isMenuActive ? "opacity-50" : "opacity-0"
-          } transition-opacity ease-in-out duration-300 fixed inset-0 bg-black lg:hidden`}
+          className={`${isMenuActive ? "opacity-50" : "opacity-0"
+            } transition-opacity ease-in-out duration-300 fixed inset-0 bg-black lg:hidden`}
           onClick={toggleMenuHandler}
         />
         {/* Sidebar */}
         <div
-          className={`${
-            isMenuActive ? "translate-x-0" : "-translate-x-full"
-          } transition-transform ease-in-out duration-300  fixed top-0 left-0 bottom-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-fill lg:w-full lg:p-6`}
+          className={`${isMenuActive ? "translate-x-0" : "-translate-x-full"
+            } transition-transform ease-in-out duration-300  fixed top-0 left-0 bottom-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-fill lg:w-full lg:p-6`}
         >
           <Link to="/">
             <img src={images.Logo} alt="Logo" className="w-16" />
@@ -97,6 +95,7 @@ const HeaderAdmin = () => {
               activeNavName={activeNavName}
               setActiveNavName={setActiveNavName}
             />
+
             <NavItem
               title="Comments"
               link="/admin/comments"

@@ -90,6 +90,8 @@ const deletePost = async (req, res, next) => {
       return next(error);
     }
 
+    fileRemover(post.photo);
+    
     await Comment.deleteMany({ post: post._id });
 
     return res.json({ message: "Post deleted successfully" });
