@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
 import { images, stable } from "../../../constants";
+import { useTranslation } from "react-i18next";
 
 const SuggestedPosts = ({ className, header, posts = [], tags }) => {
+  const { t } = useTranslation();
   return (
     <div
       className={`w-full shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] rounded-lg p-4 ${className}`}
@@ -45,10 +48,10 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
         ))}
       </div>
       <h2 className="font-roboto font-medium text-dark-hard mt-8 md:text-xl">
-        Tags
+        {t("article.tags")}	
       </h2>
       {tags.length === 0 ? (
-        <p className="text-slate-500 text-xs mt-2">No tags for this post</p>
+        <p className="text-slate-500 text-xs mt-2">{t('article.noTags')}</p>
       ) : (
         <div className="flex flex-wrap gap-x-2 gap-y-2 mt-4">
           {tags.map((item, index) => (

@@ -103,6 +103,12 @@ const resources = {
                     license: "Licencia",
                     changelog: "Changelog",
                 },
+            },
+            article: {
+                suggestedPosts: "Últimos artículos",
+                share: "Compartir",
+                tags: "Etiquetas",
+                noTags: "No hay etiquetas",
             }
             // Agrega más traducciones aquí
         },
@@ -206,6 +212,12 @@ const resources = {
                     license: "License",
                     changelog: "Changelog",
                 },
+            },
+            article: {
+                suggestedPosts: "Latest articles",
+                share: "Share",
+                tags: "Tags",
+                noTags: "No tags",
             }
             // Agrega más traducciones aquí
         },

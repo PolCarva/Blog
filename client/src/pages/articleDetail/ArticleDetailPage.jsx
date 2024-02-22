@@ -14,8 +14,10 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { useSelector } from "react-redux";
 import parseJsonToHtml from "../../utils/parseJsonToHtml";
 import Editor from "../../components/editor/Editor";
+import { useTranslation } from "react-i18next";
 
 const ArticleDetailPage = () => {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const userState = useSelector((state) => state.user);
 
@@ -59,10 +61,15 @@ const ArticleDetailPage = () => {
                   : images.samplePostImage
               }
               alt={data?.title}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = images.samplePostImage;
+              }}
             />
             <div className="mt-4 flex gap-2">
               {data?.categories.map((category) => (
                 <Link
+                  key={category._id}
                   to={`/blog?category=${category.name}`}
                   className="text-primary text-sm font-roboto inline-block uppercase md:text-base"
                 >
@@ -89,14 +96,14 @@ const ArticleDetailPage = () => {
           </article>
           <div>
             <SuggestedPosts
-              header={"Latest Article"}
+              header={t("article.suggestedPosts")}
               posts={postsData?.data}
               tags={data?.tags}
               className="mt-8 lg:mt-0 lg:max-w-xs"
             />
             <div className="mt-7">
               <h2 className="font-roboto font-medium text-dark-hard mb-4 md:text-xl">
-                Share on:
+                {t("article.share")}
               </h2>
               <SocialShareButtons
                 url={encodeURI(window.location.href)}
