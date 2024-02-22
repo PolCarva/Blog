@@ -1,12 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import images from "../constants/images";
 import { BsCheckLg } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import stables from "../constants/stable";
 import { Link } from "react-router-dom";
-import { stable } from "../constants";
+import { useTranslation } from "react-i18next";
 
 const ArticleCard = ({ post, className }) => {
+  const { t } = useTranslation();
   return (
     <div
       className={`rounded-xl overflow-hidden shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] ${className}`}
@@ -68,7 +70,7 @@ const ArticleCard = ({ post, className }) => {
                   )}
                 </span>
                 <span className="italic text-dark-light md:text-sm">
-                  {post.user.verified ? "Verified" : "Unverified"}
+                  {post.user.verified ? t("admin.common.verified") : t("admin.common.notVerified")}
                 </span>
               </div>
             </div>

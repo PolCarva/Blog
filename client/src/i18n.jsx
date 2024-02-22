@@ -16,6 +16,8 @@ const resources = {
                         publish: 'Publicar',
                         delete: 'Eliminar',
                     },
+                    verified: 'Verificado',
+                    notVerified: 'No verificado',
                     table: {
                         author: 'Autor',
                         title: 'Título',
@@ -202,6 +204,8 @@ const resources = {
                     filter: 'Filter',
                     loading: 'Loading...',
                     noData: 'No data',
+                    verified: 'Verified',
+                    notVerified: 'Unverified',
                     actions: {
                         cancel: 'Cancel',
                         update: 'Update',
