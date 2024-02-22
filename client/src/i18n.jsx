@@ -112,7 +112,7 @@ const resources = {
                 },
             },
             hero: {
-                welcomeMessage: 'Inspira y colabora con los estudiantes de Diseño Multimedia de ORT en nuestra red social. ¡Únase hoy para crear juntos el diseño del mañana!',
+                welcomeMessage: 'Inspírate y colabora con los estudiantes de Diseño Multimedia de ORT en nuestra red social. ¡Únase hoy para crear juntos el diseño del mañana!',
                 searchPlaceholder: 'Buscar artículos',
                 searchBtn: 'Buscar',
                 searchSuggestions: 'Etiquetas populares',
@@ -157,7 +157,7 @@ const resources = {
 
             },
             footer: {
-                shortDescription: "Inspira y colabora con los estudiantes de Diseño Multimedia de ORT en nuestra red social.",
+                shortDescription: "Inspirate y colabora con los estudiantes de Diseño Multimedia de ORT en nuestra red social.",
                 product: {
                     title: "Producto",
                     landingPage: "Página de inicio",
@@ -304,7 +304,7 @@ const resources = {
                 },
             },
             hero: {
-                welcomeMessage: "Inspire and collaborate with ORT Multimedia Design students on our social network. Join today to create tomorrow's design together!",
+                welcomeMessage: "Get inspired and collaborate with ORT Multimedia Design students on our social network. Join today to create tomorrow's design together!",
                 searchPlaceholder: "Search articles",
                 searchBtn: "Search",
                 searchSuggestions: "Popular tags",
@@ -348,7 +348,7 @@ const resources = {
                 futureDescription: "Majority of peole will work in jobs that don’t exist today."
             },
             footer: {
-                shortDescription: "Inspire and collaborate with ORT Multimedia Design students on our social network.",
+                shortDescription: "Get inspired and collaborate with ORT Multimedia Design students on our social network.",
                 product: {
                     title: "Product",
                     landingPage: "Landing Page",

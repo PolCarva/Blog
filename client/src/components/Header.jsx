@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { images } from "../constants";
 import { useState } from "react";
@@ -38,9 +39,8 @@ const NavItem = ({ item }) => {
             <MdKeyboardArrowDown className="text-white lg:text-dark-hard" />
           </button>
           <div
-            className={` ${
-              dropdown ? "block" : "hidden"
-            } lg:hidden transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}
+            className={` ${dropdown ? "block" : "hidden"
+              } lg:hidden transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}
           >
             <ul className="bg-dark-soft lg:bg-white text-center flex flex-col shadow-lg rounded-lg overflow-hidden">
               {item.items.map((page, index) => (
@@ -61,12 +61,17 @@ const NavItem = ({ item }) => {
 };
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [navIsVisible, setNavIsVisible] = useState(false);
   const userState = useSelector((state) => state.user);
   const [profileDropdown, setprofileDropdown] = useState(false);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   const navVisibilityHandler = () => {
     setNavIsVisible((curState) => !curState);
@@ -78,7 +83,7 @@ const Header = () => {
 
   const navItemsInfo = [
     { name: t("navBar.home"), type: "link", href: "/" },
-    { name: t("navBar.articles"), type: "link", href: "/articles" },
+    /* { name: t("navBar.articles"), type: "link", href: "/articles" },
     {
       name: t("navBar.pages.main"),
       type: "dropdown",
@@ -88,7 +93,7 @@ const Header = () => {
       ],
     },
     { name: t("navBar.pricing"), type: "link", href: "/pricing" },
-    { name: t("navBar.faq"), type: "link", href: "/faq" },
+    { name: t("navBar.faq"), type: "link", href: "/faq" }, */
   ];
 
   return (
@@ -108,14 +113,30 @@ const Header = () => {
           )}
         </div>
         <div
-          className={`${
-            navIsVisible ? "right-0" : "-right-full"
-          }  mt-[56px] lg:mt-0 bg-dark-hard lg:bg-transparent z-[49] flex flex-col lg:flex-row w-full lg:w-auto justify-center lg:justify-end  fixed top-0 bottom-0 lg:static gap-x-9 items-center transition-all duration-500`}
+          className={`${navIsVisible ? "right-0" : "-right-full"
+            }  mt-[56px] lg:mt-0 bg-dark-hard lg:bg-transparent z-[49] flex flex-col lg:flex-row w-full lg:w-auto justify-center lg:justify-end  fixed top-0 bottom-0 lg:static gap-x-9 items-center transition-all duration-500`}
         >
           <ul className="items-center gap-y-5 flex flex-col lg:flex-row gap-x-2 font-semibold">
             {navItemsInfo.map((item, index) => (
               <NavItem key={index} item={item} />
             ))}
+
+            <li className="relative group">
+              <span className="cursor-pointer text-primary absolute transition-all duration-500 font-bold right-0 top-0 opacity-0 group-hover:right-[90%] group-hover:opacity-100">
+                /
+              </span>
+              <button
+                onClick={() => {
+                  if (i18n.language === "en") changeLanguage("es");
+                  else
+                    changeLanguage("en");
+                }}
+                className="text-white lg:text-dark-hard px-4 transition-all duration-500"
+              >
+                {i18n.language === "en" ? "ES" : "EN"}
+              </button>
+
+            </li>
           </ul>
           {userState.userInfo ? (
             <div className="items-center gap-y-5 flex flex-col lg:flex-row gap-x-2 font-semibold">
@@ -133,9 +154,8 @@ const Header = () => {
                     <MdKeyboardArrowDown className="text-white lg:text-dark-hard" />
                   </button>
                   <div
-                    className={` ${
-                      profileDropdown ? "block" : "hidden"
-                    } lg:hidden transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}
+                    className={` ${profileDropdown ? "block" : "hidden"
+                      } lg:hidden transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}
                   >
                     <ul className="bg-dark-soft lg:bg-transparent text-center flex flex-col shadow-lg rounded-lg overflow-hidden">
                       {userState.userInfo?.admin && (
@@ -157,7 +177,7 @@ const Header = () => {
                         type="button"
                         className="bg-dark-soft text-white -translate-y-[1px] hover:text-white  hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
                       >
-                        {t("navBar.account.profile")}	
+                        {t("navBar.account.profile")}
                       </button>
                       <button
                         onClick={() => {
@@ -183,6 +203,7 @@ const Header = () => {
               {t("navBar.account.login")}
             </button>
           )}
+
         </div>
       </header>
     </section>
