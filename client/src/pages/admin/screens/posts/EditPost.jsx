@@ -20,6 +20,7 @@ import {
   categoryToOption,
   filterCategories,
 } from "../../../../utils/multiSelectTagUtils";
+import { useTranslation } from "react-i18next";
 
 const promiseOptions = async (inputValue) => {
   const { data: categoriesData } = await getAllCategories();
@@ -27,6 +28,7 @@ const promiseOptions = async (inputValue) => {
 };
 
 const EditPost = () => {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -145,7 +147,7 @@ const EditPost = () => {
           <article className="flex-1">
             <div className="d-form-control w-full">
               <label htmlFor="title" className="d-label">
-                <span className="d-label-text text-lg">Slug:</span>
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.slug')}:</span>
               </label>
               <input
                 id="slug"
@@ -162,7 +164,7 @@ const EditPost = () => {
                 }
                 type="text"
                 value={postSlug}
-                placeholder="Post Slug"
+                placeholder={t('admin.posts.new.inputs.slug')}
                 maxLength={50}
                 className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto mb-4 text-dark-hard"
               />
@@ -205,7 +207,7 @@ const EditPost = () => {
               onClick={handleDeleteImage}
               className="w-fit bg-red-500 text-sm text-white font-semibold rounded-lg px-2 py-1 mt-5"
             >
-              Delete Image
+              {t('admin.posts.new.inputs.deleteImage')}
             </button>
             <div className="mt-4 flex gap-2">
               {data?.categories.map((category) => (
@@ -220,7 +222,7 @@ const EditPost = () => {
             </div>
             <div className="d-form-control w-full">
               <label htmlFor="title" className="d-label">
-                <span className="d-label-text text-lg">Title:</span>
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.title')}:</span>
               </label>
               <input
                 id="title"
@@ -230,7 +232,7 @@ const EditPost = () => {
                 }}
                 type="text"
                 value={title}
-                placeholder="Title"
+                placeholder={t('admin.posts.new.inputs.title')}
                 maxLength={50}
                 className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto mb-4 text-dark-hard"
               />
@@ -238,20 +240,20 @@ const EditPost = () => {
 
             <div className="d-form-control w-full">
               <label htmlFor="caption" className="d-label">
-                <span className="d-label-text text-lg">Caption:</span>
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.caption')}</span>
               </label>
               <textarea
                 id="caption"
                 onChange={(e) => setCaption(e.target.value)}
                 value={caption}
                 maxLength={120}
-                placeholder="Caption"
+                placeholder={t('admin.posts.new.inputs.caption')}
                 className="d-input d-input-bordered border-slate-300 !outline-slate-300 resize-none mb-2 bg-transparent p-1 h-10 w-full border rounded-md outline-none"
               />
             </div>
             <div className="mt-2">
               <label className="d-label">
-                <span className="d-label-text text-lg">Categories:</span>
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.categories')}</span>
               </label>
               {isPostDataLoaded && (
                 <MultiSelectTagDropdown
@@ -266,7 +268,7 @@ const EditPost = () => {
 
             <div className="mb-5 mt-2 z-10">
               <label className="d-label">
-                <span className="d-label-text text-lg">Tags:</span>
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.tags')}</span>
               </label>
               {isPostDataLoaded && (
                 <CreatableSelect

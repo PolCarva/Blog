@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import Pagination from "../../../components/Pagination";
+import { useTranslation } from "react-i18next";
 
 const DataTable = ({
   pageTitle,
@@ -17,6 +18,7 @@ const DataTable = ({
   currentPage,
   headers,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="h-full">
       <h1 className="text-2xl font-semibold">{pageTitle}</h1>
@@ -43,7 +45,7 @@ const DataTable = ({
                   className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-primary rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:blue-500 focus:ring-offset-2 focus:blue-200"
                   type="submit"
                 >
-                  Filter
+                  {t("admin.common.filter")}
                 </button>
               </form>
             </div>
@@ -68,13 +70,13 @@ const DataTable = ({
                   {isLoading || isFetching ? (
                     <tr>
                       <td colSpan={5} className="text-center py-10 w-full">
-                        Loading...
+                        {t("admin.common.loading")}
                       </td>
                     </tr>
                   ) : data?.length === 0 ? (
                     <tr>
                       <td colSpan={5} className="text-center py-10 w-full">
-                        No records found{" "}
+                        {t("admin.common.noData")}
                       </td>
                     </tr>
                   ) : (

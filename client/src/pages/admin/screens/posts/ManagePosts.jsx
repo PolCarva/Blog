@@ -4,8 +4,10 @@ import Pagination from "../../../../components/Pagination";
 import { Link } from "react-router-dom";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import DataTable from "../../components/DataTable";
+import { useTranslation } from "react-i18next";
 
 const ManagePosts = () => {
+  const { t } = useTranslation();
   const {
     userState,
     currentPage,
@@ -37,18 +39,18 @@ const ManagePosts = () => {
 
   return (
     <DataTable
-      pageTitle={"Manage Posts"}
-      dataListName={"Posts"}
-      searchInputPlaceHolder={"Post title..."}
+      pageTitle={t('admin.posts.manage.title')}
+      dataListName={t('admin.posts.title')}
+      searchInputPlaceHolder={t('admin.posts.manage.filterPlaceholder')}
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
       tableHeaderTitleList={[
-        "Title",
-        "Category",
-        "Created At",
-        "Tags",
-        "",
+        t('admin.common.table.title'),
+        t('admin.common.table.category'),
+        t('admin.common.table.createdAt'),
+        t('admin.common.table.tags'),
+        t('admin.common.table.actions.title'),
       ]}
       isLoading={isLoading}
       isFetching={isFetching}
@@ -94,7 +96,7 @@ const ManagePosts = () => {
                       {category.title}
                     </span>
                   ))
-                : "Uncategorized"}
+                : t('admin.posts.manage.uncategorized')}
             </p>
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
@@ -112,7 +114,7 @@ const ManagePosts = () => {
                   </p>
                 ))
               ) : (
-                <p>No Tags</p>
+                <p>{t('admin.posts.manage.noTags')}</p>
               )}
             </div>
           </td>
@@ -128,13 +130,13 @@ const ManagePosts = () => {
                 })
               }
             >
-              Delete
+              {t('admin.common.table.actions.delete')}
             </button>
             <Link
               to={`/admin/posts/manage/edit/${post.slug}`}
               className="text-green-success hover:text-green-dark"
             >
-              Edit
+              {t('admin.common.table.actions.edit')}
             </Link>
           </td>
         </tr>

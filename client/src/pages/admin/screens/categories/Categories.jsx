@@ -9,8 +9,10 @@ import {
 import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const Categories = () => {
+  const { t } = useTranslation();
   const [categoryTitle, setCategoryTitle] = useState("");
 
   const { mutate: mutateCreateCategory, isLoading: isLoadingCreateCategory } =
@@ -62,7 +64,7 @@ const Categories = () => {
   return (
     <div className="grid grid-cols-12 gap-x-4">
       <div className="col-span-4 py-8">
-        <h4 className="text-2xl leading-tight">Add New Category</h4>
+        <h4 className="text-2xl leading-tight">{t('admin.posts.categories.add')}</h4>
         <div className="d-form-control w-full">
           <input
             onChange={(e) => {
@@ -70,7 +72,7 @@ const Categories = () => {
             }}
             type="text"
             value={categoryTitle}
-            placeholder="Category title"
+            placeholder={t('admin.posts.categories.addPlaceholder')}
             maxLength={50}
             className="d-input mt-6 d-input-bordered bg-white border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto text-dark-hard"
           />
@@ -80,7 +82,7 @@ const Categories = () => {
             onClick={handleUpdateCategory}
             className="w-fit mt-3 bg-green-500 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Add Category
+            {t('admin.posts.categories.addBtn')}
           </button>
         </div>
       </div>
@@ -88,11 +90,15 @@ const Categories = () => {
         <DataTable
           pageTitle={""}
           dataListName={"Categories"}
-          searchInputPlaceHolder={"Category title..."}
+          searchInputPlaceHolder={t('admin.posts.categories.filterPlaceholder')}
           searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
           searchKeywordOnChangeHandler={searchKeywordHandler}
           searchKeyword={searchKeyword}
-          tableHeaderTitleList={["Title", "Created At", ""]}
+          tableHeaderTitleList={[
+            t('admin.common.table.title'),
+            t('admin.common.table.createdAt'),
+            t('admin.common.table.actions.title')
+          ]}
           isLoading={isLoading}
           isFetching={isFetching}
           data={categoriesData}
@@ -128,13 +134,13 @@ const Categories = () => {
                     })
                   }
                 >
-                  Delete
+                  {t('admin.common.table.actions.delete')}
                 </button>
                 <Link
                   to={`/admin/categories/manage/edit/${category?._id}`}
                   className="text-green-success hover:text-green-dark"
                 >
-                  Edit
+                  {t('admin.common.table.actions.edit')}
                 </Link>
               </td>
             </tr>

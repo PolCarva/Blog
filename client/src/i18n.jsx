@@ -5,6 +5,88 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
     es: {
         translation: {
+            admin: {
+                common: {
+                    filter: 'Filtrar',
+                    loading: 'Cargando...',
+                    noData: 'No hay datos',
+                    actions: {
+                        cancel: 'Cancelar',
+                        update: 'Actualizar',
+                        publish: 'Publicar',
+                        delete: 'Eliminar',
+                    },
+                    table: {
+                        author: 'Autor',
+                        title: 'Título',
+                        userName: 'Nombre',
+                        mail: 'Email',
+                        verified: 'Verificado',
+                        admin: 'Admin',
+                        category: 'Categoría',
+                        tags: 'Etiquetas',
+                        comment: 'Comentario',
+                        inResponseTo: 'En respuesta a',
+                        createdAt: 'Creado el',
+                        actions: {
+                            title: "",
+                            approve: 'Aprobar',
+                            unapprove: 'Desaprobar',
+                            delete: 'Eliminar',
+                            edit: 'Editar',
+                        },
+                        replyOn: 'En respuesta a',
+                    }
+                },
+                mainMenu: {
+                    title: 'Menú principal',
+                },
+                dashboard: {
+                    title: 'Panel de admin',
+                },
+                comments: {
+                    title: 'Comentarios',
+                    manage: 'Administrar Comentarios',
+                    filterPlaceholder: 'Buscar comentarios...',
+                },
+                posts: {
+                    title: 'Posts',
+                    manage: {
+                        title: 'Administrar Posts',
+                        filterPlaceholder: 'Buscar posts...',
+                        noTags: 'No hay etiquetas',
+                        uncategorized: 'Sin categoría',
+                    },
+                    new: {
+                        title: 'Editar Post',
+                        create: 'Nuevo Post',
+                        inputs: {
+                            deleteImage: 'Eliminar imágen',
+                            slug: 'Slug',
+                            title: 'Título',
+                            caption: 'Subtítulo',
+                            categories: 'Categorías',
+                            tags: 'Etiquetas',
+                            select: 'Seleccionar',
+                        }
+
+
+                    },
+                    categories: {
+                        title: 'Categorías',
+                        manage: 'Administrar Categorías',
+                        add: 'Agregar Categoría Nueva',
+                        addPlaceholder: 'Título de la categoría...',
+                        addBtn: 'Agregar',
+                        filterPlaceholder: 'Buscar categorías...',
+                    },
+                },
+                users: {
+                    title: 'Usuarios',
+                    manage: 'Administrar Usuarios',
+                    filterPlaceholder: 'Buscar usuario...',
+                },
+            },
             alerts: {
                 underConstruction: 'Sitio bajo construcción, algunas características aún no funcionan'
             },
@@ -115,6 +197,86 @@ const resources = {
     },
     en: {
         translation: {
+            admin: {
+                common: {
+                    filter: 'Filter',
+                    loading: 'Loading...',
+                    noData: 'No data',
+                    actions: {
+                        cancel: 'Cancel',
+                        update: 'Update',
+                        publish: 'Publish',
+                        delete: 'Delete',
+                    },
+                    table: {
+                        author: 'Author',
+                        title: 'Title',
+                        userName: 'Username',
+                        mail: 'Email',
+                        verified: 'Verified',
+                        admin: 'Admin',
+                        category: 'Category',
+                        tags: 'Tags',
+                        comment: 'Comment',
+                        inResponseTo: 'In response to',
+                        createdAt: 'Created at',
+                        actions: {
+                            title: "",
+                            approve: 'Approve',
+                            unapprove: 'Unapprove',
+                            delete: 'Delete',
+                            edit: 'Edit',
+                        },
+                        replyOn: 'In response to',
+                    }
+                },
+                mainMenu: {
+                    title: 'Main Menu',
+                },
+                dashboard: {
+                    title: 'Admin Panel',
+                },
+                comments: {
+                    title: 'Comments',
+                    manage: 'Manage Comments',
+                    filterPlaceholder: 'Search comments...',
+                },
+                posts: {
+                    title: 'Posts',
+                    manage: {
+                        title: 'Manage Posts',
+                        filterPlaceholder: 'Search posts...',
+                        noTags: 'No tags',
+                        uncategorized: 'Uncategorized',
+                    },
+                    new: {
+                        title: 'Edit Post',
+                        create: 'New Post',
+                        inputs: {
+                            deleteImage: 'Delete image',
+                            slug: 'Slug',
+                            title: 'Title',
+                            caption: 'Caption',
+                            categories: 'Categories',
+                            tags: 'Tags',
+                            select: 'Select',
+                        }
+                    },
+                    categories: {
+                        title: 'Categories',
+                        manage: 'Manage Categories',
+                        add: 'Add New Category',
+                        addPlaceholder: 'Category title...',
+                        addBtn: 'Add',
+                        filterPlaceholder: 'Search categories...',
+                    },
+                },
+                users: {
+                    title: 'Users',
+                    manage: 'Manage Users',
+                    filterPlaceholder: 'Search user...',
+                },
+            },
             alerts: {
                 underConstruction: ' Site under construction, some features are not working yet'
             },

@@ -10,8 +10,10 @@ import stables from "../../../../constants/stable";
 import { images } from "../../../../constants";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const Comments = () => {
+  const { t } = useTranslation();
   const {
     userState,
     currentPage,
@@ -58,18 +60,18 @@ const Comments = () => {
 
   return (
     <DataTable
-      pageTitle={"Manage Comments"}
-      dataListName={"Comments"}
-      searchInputPlaceHolder={"Search Comments..."}
+      pageTitle={t('admin.comments.manage')}
+      dataListName={t('admin.comments.title')}
+      searchInputPlaceHolder={t('admin.comments.filterPlaceholder')}
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
       tableHeaderTitleList={[
-        "Author",
-        "Comment",
-        "In Respond to",
-        "Created at",
-        "",
+        t('admin.common.table.author'),
+        t('admin.common.table.comment'),
+        t('admin.common.table.inResponseTo'),
+        t('admin.common.table.createdAt'),
+        t('admin.common.table.actions.title'),
       ]}
       isLoading={isLoading}
       isFetching={isFetching}
@@ -109,7 +111,7 @@ const Comments = () => {
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             {comment?.replyOnUser !== null && (
               <p className="text-gray-900 whitespace-no-wrap text-xs italic bold">
-                In reply to{" "}
+                {t('admin.common.table.replyOn')} {" "}
                 <Link
                   to={`/blog/${comment?.post?.slug}/#comment-${comment?._id}`}
                   className="text-blue-500 hover:text-blue-700"
@@ -158,7 +160,7 @@ const Comments = () => {
                 })
               }
             >
-              {comment?.check ? "Unapprove" : "Approve"}
+              {comment?.check ? t('admin.common.table.actions.unapprove') : t('admin.common.table.actions.approve')}
             </button>
             <button
               disabled={isLoadingDeleteData}
@@ -171,34 +173,9 @@ const Comments = () => {
                 })
               }
             >
-              Delete
+              {t('admin.common.table.actions.delete')}
             </button>
           </td>
-          {/* <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <p className="text-gray-900 whitespace-no-wrap flex flex-wrap gap-1">
-              {comment.categories.length > 0
-                ? post.categories.slice(0, 3).map((category, index) => (
-                    <span key={index} className="bg-gray-200 p-1 rounded">
-                      {category.title}
-                    </span>
-                  ))
-                : "Uncategorized"}
-            </p>
-          </td>
-           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <div className="flex gap-x-2">
-              {post.tags.length > 0 ? (
-                post.tags.map((tag, index) => (
-                  <p key={index}>
-                    {tag}
-                    {post.tags.length - 1 !== index && ","}
-                  </p>
-                ))
-              ) : (
-                <p>No Tags</p>
-              )}
-            </div>
-          </td>*/}
         </tr>
       ))}
     </DataTable>

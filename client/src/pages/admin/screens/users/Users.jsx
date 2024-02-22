@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import { images, stable } from '../../../../constants';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const Users = () => {
+  const { t } = useTranslation();
   const {
     userState,
     currentPage,
@@ -56,7 +58,7 @@ const Users = () => {
 
   const handleAdminCheck = (e, userId) => {
     const initialCheckValue = !e.target.checked;
-    if (window.confirm('¿Cambiar el estado de administrador de este usuario?')) {
+    if (window.confirm('Are you sure you want to change the user\'s admin status?')) {
       mutateUpdateUser({
         isAdmin: e.target.checked,
         userId,
@@ -70,19 +72,19 @@ const Users = () => {
 
   return (
     <DataTable
-      pageTitle={"Manage Users"}
-      dataListName={"Users"}
-      searchInputPlaceHolder={"Username's email..."}
+      pageTitle={t("admin.users.manage")}
+      dataListName={t("admin.users.title")}
+      searchInputPlaceHolder={t("admin.users.filterPlaceholder")}
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
       tableHeaderTitleList={[
-        "Name",
-        "Email",
-        "Created At",
-        "Verified",
-        "Admin",
-        "",
+        t("admin.common.table.userName"),
+        t("admin.common.table.mail"),
+        t("admin.common.table.createdAt"),
+        t("admin.common.table.verified"),
+        t("admin.common.table.admin"),
+        t("admin.common.table.actions.title"),
       ]}
       isLoading={isLoading}
       isFetching={isFetching}

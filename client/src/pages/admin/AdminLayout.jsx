@@ -5,9 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserProfile } from "../../services/index/users";
 import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const AdminLayout = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const userState = useSelector((state) => state.user);
 
@@ -36,7 +37,7 @@ const AdminLayout = () => {
   if (profileIsLoading) {
     return (
       <div className="w-full h-screen flex justify-center items-center">
-        <h3 className="text-2xl text-slate-700">Loading...</h3>
+        <h3 className="text-2xl text-slate-700">{t('admin.common.loading')}</h3>
       </div>
     );
   }
