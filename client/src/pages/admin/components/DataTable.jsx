@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Pagination from "../../../components/Pagination";
 
 const DataTable = ({

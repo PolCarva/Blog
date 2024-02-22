@@ -95,7 +95,6 @@ const userProfile = async (req, res, next) => {
 const updateProfile = async (req, res, next) => {
   try {
     const userToUpdate = req.params.userId;
-
     let userId = req.user._id;
 
     if (!req.user.admin && userId === userToUpdate) {
@@ -106,11 +105,30 @@ const updateProfile = async (req, res, next) => {
 
     let user = await User.findById(userToUpdate);
 
+    //Si el usuario no existe
     if (!user) {
-      throw new Error("User not found");
+      let error = new Error("User not found");
+      error.statusCode = 404;
+      throw error;
     }
 
-    if(typeof req.body.admin !== "undefined" && req.user.admin) {
+    if (req.body.admin !== undefined || req.body.op !== undefined || req.body.verified !== undefined) {
+      //Si se intenta actualizar un op
+      if (user.op) {
+        let error = new Error("You can't update an OP user");
+        error.statusCode = 403;
+        throw error;
+      }
+
+      //Si un admin (no op) intenta actualizar otro admin
+      if (!req.user.op && req.user.admin && user.admin) {
+        let error = new Error("You can't update another admin user");
+        error.statusCode = 403;
+        throw error;
+      }
+    }
+
+    if (typeof req.body.admin !== "undefined" && req.user.admin) {
       user.admin = req.body.admin;
     }
 
@@ -244,17 +262,17 @@ const getAllUsers = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
-    
-    if(!user) {
+
+    if (!user) {
       throw new Error("User not found");
     }
-    
+
     const postsToDelete = await Post.find({ user: user._id });
     const postIdsToDelete = postsToDelete.map(post => post._id);
 
     await Comment.deleteMany({ post: { $in: postIdsToDelete } });
 
-    await Post.deleteMany({_id: { $in: postIdsToDelete }});
+    await Post.deleteMany({ _id: { $in: postIdsToDelete } });
 
     postsToDelete.forEach(post => {
       fileRemover(post.photo);
@@ -264,7 +282,7 @@ const deleteUser = async (req, res, next) => {
 
     fileRemover(user.avatar);
 
-    res.status(204).json({ message: "User removed"});
+    res.status(204).json({ message: "User removed" });
   }
   catch (error) {
     next(error);
