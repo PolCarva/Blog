@@ -7,8 +7,10 @@ import { getAllPosts } from "../../../services/index/posts";
 import { toast } from "react-hot-toast";
 import ArticleCardSkeleton from "../../../components/ArticleCardSkeleton";
 import ErrorMessage from "../../../components/ErrorMessage";
+import { useTranslation } from "react-i18next";
 
 const Articles = () => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getAllPosts(),
     queryKey: ["posts"],
@@ -46,7 +48,7 @@ const Articles = () => {
         )}
       </div>
       <button className="mx-auto flex items-center gap-x-2 font-bold border-2 text-primary border-primary px-6 py-3 rounded-lg">
-        <span>More articles</span>
+        <span>{t('articles.moreArticles')}</span>
         <FaArrowRight className="w-3 h-3" />
       </button>
     </section>

@@ -2,17 +2,24 @@ import MainLayout from "../../components/MainLayout";
 import Hero from "./container/Hero";
 import Articles from "./container/Articles";
 import CTA from "./container/CTA";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
-  toast("Site under construction. Some features may not work!", {
-    icon: "🚧",
-    duration: 10000,
-    style: {
-      background: "#333",
-      color: "#fff",
-    },
-  });
+  const { t } = useTranslation();
+  useEffect(() => {
+    setTimeout(() => {
+      toast(t('alerts.underConstruction'), {
+        icon: "🚧",
+        duration: 5000,
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      }, 1000);
+    });
+  }, [t]);
 
   return (
     <MainLayout>
