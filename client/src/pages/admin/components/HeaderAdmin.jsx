@@ -63,7 +63,7 @@ const HeaderAdmin = () => {
   
 
   return (
-    <header className="flex h-fit w-full items-center justify-between p-4 lg:h-full lg:max-w-[300px] lg:flex-col lg:items-start lg:justify-start lg:p-0">
+    <header className="flex z-[1000] h-fit w-full items-center justify-between p-4 lg:h-full lg:max-w-[300px] lg:flex-col lg:items-start lg:justify-start lg:p-0">
       {/* Logo */}
       <Link to={"/"}>
         <img src={images.Logo} alt="Logo" className="w-16 lg:hidden" />
@@ -77,11 +77,11 @@ const HeaderAdmin = () => {
         )}
       </div>
       {/* Sidebar container */}
-      <div className="fixed inset-0 lg:static lg:h-full lg:w-full">
+      <div className={`${isMenuActive ? "fixed" : "hidden" } inset-0 lg:static lg:h-full lg:w-full`}>
         {/* Underlay */}
         <div
-          className={`${isMenuActive ? "opacity-50" : "opacity-0"
-            } transition-opacity ease-in-out duration-300 fixed inset-0 bg-black lg:hidden`}
+          className={`${isMenuActive ? "opacity-50 translate-x-0" : "opacity-0 translate-x-full"
+            } fixed inset-0 bg-black lg:hidden`}
           onClick={toggleMenuHandler}
         />
         {/* Sidebar */}

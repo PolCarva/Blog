@@ -24,12 +24,12 @@ const DataTable = ({
       <h1 className="text-2xl font-semibold">{pageTitle}</h1>
       <div className="w-full px-4 mx-auto">
         <div className="py-8">
-          <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
+          <div className="flex flex-col md:flex-row gap-2 justify-between w-full mb-1 sm:mb-0">
             <h2 className="text-2xl leading-tight">{dataListName}</h2>
             <div className="text-end">
               <form
                 onSubmit={searchKeywordOnSubmitHandler}
-                className="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0"
+                className="flex flex-col justify-center w-full space-y-3 md:max-w-2xl md:flex-row md:w-full md:space-x-3 md:space-y-0"
               >
                 <div className=" relative ">
                   <input
@@ -92,7 +92,7 @@ const DataTable = ({
                   totalPageCount={JSON.parse(headers?.["x-totalpagecount"])}
                 />
               )}
-            </div>
+            </div>            
           </div>
         </div>
       </div>

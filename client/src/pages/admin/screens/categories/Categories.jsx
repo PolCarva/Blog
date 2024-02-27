@@ -62,7 +62,7 @@ const Categories = () => {
   };
 
   return (
-    <div className="grid grid-cols-12 gap-x-4">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-x-4">
       <div className="col-span-4 py-8">
         <h4 className="text-2xl leading-tight">{t('admin.posts.categories.add')}</h4>
         <div className="d-form-control w-full">
@@ -108,7 +108,7 @@ const Categories = () => {
           userState={userState}
         >
           {categoriesData?.data.map((category, index) => (
-            <tr key={index} className={category.isNew && "opacity-60"}>
+            <tr key={index} className={category.isNew && 'opacity-60'}>
               <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                 <div className="flex items-center">
                   <p className="text-gray-900 whitespace-no-wrap">
