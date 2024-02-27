@@ -86,15 +86,20 @@ const BlogPage = () => {
                     ) : isError ? (
                         <ErrorMessage message={t('alerts.somethingWentWrong')} />
                     ) : (
-                        data?.data
-                            .filter((post) => !post.isNew)
-                            .map((post) => (
-                                <ArticleCard
-                                    key={post._id}
-                                    post={post}
-                                    className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
-                                />
-                            ))
+
+                        data?.data.filter((post) => !post.isNew).length > 0 ? (
+                            data?.data
+                                .filter((post) => !post.isNew)
+                                .map((post) => (
+                                    <ArticleCard
+                                        key={post._id}
+                                        post={post}
+                                        className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
+                                    />
+                                ))
+                        ) : (
+                            <ErrorMessage message={t('alerts.somethingWentWrong')} />
+                        )
                     )}
                 </div>
                 {!isLoading && (
