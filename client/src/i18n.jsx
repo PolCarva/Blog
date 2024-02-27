@@ -45,6 +45,7 @@ const resources = {
                 },
                 dashboard: {
                     title: 'Panel de admin',
+                    paragraph: '¡Bienvenid@ al gestor de contenido de MSM! Aquí podrás administrar los comentarios en tus posts, editar, crear y eliminar posts, así como también crear y eliminar categorías, y gestionar usuarios de la red.',
                 },
                 comments: {
                     title: 'Comentarios',
@@ -241,6 +242,7 @@ const resources = {
                 },
                 dashboard: {
                     title: 'Admin Panel',
+                    paragraph: 'Welcome to the MSM content manager! Here you can manage comments on your posts, edit, create and delete posts, as well as create and delete categories, and manage network users.',
                 },
                 comments: {
                     title: 'Comments',

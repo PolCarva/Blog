@@ -66,7 +66,7 @@ const HeaderAdmin = () => {
     <header className="flex z-[1000] h-fit w-full items-center justify-between p-4 lg:h-full lg:max-w-[300px] lg:flex-col lg:items-start lg:justify-start lg:p-0">
       {/* Logo */}
       <Link to={"/"}>
-        <img src={images.Logo} alt="Logo" className="w-16 lg:hidden" />
+        <img src={images.Logo} alt="Logo" className="w-24 lg:hidden" />
       </Link>
       {/* Menu */}
       <div className="cursor-pointer lg:hidden">
@@ -90,7 +90,7 @@ const HeaderAdmin = () => {
             } transition-transform ease-in-out duration-300  fixed top-0 left-0 bottom-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-fill lg:w-full lg:p-6`}
         >
           <Link to="/">
-            <img src={images.Logo} alt="Logo" className="w-16" />
+            <img src={images.Logo} alt="Logo" className="w-24" />
           </Link>
           <h4 className="mt-10 font-bold uppercase text-gray-detail">{t('admin.mainMenu.title')}</h4>
           {/* Menu Items */}
