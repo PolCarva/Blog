@@ -101,7 +101,7 @@ const ArticleDetailPage = () => {
           <div>
             <SuggestedPosts
               header={t("article.suggestedPosts")}
-              posts={postsData?.data}
+              posts={postsData?.data.slice(0, 3)}
               tags={data?.tags}
               className="mt-8 lg:mt-0 lg:max-w-xs"
             />
