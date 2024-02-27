@@ -90,11 +90,13 @@ const resources = {
                 },
             },
             alerts: {
-                underConstruction: 'Sitio bajo construcción, algunas características aún no funcionan'
+                underConstruction: 'Sitio bajo construcción, algunas características aún no funcionan',
+                somethingWentWrong: 'Oops! Algo salió mal',
+                couldNotFetchPostDetails: 'No se pudieron obtener los detalles del post',
             },
             navBar: {
                 home: 'Inicio',
-                articles: 'Artículos',
+                blog: 'Blog',
                 pages: {
                     main: 'Páginas',
                     about: 'Sobre nosotros',
@@ -282,11 +284,14 @@ const resources = {
                 },
             },
             alerts: {
-                underConstruction: ' Site under construction, some features are not working yet'
+                underConstruction: ' Site under construction, some features are not working yet',
+                somethingWentWrong: 'Oops! Something went wrong',
+                couldNotFetchPostDetails: 'Could not fetch post details',
+
             },
             navBar: {
                 home: 'Home',
-                articles: 'Articles',
+                blog: 'Blog',
                 pages: {
                     main: 'Pages',
                     about: 'About us',

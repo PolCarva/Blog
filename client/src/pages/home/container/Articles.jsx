@@ -8,11 +8,12 @@ import { toast } from "react-hot-toast";
 import ArticleCardSkeleton from "../../../components/ArticleCardSkeleton";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Articles = () => {
   const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getAllPosts(),
+    queryFn: () => getAllPosts("", 1, 6),
     queryKey: ["posts"],
     onError: (error) => {
       toast.error(error.message);
@@ -34,7 +35,7 @@ const Articles = () => {
             );
           })
         ) : isError ? (
-          <ErrorMessage message="Oops! Something went wrong" />
+          <ErrorMessage message={t('alerts.somethingWentWrong')} />
         ) : (
           data?.data
             .filter((post) => !post.isNew)
@@ -47,10 +48,10 @@ const Articles = () => {
             ))
         )}
       </div>
-      <button className="mx-auto flex items-center gap-x-2 font-bold border-2 text-primary border-primary px-6 py-3 rounded-lg">
+      <Link to="/blog" className="mx-auto hover:bg-primary hover:text-white transition-colors ease-in-out duration-300 flex items-center gap-x-2 font-bold border-2 text-primary border-primary px-6 py-3 rounded-lg">
         <span>{t('articles.moreArticles')}</span>
         <FaArrowRight className="w-3 h-3" />
-      </button>
+      </Link>
     </section>
   );
 };

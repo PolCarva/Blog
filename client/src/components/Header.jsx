@@ -83,8 +83,8 @@ const Header = () => {
 
   const navItemsInfo = [
     { name: t("navBar.home"), type: "link", href: "/" },
-    /* { name: t("navBar.articles"), type: "link", href: "/articles" },
-    {
+    { name: t("navBar.blog"), type: "link", href: "/blog" },
+     /*{
       name: t("navBar.pages.main"),
       type: "dropdown",
       items: [

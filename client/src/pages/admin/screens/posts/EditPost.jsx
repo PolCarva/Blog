@@ -141,7 +141,7 @@ const EditPost = () => {
       {isLoading ? (
         <ArticleDetailSkeleton isManage />
       ) : isError ? (
-        <ErrorMessage message="Couldn't fetch the post detail" />
+        <ErrorMessage message={t("aletrs.couldNotFetchPostDetails")} />
       ) : (
         <section className="container px-5 md:px-12 mx-auto max-w-5xl flex flex-col py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">

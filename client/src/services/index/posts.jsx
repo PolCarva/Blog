@@ -10,8 +10,8 @@ const api = axios.create({
 export const getAllPosts = async (
   searchKeyword = "",
   page = 1,
+  limit = 10,
   userId = "",
-  limit = 10
 ) => {
   try {
     const { data, headers } = await api.get(

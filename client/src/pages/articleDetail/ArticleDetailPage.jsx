@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import MainLayout from "../../components/MainLayout";
 import BreadCrumbs from "../../components/BreadCrumbs";
@@ -43,12 +43,16 @@ const ArticleDetailPage = () => {
     queryKey: ["posts"],
   });
 
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [])
+
   return (
     <MainLayout>
       {isLoading ? (
         <ArticleDetailSkeleton />
       ) : isError ? (
-        <ErrorMessage message={"Oops! Something went wrong"} />
+        <ErrorMessage message={t('alerts.somethingWentWrong')} />
       ) : (
         <section className="container px-5 md:px-12 mx-auto max-w-5xl flex flex-col py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">

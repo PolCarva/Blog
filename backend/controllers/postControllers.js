@@ -60,19 +60,19 @@ const updatePost = async (req, res, next) => {
       } else {
         // Everything went fine
         if (req.file) {
-          let filename;
-          filename = post.photo;
+          let filename = post.photo;
           if (filename) {
             fileRemover(filename);
           }
           post.photo = req.file.filename;
-          handleUploadPostData(req.body.document);
+          await handleUploadPostData(req.body.document);
         } else {
-          let filename;
-          filename = post.photo;
+          let filename = post.photo;
+          if (filename) {
+            fileRemover(filename);
+          }
           post.photo = "";
-          fileRemover(filename);
-          handleUploadPostData(req.body.document);
+          await handleUploadPostData(req.body.document);
         }
       }
     });
@@ -91,7 +91,7 @@ const deletePost = async (req, res, next) => {
     }
 
     fileRemover(post.photo);
-    
+
     await Comment.deleteMany({ post: post._id });
 
     return res.json({ message: "Post deleted successfully" });
