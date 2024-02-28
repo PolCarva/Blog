@@ -16,6 +16,7 @@ const createPost = async (req, res, next) => {
       },
       photo: "",
       user: req.user._id,
+      url: req.body.url || "",
     });
 
     const createdPost = await post.save();
@@ -38,13 +39,14 @@ const updatePost = async (req, res, next) => {
     const upload = uploadPicture.single("postPicture");
 
     const handleUploadPostData = async (data) => {
-      const { title, caption, slug, body, tags, categories } = JSON.parse(data);
+      const { title, caption, slug, body, tags, categories, url } = JSON.parse(data);
       post.title = title || post.title;
       post.caption = caption || post.caption;
       post.slug = slug || post.slug;
       post.body = body || post.body;
       post.tags = tags || post.tags;
       post.categories = categories || post.categories;
+      post.url = url || post.url;
       post.isNew = false;
 
       const updatedPost = await post.save();

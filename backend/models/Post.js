@@ -11,6 +11,7 @@ const PostSchema = new Schema(
     tags: { type: [String] },
     categories: [{ type: Schema.Types.ObjectId, ref: "PostCategories" }],
     isNew: { type: Boolean, default: true },
+    url: { type: String, required: false },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

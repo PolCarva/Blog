@@ -7,6 +7,7 @@ const resources = {
         translation: {
             admin: {
                 common: {
+                    optional: "(opcional)",
                     filter: 'Filtrar',
                     loading: 'Cargando...',
                     noData: 'No hay datos',
@@ -65,12 +66,16 @@ const resources = {
                         create: 'Nuevo Post',
                         inputs: {
                             deleteImage: 'Eliminar imágen',
+                            url: 'URL del Proyecto',
                             slug: 'Slug',
                             title: 'Título',
                             caption: 'Subtítulo',
                             categories: 'Categorías',
                             tags: 'Etiquetas',
                             select: 'Seleccionar',
+                        },
+                        placeholders: {
+                            url: 'www.link-a-tu-proyecto.com',
                         }
 
 
@@ -82,6 +87,8 @@ const resources = {
                         addPlaceholder: 'Título de la categoría...',
                         addBtn: 'Agregar',
                         filterPlaceholder: 'Buscar categorías...',
+                        update: 'Actualizar Categor',
+
                     },
                 },
                 users: {
@@ -91,9 +98,11 @@ const resources = {
                 },
             },
             alerts: {
+                invalidUrl: 'URL no válida (http://, https://, www, etc.)',
                 underConstruction: 'Sitio bajo construcción, algunas características aún no funcionan',
                 somethingWentWrong: 'Oops! Algo salió mal',
                 couldNotFetchPostDetails: 'No se pudieron obtener los detalles del post',
+                nothingHere: '¡Oops! No hay nada aquí',
             },
             navBar: {
                 home: 'Inicio',
@@ -204,6 +213,7 @@ const resources = {
         translation: {
             admin: {
                 common: {
+                    optional: "(optional)",
                     filter: 'Filter',
                     loading: 'Loading...',
                     noData: 'No data',
@@ -262,13 +272,18 @@ const resources = {
                         create: 'New Post',
                         inputs: {
                             deleteImage: 'Delete image',
+                            url: 'Project URL',
                             slug: 'Slug',
                             title: 'Title',
                             caption: 'Caption',
                             categories: 'Categories',
                             tags: 'Tags',
                             select: 'Select',
+                        },
+                        placeholders: {
+                            url: 'www.link-to-your-project.com',
                         }
+                        
                     },
                     categories: {
                         title: 'Categories',
@@ -277,6 +292,7 @@ const resources = {
                         addPlaceholder: 'Category title...',
                         addBtn: 'Add',
                         filterPlaceholder: 'Search categories...',
+                        update: 'Update Category',
                     },
                 },
                 users: {
@@ -286,9 +302,11 @@ const resources = {
                 },
             },
             alerts: {
+                invalidUrl: 'URL is not valid (http://, https://, www, etc.)',
                 underConstruction: ' Site under construction, some features are not working yet',
                 somethingWentWrong: 'Oops! Something went wrong',
                 couldNotFetchPostDetails: 'Could not fetch post details',
+                nothingHere: 'Oops! Nothing here',
 
             },
             navBar: {

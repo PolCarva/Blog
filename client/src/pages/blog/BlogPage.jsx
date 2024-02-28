@@ -52,7 +52,7 @@ const BlogPage = () => {
     return (
         <MainLayout>
             <section className="flex flex-col container px-5 md:px-12 mx-auto py-10 w-full">
-                <div className='mb-5 md:mb-8 lg:mb-10 flex justify-end w-full'>
+                <div className='mb-5 md:mb-8 lg:mb-10 flex w-full'>
                     <div className="flex flex-col gap-y-2.5 relative w-full lg:w-1/2 lg:max-w-4xl">
                         <div className="relative">
                             <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-placeholder" />
@@ -98,7 +98,7 @@ const BlogPage = () => {
                                     />
                                 ))
                         ) : (
-                            <ErrorMessage message={t('alerts.somethingWentWrong')} />
+                            <h1 className='font-bold text-center w-full text-2xl mt-10 text-primary'>{t("alerts.nothingHere")}</h1>
                         )
                     )}
                 </div>

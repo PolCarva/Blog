@@ -7,8 +7,10 @@ import {
 } from "../../../../services/index/postCategories";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const EditCategories = () => {
+  const { t } = useTranslation();
   const [categoryTitle, setCategoryTitle] = useState("");
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -58,7 +60,7 @@ const EditCategories = () => {
 
   return (
     <div className="col-span-4 py-8">
-      <h4 className="text-2xl leading-tight">Update Category</h4>
+      <h4 className="text-2xl leading-tight">{t("admin.posts.categories.update")}</h4>
       <div className="d-form-control w-full">
         <input
           onChange={(e) => {
@@ -76,7 +78,7 @@ const EditCategories = () => {
           onClick={handleUpdateCategory}
           className="w-fit mt-3 bg-green-500 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-70"
         >
-          Update Category
+          {t("admin.posts.categories.update")}
         </button>
       </div>
     </div>

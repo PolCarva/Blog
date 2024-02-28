@@ -41,6 +41,7 @@ const EditPost = () => {
   const [categories, setCategories] = useState(null);
   const [isNewPost, setIsNewPost] = useState(false);
   const [tags, setTags] = useState(null);
+  const [url, setUrl] = useState("");
   const [postSlug, setPostSlug] = useState(slug);
 
   const { data, isLoading, isError } = useQuery({
@@ -53,6 +54,7 @@ const EditPost = () => {
       setCategories(data?.categories.map((category) => category._id));
       setIsNewPost(data?.isNew);
       setTags(data?.tags);
+      setUrl(data?.url);
     },
     refetchOnWindowFocus: false,
   });
@@ -103,9 +105,16 @@ const EditPost = () => {
       updatedData.append("postPicture", picture);
     }
 
+    // eslint-disable-next-line no-useless-escape
+    const urlPattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+    if (!urlPattern.test(url)) {
+      toast.error(t("alerts.invalidUrl"));
+      return;
+    }
+
     updatedData.append(
       "document",
-      JSON.stringify({ body, title, caption, categories, tags, slug: postSlug })
+      JSON.stringify({ body, title, caption, categories, tags, slug: postSlug, url })
     );
 
     mutateUpdatePostDetail({
@@ -152,7 +161,6 @@ const EditPost = () => {
               <input
                 id="slug"
                 onChange={(e) =>
-                  /* replace áéíóú */
                   setPostSlug(
                     e.target.value
                       .normalize("NFD") // Normaliza los caracteres a su forma descompuesta
@@ -165,6 +173,22 @@ const EditPost = () => {
                 type="text"
                 value={postSlug}
                 placeholder={t('admin.posts.new.inputs.slug')}
+                maxLength={50}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto mb-4 text-dark-hard"
+              />
+            </div>
+            <div className="d-form-control w-full">
+              <label htmlFor="url" className="d-label">
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.url') + " " + t("admin.common.optional")}:</span>
+              </label>
+              <input
+                id="url"
+                onChange={(e) => {
+                  setUrl(e.target.value);
+                }}
+                type="text"
+                value={url}
+                placeholder={t('admin.posts.new.placeholders.url')}
                 maxLength={50}
                 className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto mb-4 text-dark-hard"
               />
@@ -253,7 +277,7 @@ const EditPost = () => {
             </div>
             <div className="mt-2">
               <label className="d-label">
-                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.categories')}</span>
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.categories') + " " + t('admin.common.optional')}</span>
               </label>
               {isPostDataLoaded && (
                 <MultiSelectTagDropdown
@@ -268,7 +292,7 @@ const EditPost = () => {
 
             <div className="mb-5 mt-2 z-10">
               <label className="d-label">
-                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.tags')}</span>
+                <span className="d-label-text text-lg">{t('admin.posts.new.inputs.tags') + " " + t('admin.common.optional')}</span>
               </label>
               {isPostDataLoaded && (
                 <CreatableSelect
@@ -303,7 +327,7 @@ const EditPost = () => {
                 onClick={handleCancelPost}
                 className="flex-1 bg-red-500 text-white font-semibold rounded-lg px-4 py-2 mt-5 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {isNewPost ? "Delete" : "Cancel"}
+                {isNewPost ? t("admin.common.actions.delete") : t("admin.common.actions.cancel")}
               </button>
               <button
                 disabled={isLoadingUpdatePostDetail}
@@ -311,7 +335,7 @@ const EditPost = () => {
                 onClick={handleUpdatePost}
                 className="flex-1 bg-green-500 text-white font-semibold rounded-lg px-4 py-2 mt-5 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {isNewPost ? "Publish" : "Update"}
+                {isNewPost ? t("admin.common.actions.publish") : t("admin.common.actions.update")}
               </button>
             </div>
           </article>
