@@ -54,13 +54,13 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
         <p className="text-slate-500 text-xs mt-2">{t('article.noTags')}</p>
       ) : (
         <div className="flex flex-wrap gap-x-2 gap-y-2 mt-4">
-          {tags.map((item, index) => (
+          {tags.map((tag, index) => (
             <Link
               key={index}
-              to="/"
-              className="inline-block rounded-md px-3 py-1.5 bg-primary text-xs text-white md:text-sm"
+              to={`/blog?search=${tag}`}
+              className="inline-block font-semibold rounded-md px-3 py-1.5 text-primary bg-primary bg-opacity-10 hover:bg-opacity-20 transition-all ease-in-out text-xs md:text-sm"
             >
-              {item}
+              {tag}
             </Link>
           ))}
         </div>

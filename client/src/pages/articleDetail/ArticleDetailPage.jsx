@@ -29,6 +29,7 @@ const ArticleDetailPage = () => {
     queryKey: ["blog", slug],
     queryFn: () => getSinglePost({ slug }),
     onSuccess: (data) => {
+      console.log(data);
       setBreadCrumbsData([
         { name: "Home", link: "/" },
         { name: "Blog", link: "/blog" },
@@ -74,10 +75,10 @@ const ArticleDetailPage = () => {
               {data?.categories.map((category) => (
                 <Link
                   key={category._id}
-                  to={`/blog?category=${category.name}`}
+                  to={`/blog?category=${category.title}`}
                   className="text-primary text-sm font-roboto inline-block uppercase md:text-base"
                 >
-                  {category.name}
+                  {category.title}
                 </Link>
               ))}
             </div>

@@ -5,18 +5,18 @@ import { useTranslation } from 'react-i18next';
 import { images } from "../../../constants";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getPopularCategories } from "../../../services/index/postCategories";
+import { getPopularTags } from "../../../services/index/postTags";
 
 const Hero = () => {
-  const [popularCategories, setPopularCategories] = useState([])
+  const [popularTags, setPopularTags] = useState([])
   const [query, setQuery] = useState("")
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   /* Get popular categories */
   useEffect(() => {
-    getPopularCategories().then((data) => {
-      setPopularCategories(data);
+    getPopularTags().then((data) => {
+      setPopularTags(data);
     }).catch((error) => {
       console.log(error);
 
@@ -63,12 +63,13 @@ const Hero = () => {
             {t('hero.searchSuggestions')}
           </span>
           <ul className="flex flex-wrap gap-x-2.5 gap-y-2.5 mt-3 w-full lg:text-sm xl:text-base">
-            {popularCategories.filter(category => category.count > 0)
+            {popularTags
               .sort((a, b) => b.count - a.count)
-              .slice(0, 3)
-              .map(category => (
-                <li key={category._id} className="rounded-lg text-primary bg-primary bg-opacity-10 px-3 py-1.5 font-semibold">
-                  <Link to={`/blog/?page=1&search=${category.title}`}>{category.title}</Link>
+              .map(tag => (
+                <li key={tag._id}>
+                  <Link to={`/blog/?page=1&search=${tag._id}`} className="rounded-lg text-primary bg-primary bg-opacity-10 hover:bg-opacity-20 transition-all ease-in-out px-3 py-1.5 font-semibold">
+                    {tag._id}
+                  </Link>
                 </li>))
             }
           </ul>
