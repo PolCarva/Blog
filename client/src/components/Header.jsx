@@ -164,7 +164,7 @@ const Header = () => {
                             navigate("/admin");
                           }}
                           type="button"
-                          className="bg-dark-soft text-white border  hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
+                          className="bg-dark-soft text-white  hover:text-white hover:bg-dark-light lg:bg-white lg:text-dark-hard lg:hover:bg-dark-hard px-4 py-2"
                         >
                           {t("navBar.account.admin")}
                         </button>
