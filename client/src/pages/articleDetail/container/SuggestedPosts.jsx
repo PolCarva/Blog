@@ -14,7 +14,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
         {header}
       </h2>
       <div className="grid gap-y-5 mt-5 md:grid-cols-2 md:gap-x-5 lg:grid-cols-1">
-        {posts.map((item) => (
+        {posts.filter(i => !i.isNew).map((item) => (
           <div
             key={item._id}
             className="flex space-x-3 flex-nowrap items-center"
