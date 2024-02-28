@@ -80,7 +80,14 @@ const DataTable = ({
                       </td>
                     </tr>
                   ) : (
-                    children
+                    children?.length ?
+                      children
+                      :
+                      <tr>
+                        <td colSpan={5} className="text-center py-10 w-full">
+                          {t("admin.common.noData")}
+                        </td>
+                      </tr>
                   )}
                 </tbody>
               </table>
@@ -92,7 +99,7 @@ const DataTable = ({
                   totalPageCount={JSON.parse(headers?.["x-totalpagecount"])}
                 />
               )}
-            </div>            
+            </div>
           </div>
         </div>
       </div>

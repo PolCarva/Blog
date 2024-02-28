@@ -149,7 +149,7 @@ const Users = () => {
                   type='checkbox'
                   disabled={isLoadingUpdateUser}
                   onChange={(e) => { handleAdminCheck(e, user._id) }}
-                  className='checked:bg-[url("../public/img/check.png")] bg-cover checked:disabled:bg-none d-checkbox disabled:bg-orange-400 disabled:opacity-100' />
+                  className='checked:bg-[url("/img/check.png")] bg-cover checked:disabled:bg-none d-checkbox disabled:bg-orange-400 disabled:opacity-100' />
               ) : (
                 user.admin ? "✅" : "❌"
               )
