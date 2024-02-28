@@ -26,9 +26,11 @@ const ManagePosts = () => {
       getAllPosts(
         searchKeyword,
         currentPage,
+        100000,
+        "",
         userState.userInfo && !userState.userInfo.op
           ? userState.userInfo._id
-          : ""
+          : "",
       ),
     dataQueryKey: "posts",
     mutateDeleteFn: ({ slug, token }) => {

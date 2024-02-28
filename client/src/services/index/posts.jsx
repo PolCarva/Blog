@@ -11,11 +11,12 @@ export const getAllPosts = async (
   searchKeyword = "",
   page = 1,
   limit = 10,
+  category = "",
   userId = "",
 ) => {
   try {
     const { data, headers } = await api.get(
-      `/api/posts?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}&userId=${userId}`
+      `/api/posts?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}&userId=${userId}&category=${category}`
     );
     return { data, headers };
   } catch (error) {

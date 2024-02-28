@@ -19,9 +19,10 @@ const BlogPage = () => {
     const searchParamsValue = Object.fromEntries([...searchParams]);
     const [currentPage, setCurrentPage] = useState(parseInt(searchParamsValue?.page) || 1);
     const [searchQuery, setSearchQuery] = useState(searchParamsValue?.search || '');
+    const [category, setCategory] = useState(searchParamsValue?.category || '');
     const { t } = useTranslation();
     const { data, isLoading, isError, refetch } = useQuery({
-        queryFn: () => getAllPosts(searchQuery, currentPage, 12),
+        queryFn: () => getAllPosts(searchQuery, currentPage, 12, category),
         queryKey: ['posts'],
         onError: (error) => {
             toast.error(error.message);

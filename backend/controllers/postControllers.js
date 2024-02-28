@@ -3,6 +3,7 @@ import Post from "../models/Post";
 import { fileRemover } from "../utils/fileRemover";
 import { v4 as uuidv4 } from "uuid";
 import Comment from "../models/Comment";
+import PostCategories from "../models/PostCategories";
 
 const createPost = async (req, res, next) => {
   try {
@@ -154,6 +155,7 @@ const getAllPosts = async (req, res, next) => {
   try {
     const filter = req.query.searchKeyword;
     const userId = req.query.userId;
+    const categoryTitle = req.query.category;
 
     let where = {};
 
@@ -164,6 +166,18 @@ const getAllPosts = async (req, res, next) => {
     if (filter) {
       where.title = { $regex: filter, $options: "i" };
     }
+
+    if (categoryTitle) { // Cambiar el nombre a categoryTitle
+      // Buscar la categoría por título
+      const category = await PostCategories.findOne({ title: categoryTitle });
+      if (category) {
+        where.categories = category._id; // Usar el _id de la categoría encontrada
+      } else {
+        // Si no se encuentra la categoría, devolver un array vacío de resultados
+        return res.json([]);
+      }
+    }
+
 
     let query = Post.find(where);
     const page = parseInt(req.query.page) || 1;
