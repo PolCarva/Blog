@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { images } from "../../../constants";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getPopularCategories } from "../../../services/index/postCategories";
 
 const Hero = () => {
@@ -68,7 +68,7 @@ const Hero = () => {
               .slice(0, 3)
               .map(category => (
                 <li key={category._id} className="rounded-lg text-primary bg-primary bg-opacity-10 px-3 py-1.5 font-semibold">
-                  {category.title}
+                  <Link to={`/blog/?page=1&search=${category.title}`}>{category.title}</Link>
                 </li>))
             }
           </ul>

@@ -13,6 +13,7 @@ import userRoutes from "./routes/userRoutes";
 import postRoutes from "./routes/postRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import postCategoriesRoutes from "./routes/postCategoriesRoutes";
+import tagsRoutes from "./routes/postTagsRoutes";
 
 dotenv.config();
 connectDB();
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/post-tags", tagsRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/post-categories", postCategoriesRoutes);
