@@ -13,17 +13,15 @@ const Hero = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  /* Get popular categories */
+  /* Get popular tags */
   useEffect(() => {
     getPopularTags().then((data) => {
       setPopularTags(data);
     }).catch((error) => {
       console.log(error);
-
+      setPopularTags([]);
     });
   }, [])
-
-
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
