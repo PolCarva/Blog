@@ -164,16 +164,17 @@ const getAllPosts = async (req, res, next) => {
     }
 
     if (filter) {
-      where.title = { $regex: filter, $options: "i" };
+      where.$or = [
+        { title: { $regex: filter, $options: "i" } },
+        { tags: { $regex: filter, $options: "i" } }
+      ]
     }
 
-    if (categoryTitle) { // Cambiar el nombre a categoryTitle
-      // Buscar la categoría por título
+    if (categoryTitle) { 
       const category = await PostCategories.findOne({ title: categoryTitle });
       if (category) {
-        where.categories = category._id; // Usar el _id de la categoría encontrada
+        where.categories = category._id; 
       } else {
-        // Si no se encuentra la categoría, devolver un array vacío de resultados
         return res.json([]);
       }
     }
