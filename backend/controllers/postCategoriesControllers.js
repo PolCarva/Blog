@@ -124,10 +124,38 @@ const deletePostCategory = async (req, res, next) => {
   }
 };
 
+const getPopularCategories = async (req, res, next) => {
+  try {
+    const categories = await PostCategories.aggregate([
+      {
+        $lookup: {
+          from: "posts",
+          localField: "_id",
+          foreignField: "categories",
+          as: "posts",
+        },
+      },
+      {
+        $project: {
+          title: 1,
+          count: { $size: "$posts" },
+        },
+      },
+      { $sort: { count: -1 } },
+      { $limit: 5 },
+    ]);
+
+    return res.json(categories);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export {
   createPostCategory,
   getAllPostCategories,
   updatePostCategory,
   deletePostCategory,
   getSingleCategory,
+  getPopularCategories,
 };

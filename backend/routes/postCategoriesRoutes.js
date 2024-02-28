@@ -7,6 +7,7 @@ import {
   getAllPostCategories,
   updatePostCategory,
   getSingleCategory,
+  getPopularCategories,
 } from "../controllers/postCategoriesControllers";
 import { adminGuard, authGuard } from "../middleware/authMiddleware";
 
@@ -14,6 +15,8 @@ router
   .route("/")
   .post(authGuard, adminGuard, createPostCategory)
   .get(getAllPostCategories);
+
+router.route("/popular").get(getPopularCategories);
 
 router
   .route("/:postCategoryId")
