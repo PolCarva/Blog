@@ -11,3 +11,7 @@
     @apply bg-slate-800 bg-slate-200;
   }
 }
+
+.ProseMirror[contenteditable="false"] {
+  min-height: 5em;
+}
