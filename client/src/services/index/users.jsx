@@ -132,7 +132,6 @@ export const getAllUsers = async (
         Authorization: `Bearer ${token}`,
       },
     };
-
     const { data, headers } = await api.get(
       `/api/users?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}&userId=${userId}`, config
     );

@@ -274,7 +274,7 @@ const getAllUsers = async (req, res, next) => {
     }
 
     if (filter) {
-      where.title = { $regex: filter, $options: "i" };
+      where.name = { $regex: filter, $options: "i" };
     }
 
     let query = User.find(where);
