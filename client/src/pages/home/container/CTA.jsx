@@ -8,7 +8,7 @@ const CTA = () => {
   const { t } = useTranslation();
 
   const ContactForm = () => {
-    const [state, handleSubmit] = useForm('xzbngydk');
+    const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_FORM_ID);
     if (state.succeeded) {
       return <p className="font-bold text-white text-xl text-center lg:text-start py-5 text-">{t("cta.success")}</p>;
     }

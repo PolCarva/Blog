@@ -1,7 +1,7 @@
 const LOCAL_URL = "http://localhost:5000/";
 const SOCIALMULTIMEDIA_URL = "https://blog-production-8da6.up.railway.app/";
 
-const isProduction = import.meta.env.NODE_ENV === "production";
+const isProduction = import.meta.env.VITE_NODE_ENV === "production";
 
 const BASE_URL = isProduction ? SOCIALMULTIMEDIA_URL : LOCAL_URL;
 
