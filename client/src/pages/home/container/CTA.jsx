@@ -1,10 +1,56 @@
 import React from "react";
 import images from "../../../constants/images";
 import { useTranslation } from "react-i18next";
+import { useForm, ValidationError } from '@formspree/react';
 
 
 const CTA = () => {
   const { t } = useTranslation();
+
+  const ContactForm = () => {
+    const [state, handleSubmit] = useForm('xzbngydk');
+    if (state.succeeded) {
+      return <p className="font-bold text-white text-xl text-center lg:text-start py-5 text-">{t("cta.success")}</p>;
+    }
+    return (
+      <form onSubmit={handleSubmit} className="w-full max-w[494px] mt-12 space-y-3 mx-auto md:space-y-0 md:flex md:items-center md:space-x-2 lg:mx-0">
+        <label htmlFor="email" className="sr-only">
+          {t("cta.inputMailPlaceholder")}
+        </label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          placeholder={t("cta.inputMailPlaceholder")}
+          className="px-4 py-3 rounded-lg w-full placeholder:text-dark-light"
+
+        />
+        <ValidationError
+          prefix="Email"
+          field="email"
+          errors={state.errors}
+        />
+        <label htmlFor="name" className="sr-only">
+        </label>
+        <input
+          id="name"
+          name="name"
+          placeholder={t("cta.inputNamePlaceholder")}
+          className="px-4 py-3 rounded-lg w-full placeholder:text-dark-light"
+
+        />
+        <ValidationError
+          prefix="Message"
+          field="name"
+          errors={state.errors}
+        />
+        <button type="submit" disabled={state.submitting} className="px-4 py-3 rounded-lg w-full bg-primary hover:bg-primary-hover transition-colors ease-in-out text-white font-bold md:w-fit md:whitespace-nowrap">
+          {t("cta.button")}
+        </button>
+      </form>
+    );
+  }
+
   return (
     <>
       <svg
@@ -28,7 +74,8 @@ const CTA = () => {
             <h2 className="text-2xl font-bold text-white md:text-4xl md:text-center md:leading-normal lg:text-left">
               {t("cta.title")}
             </h2>
-            <form className="w-full max-w[494px] mt-12 space-y-3 mx-auto md:space-y-0 md:flex md:items-center md:space-x-2 lg:mx-0">
+            <ContactForm />
+            {/*  <form className="w-full max-w[494px] mt-12 space-y-3 mx-auto md:space-y-0 md:flex md:items-center md:space-x-2 lg:mx-0">
               <input
                 required
                 type="text"
@@ -44,7 +91,7 @@ const CTA = () => {
               <button className="px-4 py-3 rounded-lg w-full bg-primary hover:bg-primary-hover transition-colors ease-in-out text-white font-bold md:w-fit md:whitespace-nowrap">
                 {t("cta.button")}
               </button>
-            </form>
+            </form> */}
             <p className="text-dark-light text-sm leading-7 mt-6 md:text-center md:text-base lg:text-left">
               <span className="font-bold italic text-gray-detail md:font-normal md:not-italic md:text-dark-light">
                 {t('cta.response')}</span>

@@ -166,6 +166,7 @@ const resources = {
             },
             cta: {
                 title: "¡Conviertete en creador de contenido!",
+                success: "Gracias por tu interés! Nos pondremos en contacto pronto.",
                 inputMailPlaceholder: "Tu Email",
                 inputNamePlaceholder: "Tu Nombre",
                 button: "Empezar",
@@ -386,6 +387,7 @@ const resources = {
             },
             cta: {
                 title: "Become a content creator today!",
+                success: "Thank you for your interest! We'll be in touch soon.",
                 inputMailPlaceholder: "Your Email",
                 inputNamePlaceholder: "Your Name",
                 button: "Get started",
