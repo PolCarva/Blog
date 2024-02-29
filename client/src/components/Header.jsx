@@ -200,7 +200,7 @@ const Header = () => {
               }}
               className=" transition-all duration-300 mt-5 lg:mt-0 border-2 border-primary px-6 py-2 rounded-full text-primary font-semibold hover:bg-primary hover:text-white"
             >
-              {t("navBar.account.login")}
+              {t("navBar.account.signin")}
             </button>
           )}
 

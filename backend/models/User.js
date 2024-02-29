@@ -37,6 +37,14 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    bio: {
+      type: String,
+      default: "",
+    },
+    specializedIn: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

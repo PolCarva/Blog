@@ -121,7 +121,7 @@ const resources = {
                 account: {
                     main: 'Cuenta',
                     admin: 'Administración',
-                    login: 'Iniciar sesión',
+                    signin: 'Iniciar sesión',
                     logout: 'Cerrar sesión',
                     register: 'Registrarse',
                     profile: 'Perfil',
@@ -229,7 +229,60 @@ const resources = {
                     update: "Actualizar",
                     cancel: "Cancelar",
                 }
-            }
+            },
+            login: {
+                title: "Iniciar sesión",
+                email: "Email",
+                emailPlaceholder: "Ingrese su email",
+                passwordPlaceholder: "Ingrese su contraseña",
+                password: "Contraseña",
+                button: "Iniciar sesión",
+                noAccount: "¿No tienes cuenta?",
+                register: "Regístrate aquí",
+                forgetPassword: "¿Olvidaste tu contraseña?",
+                errors: {
+                    email: {
+                        required: "El email es requerido",
+                        pattern: "Ingrese un email válido",
+                    },
+                    password: {
+                        required: "La contraseña es requerida",
+                        length: "La contraseña debe tener al menos 6 caracteres",
+                    },
+                }
+            },
+            register: {
+                title: "Registrarse",
+                name: "Nombre",
+                namePlaceholder: "Ingrese su nombre",
+                email: "Email",
+                emailPlaceholder: "Ingrese su email",
+                passwordPlaceholder: "Ingrese su contraseña",
+                password: "Contraseña",
+                confirmPassword: "Confirmar contraseña",
+                confirmPasswordPlaceholder: "Confirme su contraseña",
+                button: "Registrarse",
+                haveAccount: "¿Ya tienes una cuenta?",
+                login: "Inicia sesión aquí",
+                errors: {
+                    email: {
+                        required: "El email es requerido",
+                        pattern: "Ingrese un email válido",
+                    },
+                    password: {
+                        required: "La contraseña es requerida",
+                        length: "La contraseña debe tener al menos 6 caracteres",
+                    },
+                    confirmPassword: {
+                        required: "La confirmación de la contraseña es requerida",
+                        validate: "Las contraseñas no coinciden",
+                    },
+                    name: {
+                        required: "El nombre es requerido",
+                        length: "El nombre debe tener al menos 1 caracter",
+                    }
+                }
+            },
             // Agrega más traducciones aquí
         },
     },
@@ -249,7 +302,7 @@ const resources = {
                         publish: 'Publish',
                         delete: 'Delete',
                         edit: 'Edit',
-                        
+
                     },
                     table: {
                         author: 'Author',
@@ -311,7 +364,7 @@ const resources = {
                         placeholders: {
                             url: 'www.link-to-your-project.com',
                         }
-                        
+
                     },
                     categories: {
                         title: 'Categories',
@@ -457,6 +510,59 @@ const resources = {
                     delete: "Delete",
                     update: "Update",
                     cancel: "Cancel",
+                }
+            },
+            login: {
+                title: "Sign In",
+                email: "Email",
+                emailPlaceholder: "Enter your email",
+                passwordPlaceholder: "Enter your password",
+                password: "Password",
+                button: "Sign In",
+                noAccount: "Don't have an account?",
+                register: "Register here",
+                forgetPassword: "Forgot your password?",
+                errors: {
+                    email: {
+                        required: "Email is required",
+                        pattern: "Enter a valid email address",
+                    },
+                    password: {
+                        required: "Password is required",
+                        length: "Password must be at least 6 characters long",
+                    },
+                }
+            },
+            register: {
+                title: "Register",
+                name: "Name",
+                namePlaceholder: "Enter your name",
+                email: "Email",
+                emailPlaceholder: "Enter your email",
+                passwordPlaceholder: "Enter your password",
+                password: "Password",
+                confirmPassword: "Confirm password",
+                confirmPasswordPlaceholder: "Confirm your password",
+                button: "Register",
+                haveAccount: "Already have an account?",
+                login: "Sign in here",
+                errors: {
+                    email: {
+                        required: "Email is required",
+                        pattern: "Enter a valid email address",
+                    },
+                    password: {
+                        required: "Password is required",
+                        length: "Password must be at least 6 characters long",
+                    },
+                    confirmPassword: {
+                        required: "Password confirmation is required",
+                        validate: "Passwords do not match",
+                    },
+                    name: {
+                        required: "Name is required",
+                        length: "Name must be at least 1 character long",
+                    }
                 }
             }
             // Agrega más traducciones aquí

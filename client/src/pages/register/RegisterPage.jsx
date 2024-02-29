@@ -8,8 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "../../components/MainLayout";
 import { signUp } from "../../services/index/users";
 import { userActions } from "../../store/reducers/userReducers";
+import { useTranslation } from "react-i18next";
 
 const RegisterPage = () => {
+  const {t} = useTranslation();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -59,7 +61,7 @@ const RegisterPage = () => {
       <section className="container px-5 md:px-12 mx-auto py-10">
         <div className="w-full max-w-sm mx-auto">
           <h1 className="font-roboto text-2xl font-bold text-center text-dark-hard mb-8">
-            Sign Up
+            {t("register.title")}
           </h1>
           <form onSubmit={handleSubmit(submitHandler)}>
             {/* NAME */}
@@ -68,22 +70,22 @@ const RegisterPage = () => {
                 htmlFor="name"
                 className="text-dark-light font-semibold block"
               >
-                Name
+                {t("register.name")}
               </label>
               <input
                 {...register("name", {
                   minLength: {
                     value: 1,
-                    message: "Name length must be at least 1 character",
+                    message: t("register.errors.name.length"),
                   },
                   required: {
                     value: true,
-                    message: "Name is required",
+                    message: t("register.errors.name.required"),
                   },
                 })}
                 type="text"
                 id="name"
-                placeholder="Enter name"
+                placeholder={t("register.namePlaceholder")}
                 className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-gray-border"
                 }`}
@@ -98,24 +100,24 @@ const RegisterPage = () => {
                 htmlFor="email"
                 className="text-dark-light font-semibold block"
               >
-                Email
+                {t("register.email")}
               </label>
               <input
                 {...register("email", {
                   required: {
                     value: true,
-                    message: "Email is required",
+                    message: t("register.errors.email.required"),
                   },
                   pattern: {
                     value:
                       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "Email is invalid",
+                    message: t("register.errors.email.pattern"),
                   },
                 })}
                 {...register("email")}
                 type="email"
                 id="email"
-                placeholder="Enter email"
+                placeholder={t("register.emailPlaceholder")}
                 className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-gray-border"
                 }`}
@@ -130,22 +132,22 @@ const RegisterPage = () => {
                 htmlFor="password"
                 className="text-dark-light font-semibold block"
               >
-                Password
+                {t("register.password")}
               </label>
               <input
                 {...register("password", {
                   minLength: {
                     value: 6,
-                    message: "Password length must be at least 6 character",
+                    message: t("register.errors.password.length"),
                   },
                   required: {
                     value: true,
-                    message: "Password is required",
+                    message: t("register.errors.password.required"),
                   },
                 })}
                 type="password"
                 id="password"
-                placeholder="Enter password"
+                placeholder={t("register.passwordPlaceholder")}
                 className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-gray-border"
                 }`}
@@ -162,21 +164,21 @@ const RegisterPage = () => {
                 htmlFor="confirmPassword"
                 className="text-dark-light font-semibold block"
               >
-                Confirm Password
+                {t("register.confirmPassword")}
               </label>
               <input
                 {...register("confirmPassword", {
                   required: {
                     value: true,
-                    message: "Confirm password is required",
+                    message: t("register.errors.confirmPassword.required"),
                   },
                   validate: (value) => {
-                    if (value !== password) return "Confirm password not match";
+                    if (value !== password) return t("register.errors.confirmPassword.validate");
                   },
                 })}
                 type="password"
                 id="confirmPassword"
-                placeholder="Enter confirm password"
+                placeholder={t("register.confirmPasswordPlaceholder")}
                 className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.confirmPassword
                     ? "border-red-500"
@@ -195,12 +197,12 @@ const RegisterPage = () => {
               type="submit"
               className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Register
+              {t("register.button")}
             </button>
             <p className="text-sm font-semibold text-dark-light">
-              You have an account?{" "}
+              {t("register.haveAccount")}{" "}
               <Link to="/login" className="text-primary">
-                Login Now
+                {t("register.login")}{" "}
               </Link>
             </p>
           </form>
