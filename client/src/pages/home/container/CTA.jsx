@@ -27,16 +27,23 @@ const CTA = () => {
             <h2 className="text-2xl font-bold text-white md:text-4xl md:text-center md:leading-normal lg:text-left">
               {t("cta.title")}
             </h2>
-            <div className="w-full max-w[494px] mt-12 space-y-3 mx-auto md:space-y-0 md:flex md:items-center md:space-x-2 lg:mx-0">
+            <form className="w-full max-w[494px] mt-12 space-y-3 mx-auto md:space-y-0 md:flex md:items-center md:space-x-2 lg:mx-0">
               <input
+                required
                 type="text"
-                placeholder={t("cta.inputPlaceholder")}
+                placeholder={t("cta.inputMailPlaceholder")}
+                className="px-4 py-3 rounded-lg w-full placeholder:text-dark-light"
+              />
+              <input
+                required
+                type="text"
+                placeholder={t("cta.inputNamePlaceholder")}
                 className="px-4 py-3 rounded-lg w-full placeholder:text-dark-light"
               />
               <button className="px-4 py-3 rounded-lg w-full bg-primary text-white font-bold md:w-fit md:whitespace-nowrap">
                 {t("cta.button")}
               </button>
-            </div>
+            </form>
             <p className="text-dark-light text-sm leading-7 mt-6 md:text-center md:text-base lg:text-left">
               <span className="font-bold italic text-gray-detail md:font-normal md:not-italic md:text-dark-light">
                 {t('cta.response')}</span>

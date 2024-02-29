@@ -160,8 +160,9 @@ const resources = {
                 moreArticles: "Más artículos",
             },
             cta: {
-                title: "Recibe nuestras historias a tu Email semanalmente.",
-                inputPlaceholder: "Tu Email",
+                title: "¡Conviertete en creador de contenido!",
+                inputMailPlaceholder: "Tu Email",
+                inputNamePlaceholder: "Tu Nombre",
                 button: "Empezar",
                 response: "Recibe una respuesta mañana si envías antes de las 9pm hoy. Si recibimos después de las 9pm, recibiremos una respuesta al día siguiente.",
                 future: "El futuro del trabajo",
@@ -365,8 +366,9 @@ const resources = {
                 moreArticles: "More articles",
             },
             cta: {
-                title: "Get our stories delivered From us to your inbox weekly.",
-                inputPlaceholder: "Your Email",
+                title: "Become a content creator today!",
+                inputMailPlaceholder: "Your Email",
+                inputNamePlaceholder: "Your Name",
                 button: "Get started",
                 response: "Get a response tomorrow if you submit by 9pm today. If we received after 9pm will get a reponse the following day.",
                 future: "Future of Work",
