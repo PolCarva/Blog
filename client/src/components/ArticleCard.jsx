@@ -6,13 +6,20 @@ import { AiOutlineClose } from "react-icons/ai";
 import stables from "../constants/stables";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { FiExternalLink } from "react-icons/fi";
+
 
 const ArticleCard = ({ post, className }) => {
   const { t } = useTranslation();
   return (
     <div
-      className={`rounded-xl overflow-hidden shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] ${className}`}
+      className={`rounded-xl relative overflow-hidden shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] ${className}`}
     >
+      {post.url && (
+        <a href={post.url} target="_blank" rel="noreferrer">
+        <FiExternalLink className="absolute top-0 p-2 right-0 w-12 h-12 cursor-pointer opacity-50 text-primary transition-opacity ease-in-out hover:opacity-100 z-10" />
+        </a>
+      )}
       <Link to={`/blog/${post.slug}`}>
         <img
           src={
@@ -59,9 +66,8 @@ const ArticleCard = ({ post, className }) => {
               </h4>
               <div className="flex items-center gap-x-2">
                 <span
-                  className={`${
-                    post.user.verified ? "bg-green-success" : "bg-gray-detail"
-                  } w-fit bg-opacity-20 p-0.5 rounded-full`}
+                  className={`${post.user.verified ? "bg-green-success" : "bg-gray-detail"
+                    } w-fit bg-opacity-20 p-0.5 rounded-full`}
                 >
                   {post.user.verified ? (
                     <BsCheckLg className="w-3 h-3 text-green-success bold" />

@@ -100,7 +100,7 @@ const resources = {
                 },
             },
             alerts: {
-                invalidUrl: 'URL no válida (http://, https://, www, etc.)',
+                invalidUrl: 'URL no válida (http:// o https://)',
                 underConstruction: 'Sitio bajo construcción, algunas características aún no funcionan',
                 somethingWentWrong: 'Oops! Algo salió mal',
                 couldNotFetchPostDetails: 'No se pudieron obtener los detalles del post',
@@ -307,7 +307,7 @@ const resources = {
                 },
             },
             alerts: {
-                invalidUrl: 'URL is not valid (http://, https://, www, etc.)',
+                invalidUrl: 'URL is not valid (http:// or https://)',
                 underConstruction: ' Site under construction, some features are not working yet',
                 somethingWentWrong: 'Oops! Something went wrong',
                 couldNotFetchPostDetails: 'Could not fetch post details',
