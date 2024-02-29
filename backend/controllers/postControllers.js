@@ -123,7 +123,7 @@ const getPost = async (req, res, next) => {
         populate: [
           {
             path: "user",
-            select: ["avatar", "name"],
+            select: ["avatar", "name", "verified"],
           },
           {
             path: "replies",
@@ -133,7 +133,7 @@ const getPost = async (req, res, next) => {
             populate: [
               {
                 path: "user",
-                select: ["avatar", "name"],
+                select: ["avatar", "name", "verified"],
               },
             ],
           },

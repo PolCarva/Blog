@@ -6,7 +6,7 @@ import {
   updateComment,
 } from "../../../../services/index/comments";
 import { Link } from "react-router-dom";
-import stables from "../../../../constants/stable";
+import stables from "../../../../constants/stables";
 import { images } from "../../../../constants";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";

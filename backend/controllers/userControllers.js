@@ -130,7 +130,14 @@ const updateProfile = async (req, res, next) => {
 
     if (typeof req.body.admin !== "undefined" && req.user.admin) {
       user.admin = req.body.admin;
+      if (req.body.admin === true && !user.verified) {
+        user.verified = true;
+      }
     }
+
+    if (typeof req.body.verified !== 'undefined') {
+      user.verified = req.body.verified;
+  }
 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;

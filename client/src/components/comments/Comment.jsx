@@ -3,6 +3,9 @@ import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 
 import CommentForm from "./CommentForm";
 import { images, stable } from "../../constants";
+import { BsCheckLg } from "react-icons/bs";
+import { AiOutlineClose } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 const Comment = ({
   comment,
@@ -15,6 +18,7 @@ const Comment = ({
   deleteComment,
   replies,
 }) => {
+  const { t } = useTranslation();
   const isUserLoggined = loggedInUserId;
   const commentBelongsToUser = loggedInUserId === comment.user._id;
   const isReplying =
@@ -37,14 +41,25 @@ const Comment = ({
         src={
           comment?.user?.avatar
             ? stable.UPLOAD_FOLDER_BASE_URL + comment.user.avatar
-            : images.userImage
+            : images.defaultProfile
         }
         alt="user profile"
         className="w-9 h-9 object-cover rounded-full"
       />
-      <div className="flex-1 flex flex-col">
-        <h5 className="font-bold text-dark-hard text-xs lg:text-sm">
-          {comment.user.name}
+      <div className="flex-1 flex flex-col gap-1">
+        <h5 className="font-bold flex gap-2 items-center text-dark-hard text-xs lg:text-sm">
+          {comment.user.name} {<div className="flex items-center gap-x-2">
+            <span
+              className={`${comment.user.verified ? "bg-green-success" : "bg-gray-detail"
+                } w-fit bg-opacity-20 p-0.5 rounded-full`}
+            >
+              {comment.user.verified ? (
+                <BsCheckLg className="w-3 h-3 text-green-success bold" />
+              ) : (
+                <AiOutlineClose className="w-3 h-3 text-gray-placeholder" />
+              )}
+            </span>
+          </div>}
         </h5>
         <span className="text-xs text-dark-light">
           {new Date(comment.createdAt).toLocaleDateString("en-US", {

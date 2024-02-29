@@ -6,7 +6,7 @@ const UserSchema = new Schema(
   {
     avatar: {
       type: String,
-      default: "",
+      default: "./uploads/defaultUserImg.png",
     },
     name: {
       type: String,

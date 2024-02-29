@@ -38,10 +38,10 @@ const Users = () => {
 
   const { mutate: mutateUpdateUser, isLoading: isLoadingUpdateUser } =
     useMutation({
-      mutationFn: ({ isAdmin, userId }) => {
+      mutationFn: ({ userData, userId }) => {
         return updateProfile({
           token: userState.userInfo.token,
-          userData: { admin: isAdmin },
+          userData: userData,
           userId,
         });
       },
@@ -57,16 +57,20 @@ const Users = () => {
     });
 
   const handleAdminCheck = (e, userId) => {
-    const initialCheckValue = !e.target.checked;
-    if (window.confirm('Are you sure you want to change the user\'s admin status?')) {
-      mutateUpdateUser({
-        isAdmin: e.target.checked,
-        userId,
-      })
-    }
-    else {
-      e.target.checked = initialCheckValue;
-    }
+    const isAdmin = e.target.checked;
+    mutateUpdateUser({
+      userId,
+      userData: { admin: isAdmin },
+    });
+  };
+
+  const handleVerificationCheck = (e, userId) => {
+    console.log(e.target.checked, userId);
+    const isVerified = e.target.checked;
+    mutateUpdateUser({
+      userId,
+      userData: { verified: isVerified },
+    });
   };
 
 
@@ -133,9 +137,14 @@ const Users = () => {
             </p>
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <p className="text-gray-900 whitespace-no-wrap">
-              {user?.verified ? "✅" : "❌"}
-            </p>
+            {user.op || user.admin ? <span className='text-2xl'>✅</span> :
+              <input
+                defaultChecked={user.verified}
+                type='checkbox'
+                disabled={isLoadingUpdateUser}
+                onChange={(e) => { handleVerificationCheck(e, user._id) }}
+                className='checked:bg-[url("/img/check.png")] bg-cover checked:disabled:bg-none d-checkbox disabled:bg-orange-400 disabled:opacity-100' />
+            }
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             {user?.op ? (
@@ -151,7 +160,7 @@ const Users = () => {
                   onChange={(e) => { handleAdminCheck(e, user._id) }}
                   className='checked:bg-[url("/img/check.png")] bg-cover checked:disabled:bg-none d-checkbox disabled:bg-orange-400 disabled:opacity-100' />
               ) : (
-                user.admin ? "✅" : "❌"
+                user.admin ? <span className='text-2xl'>✅</span> : <span className='text-lg'>❌</span>
               )
             )}
           </td>
@@ -172,7 +181,7 @@ const Users = () => {
                 })
               }
             >
-              Delete
+              {t("admin.common.table.actions.delete")}
             </button>
 
           </td>

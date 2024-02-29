@@ -29,7 +29,6 @@ const ArticleDetailPage = () => {
     queryKey: ["blog", slug],
     queryFn: () => getSinglePost({ slug }),
     onSuccess: (data) => {
-      console.log(data);
       setBreadCrumbsData([
         { name: "Home", link: "/" },
         { name: "Blog", link: "/blog" },

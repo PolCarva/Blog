@@ -3,7 +3,7 @@ import React from "react";
 import images from "../constants/images";
 import { BsCheckLg } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
-import stables from "../constants/stable";
+import stables from "../constants/stables";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
