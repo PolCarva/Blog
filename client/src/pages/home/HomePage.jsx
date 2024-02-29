@@ -2,13 +2,13 @@ import MainLayout from "../../components/MainLayout";
 import Hero from "./container/Hero";
 import Articles from "./container/Articles";
 import CTA from "./container/CTA";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+/* import { useEffect } from "react";
+import toast from "react-hot-toast"; */
 
 const HomePage = () => {
   const { t } = useTranslation();
-  useEffect(() => {
+  /* useEffect(() => {
     setTimeout(() => {
       toast(t('alerts.underConstruction'), {
         icon: "🚧",
@@ -19,7 +19,7 @@ const HomePage = () => {
         },
       }, 1000);
     });
-  }, [t]);
+  }, [t]); */
 
   return (
     <MainLayout>
