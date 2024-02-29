@@ -4,6 +4,19 @@ const ArticleDetailSkeleton = ({ isManage = false }) => {
   return (
     <section className="container px-5 md:px-12 mx-auto max-w-5xl flex flex-col py-5 lg:flex-row lg:gap-x-5 lg:items-start animate-pulse">
       <article className="flex-1">
+        {/* BreadCrumbs */}
+        <div className="w-1/2 h-3 rounded-lg bg-slate-300 mb-5" />
+        {/* User */}
+        <div className="flex items-center space-x-3 mb-5">
+          <div className="w-12 h-12 rounded-full bg-slate-300" />
+          <div className="flex gap-2 flex-col w-1/2">
+            <div className="w-full h-5 rounded-lg bg-slate-300" />
+            <div className="flex items-center space-x-2">
+              <span className="w-5 h-5 bg-slate-300 rounded-full" />
+              <span className="w-1/2 h-4 bg-slate-300 rounded-lg" />
+            </div>
+          </div>
+        </div>
         {/* post image */}
         <div className="rounded-xl w-full aspect-video bg-slate-300 flex justify-center items-center">
           <BiImageAlt className="text-4xl text-slate-400" />
