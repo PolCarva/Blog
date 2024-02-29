@@ -83,7 +83,7 @@ const ArticleDetailPage = () => {
             </div>
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mt-4">
               <h1 className="text-3xl order-2 md:order-1 font-medium font-roboto mt-4 text-dark-hard">
-                {data?.title} {data?.title} {data?.title} {data?.title} {data?.title}
+                {data?.title}
               </h1>
               {data?.url && (
                 <a
