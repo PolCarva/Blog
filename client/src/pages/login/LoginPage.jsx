@@ -11,7 +11,7 @@ import { userActions } from "../../store/reducers/userReducers";
 import { useTranslation } from "react-i18next";
 
 const LoginPage = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -83,9 +83,8 @@ const LoginPage = () => {
                 type="email"
                 id="email"
                 placeholder={t("login.emailPlaceholder")}
-                className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.email ? "border-red-500" : "border-gray-border"
-                }`}
+                className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.email ? "border-red-500" : "border-gray-border"
+                  }`}
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm">{errors.email?.message}</p>
@@ -113,9 +112,8 @@ const LoginPage = () => {
                 type="password"
                 id="password"
                 placeholder={t("login.passwordPlaceholder")}
-                className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.password ? "border-red-500" : "border-gray-border"
-                }`}
+                className={`placeholder:text-gray-placeholder text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.password ? "border-red-500" : "border-gray-border"
+                  }`}
               />
               {errors.password?.message && (
                 <p className="text-red-500 text-sm">

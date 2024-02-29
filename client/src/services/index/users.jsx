@@ -56,9 +56,15 @@ export const getUserProfile = async ({ token }) => {
   }
 };
 
-export const getUserById = async ({ userId }) => {
+export const getUserById = async ({ token, userId }) => {
   try {
-    const { data } = await api.get(`/api/users/profile/${userId}`);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await api.get(`/api/users/${userId}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {
@@ -67,7 +73,6 @@ export const getUserById = async ({ userId }) => {
     throw new Error(error.message);
   }
 };
-
 
 export const updateProfile = async ({ token, userData, userId }) => {
   try {

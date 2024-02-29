@@ -49,6 +49,8 @@ const ProfilePage = () => {
   useEffect(() => {
     if (!userState.userInfo) {
       navigate("/");
+    } else {
+      console.log("userState.userInfo", userState.userInfo);
     }
   }, [navigate, userState.userInfo]);
 
@@ -61,6 +63,9 @@ const ProfilePage = () => {
       name: "",
       email: "",
       password: "",
+      bio: "",
+      phone: "",
+      specialization: "",
     },
     values: useMemo(() => {
       return {

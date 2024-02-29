@@ -30,6 +30,9 @@ const registerUser = async (req, res, next) => {
       verified: user.verified,
       admin: user.admin,
       op: user.op,
+      bio: user.bio,
+      phone: user.phone,
+      specialization: user.specialization,
       token: await user.generateJWT(),
     });
   } catch (error) {
@@ -58,6 +61,9 @@ const loginUser = async (req, res, next) => {
         verified: user.verified,
         admin: user.admin,
         op: user.op,
+        bio: user.bio,
+        phone: user.phone,
+        specialization: user.specialization,
         token: await user.generateJWT(),
       });
     } else {
@@ -105,6 +111,9 @@ const getUserProfile = async (req, res, next) => {
         verified: user.verified,
         admin: user.admin,
         op: user.op,
+        bio: user.bio,
+        phone: user.phone,
+        specialization: user.specialization,
       });
     } else {
       let error = new Error("User not found");
