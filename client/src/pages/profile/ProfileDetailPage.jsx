@@ -30,11 +30,7 @@ const ProfilePage = () => {
             return t("profile.user");
         }
     };
-
-    useEffect(() => {
-        console.log(profileData);
-    }, [profileData]);
-
+    
     return (
         <MainLayout>
             <section className="container px-5 md:px-12 mx-auto py-10">
@@ -73,7 +69,7 @@ const ProfilePage = () => {
                                         <AiOutlineClose className="w-3 h-3 text-gray-placeholder" />
                                     )}
                                 </span>
-                                <span className="italic text-dark-light md:text-sm">
+                                <span className="italic text-dark-light text-sm">
                                     {profileData?.verified ? t("admin.common.verified") : t("admin.common.notVerified")}
                                 </span>
                             </div>
@@ -90,7 +86,7 @@ const ProfilePage = () => {
                             </p>
                         </div>
                     }
-                    <div className="flex flex-col md:flex-row p-2 md:items-center bg-primary bg-opacity-10 md:p-10 rounded-lg w-full gap-2 max-w-2xl mx-auto">
+                    <div className="flex flex-col md:flex-row p-4 md:items-center bg-primary bg-opacity-10 md:p-10 rounded-lg w-full gap-2 max-w-2xl mx-auto">
                         <div className="flex flex-col gap-4 md:gap-2 md:w-1/2">
                             <h3 className="font-bold text-xl">
                                 {t("profile.information")}
