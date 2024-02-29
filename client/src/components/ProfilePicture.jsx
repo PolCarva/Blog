@@ -12,14 +12,26 @@ import { userActions } from "../store/reducers/userReducers";
 import { images } from "../constants";
 import { useTranslation } from "react-i18next";
 
+
+
 const ProfilePicture = ({ avatar }) => {
   const { t } = useTranslation();
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
 
   const [openCrop, setOpenCrop] = useState(false);
   const [photo, setPhoto] = useState(null);
+
+  const openConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  };
+
+  const closeConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
 
   const { mutate, isLoading } = useMutation({
     mutationFn: ({ token, formData }) => {
@@ -48,7 +60,9 @@ const ProfilePicture = ({ avatar }) => {
     }
   };
   const handleDeleteImage = () => {
-    if (
+    openConfirmationModal();
+
+    /* if (
       window.confirm("Are you sure you want to delete your profile picture?")
     ) {
       try {
@@ -59,10 +73,51 @@ const ProfilePicture = ({ avatar }) => {
         toast.error(err.message);
         console.log(err);
       }
-    }
+    } */
   };
+
+  const confirmDeleteProfilePicture = () => {
+    try {
+      const formData = new FormData();
+      formData.append("profilePicture", undefined);
+      mutate({ token: userState.userInfo.token, formData: formData });
+    } catch (err) {
+      toast.error(err.message);
+      console.log(err);
+    }
+    finally {
+      closeConfirmationModal();
+    }
+  }
+
   return (
     <div className="w-full flex items-center gap-x-4 ">
+      {showConfirmationModal && (
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[51]">
+          <div className="bg-white rounded-lg p-4 shadow-lg">
+            <h3 className="font-bold text-lg mb-2">
+              {t("profile.deletePicture")}
+            </h3>
+            <p className="text-sm mb-4">{t("profile.deletePictureConfirmation")}</p>
+            <div className="flex justify-end gap-x-4">
+              <button
+                onClick={confirmDeleteProfilePicture}
+                type="button"
+                className="border border-red-500 hover:bg-red-500 hover:text-white transition-all ease-in-out rounded-lg px-4 py-2 text-red-500"
+              >
+                {t("profile.deletePicture")}
+              </button>
+              <button
+                onClick={closeConfirmationModal}
+                type="button"
+                className="border border-primary hover:bg-primary hover:text-white transition-all ease-in-out rounded-lg px-4 py-2 text-primary"
+              >
+                {t("profile.cancel")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {openCrop &&
         createPortal(
           <CropEasy photo={photo} setOpenCrop={setOpenCrop} />,
@@ -99,7 +154,7 @@ const ProfilePicture = ({ avatar }) => {
       <button
         onClick={handleDeleteImage}
         type="button"
-        className="border border-red-500 rounded-lg px-4 py-2 text-red-500"
+        className="border border-red-500 hover:bg-red-500 hover:text-white transition-all ease-in-out rounded-lg px-4 py-2 text-red-500"
       >
         {t("profile.deletePicture")}
       </button>

@@ -87,6 +87,9 @@ const userProfile = async (req, res, next) => {
         verified: user.verified,
         admin: user.admin,
         op: user.op,
+        bio: user.bio,
+        phone: user.phone,
+        specialization: user.specialization,
       });
     } else {
       let error = new Error("User not found");
@@ -101,7 +104,6 @@ const userProfile = async (req, res, next) => {
 const getUserProfile = async (req, res, next) => {
   try {
     let user = await User.findById(req.params.userId);
-
     if (user) {
       return res.status(201).json({
         _id: user._id,

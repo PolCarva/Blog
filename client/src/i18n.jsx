@@ -135,12 +135,15 @@ const resources = {
                 altHeroImg: 'Imagen de bienvenida',
             },
             profile: {
+                deletePictureConfirmation: '¿Estás seguro de que quieres eliminar tu foto de perfil?',
                 user: "Usuario",
+                cancel: "Cancelar",
                 specializedIn: "Especialización",
                 noAnswer: "No especificado",
                 role: "Rol",
                 information: "Información",
                 contact: "Contacto",
+                personal: "Personal",
                 phone: "Teléfono",
                 deletePicture: "Eliminar",
                 aboutMe: "Sobre mí",
@@ -152,6 +155,9 @@ const resources = {
                     name: "Ingrese su nombre",
                     email: "Ingrese su email",
                     password: "Ingrese nueva contraseña",
+                    specializedIn: "Ingrese su especialización",
+                    phone: "Ingrese su teléfono",
+                    bio: "Ingrese su biografía",
                 },
                 errors: {
                     name: {
@@ -417,16 +423,18 @@ const resources = {
                 altHeroImg: "Welcome image",
             },
             profile: {
+                deletePictureConfirmation: "Are you sure you want to delete your profile picture?",
                 user: "User",
+                cancel: "Cancel",
                 specializedIn: "Specialization",
                 role: "Role",
                 information: "Information",
                 contact: "Contact",
+                personal: "Personal",
                 phone: "Phone",
                 noPhone: "Not specified",
                 deletePicture: "Delete",
                 aboutMe: "About me",
-
                 name: "Name",
                 email: "Email",
                 newPassword: "New password (optional)",
@@ -435,6 +443,9 @@ const resources = {
                     name: "Enter name",
                     email: "Enter email",
                     password: "Enter new password",
+                    specializedIn: "Enter specialization",
+                    phone: "Enter phone",
+                    bio: "Enter bio",
                 },
                 errors: {
                     name: {

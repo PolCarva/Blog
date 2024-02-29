@@ -64,7 +64,7 @@ export const getUserById = async ({ token, userId }) => {
       },
     };
 
-    const { data } = await api.get(`/api/users/${userId}`, config);
+    const { data } = await api.get(`/api/users/profile/${userId}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {

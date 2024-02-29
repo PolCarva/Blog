@@ -10,7 +10,7 @@ import { images } from "../../constants";
 import { BsCheckLg } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 
-const ProfilePage = () => {
+const ProfileDetailPage = () => {
     const { t } = useTranslation();
     const userId = useParams().id;
 
@@ -30,7 +30,7 @@ const ProfilePage = () => {
             return t("profile.user");
         }
     };
-    
+
     return (
         <MainLayout>
             <section className="container px-5 md:px-12 mx-auto py-10">
@@ -77,7 +77,7 @@ const ProfilePage = () => {
                     </div>
                     {
                         profileData?.bio &&
-                        <div className="flex flex-col w-full gap-2 max-w-2xl mx-auto">
+                        <div className="flex flex-col w-full gap-2 px-10 max-w-2xl mx-auto">
                             <h3 className="font-bold text-xl">
                                 {t("profile.aboutMe")}
                             </h3>
@@ -141,4 +141,4 @@ const ProfilePage = () => {
     );
 };
 
-export default ProfilePage;
+export default ProfileDetailPage;
