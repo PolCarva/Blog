@@ -41,7 +41,7 @@ const getSingleCategory = async (req, res, next) => {
 
 const getAllPostCategories = async (req, res, next) => {
   try {
-    const filter = req.query.searchKeyword;
+    const filter = req.query.search;
     const userId = req.query.userId;
 
     let where = {};
