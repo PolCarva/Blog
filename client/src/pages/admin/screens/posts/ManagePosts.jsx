@@ -1,10 +1,12 @@
-import { deletePost, getAllPosts } from "../../../../services/index/posts";
+import { deletePost, getAllPosts, updatePost } from "../../../../services/index/posts";
 import { stable, images } from "../../../../constants";
 import Pagination from "../../../../components/Pagination";
 import { Link } from "react-router-dom";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import DataTable from "../../components/DataTable";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const ManagePosts = () => {
   const { t } = useTranslation();
@@ -38,6 +40,41 @@ const ManagePosts = () => {
     },
     deleteDataMessage: "Post deleted successfully",
   });
+
+  const { mutate: mutateUpdatePost, isLoading: isLoadingPost } =
+    useMutation({
+      mutationFn: ({ updatedData, slug }) => {
+        console.log(updatedData, slug);
+         return updatePost({
+          updatedData,
+          slug,
+          token: userState.userInfo.token,
+        });
+      },
+      onSuccess: (data) => {
+        queryClient.invalidateQueries(["posts"]);
+        toast.success("Post updated");
+      },
+      onError: (error) => {
+        toast.error(error.message);
+        console.log(error);
+
+      },
+    });
+
+
+  const togglePostVisibility = async ({ status, slug }) => {
+    let updatedData = new FormData();
+
+    updatedData.append(
+      "document",
+      JSON.stringify({ isHidden: status })
+    );
+      mutateUpdatePost({
+        updatedData,
+        slug,
+      });
+  }
 
   return (
     <DataTable
@@ -140,6 +177,19 @@ const ManagePosts = () => {
             >
               {t('admin.common.table.actions.edit')}
             </Link>
+            <button
+              disabled={isLoadingPost}
+              type="button"
+              className="text-yellow-600 hover:text-red-900 disabled:opacity-60 disabled:cursor-not-allowed"
+              onClick={() =>
+                togglePostVisibility({
+                  status: !post.isHidden,
+                  slug: post.slug,
+                })
+              }
+            >
+              {post.isHidden ? t('admin.common.table.actions.show') : t('admin.common.table.actions.hide')}
+            </button>
           </td>
         </tr>
       ))}

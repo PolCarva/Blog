@@ -57,6 +57,7 @@ export const deletePost = async ({ slug, token }) => {
 };
 
 export const updatePost = async ({ updatedData, slug, token }) => {
+  console.log(updatedData, slug, token);
   try {
     const config = {
       headers: {

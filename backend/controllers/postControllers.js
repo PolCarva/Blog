@@ -39,8 +39,10 @@ const updatePost = async (req, res, next) => {
 
     const upload = uploadPicture.single("postPicture");
 
+    console.log(req);
+
     const handleUploadPostData = async (data) => {
-      const { title, caption, slug, body, tags, categories, url } = JSON.parse(data);
+      const { title, caption, slug, body, tags, categories, url, isHidden } = JSON.parse(data);
       post.title = title || post.title;
       post.caption = caption || post.caption;
       post.slug = slug || post.slug;
@@ -48,7 +50,7 @@ const updatePost = async (req, res, next) => {
       post.tags = tags || post.tags;
       post.categories = categories || post.categories;
       post.url = url || post.url;
-      post.isHidden = false;
+      post.isHidden = isHidden !== undefined ? isHidden : post.isHidden;
 
       const updatedPost = await post.save();
       return res.json(updatedPost);

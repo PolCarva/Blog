@@ -37,6 +37,8 @@ const resources = {
                             unapprove: 'Desaprobar',
                             delete: 'Eliminar',
                             edit: 'Editar',
+                            show: 'Mostrar',
+                            hide: 'Ocultar',
                         },
                         replyOn: 'En respuesta a',
                     }
@@ -244,6 +246,8 @@ const resources = {
                             unapprove: 'Unapprove',
                             delete: 'Delete',
                             edit: 'Edit',
+                            show: 'Show',
+                            hide: 'Hide',
                         },
                         replyOn: 'In response to',
                     }
