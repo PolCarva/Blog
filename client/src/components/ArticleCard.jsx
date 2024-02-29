@@ -16,8 +16,8 @@ const ArticleCard = ({ post, className }) => {
       className={`rounded-xl relative overflow-hidden shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] ${className}`}
     >
       {post.url && (
-        <a href={post.url} target="_blank" rel="noreferrer">
-        <FiExternalLink className="absolute top-0 p-2 right-0 w-12 h-12 cursor-pointer opacity-50 text-primary transition-opacity ease-in-out hover:opacity-100 z-10" />
+        <a href={post.url} className="absolute top-0 right-0" target="_blank" rel="noreferrer">
+          <FiExternalLink className="p-2 right-0 w-12 h-12 cursor-pointer opacity-50 text-primary transition-opacity ease-in-out hover:opacity-100 z-10" />
         </a>
       )}
       <Link to={`/blog/${post.slug}`}>
