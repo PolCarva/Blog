@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import AsyncSelect from "react-select/async";
 
 const MultiSelectTagDropdown = ({
@@ -6,6 +7,7 @@ const MultiSelectTagDropdown = ({
   loadOptions,
   onChange,
 }) => {
+  const { t } = useTranslation();
   return (
     <AsyncSelect
       defaultValue={defaultValue}
@@ -14,6 +16,7 @@ const MultiSelectTagDropdown = ({
       loadOptions={loadOptions}
       className="relative z-30"
       onChange={onChange}
+      placeholder={t("admin.common.select")}
     />
   );
 };

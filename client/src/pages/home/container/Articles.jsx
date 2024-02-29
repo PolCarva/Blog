@@ -37,16 +37,19 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message={t('alerts.somethingWentWrong')} />
         ) : (
-          data?.data
-            .filter((post) => !post.isHidden)
-            .map((post) => (
-              <ArticleCard
-                key={post._id}
-                post={post}
-                className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
-              />
-            ))
-        )}
+          data?.data.filter((post) => !post.isHidden || post.isNew).length > 0 ? (
+            data?.data
+              .filter((post) => !post.isHidden || post.isNew)
+              .map((post) => (
+                <ArticleCard
+                  key={post._id}
+                  post={post}
+                  className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
+                />
+              ))
+          ) : (
+            <h1 className='font-bold text-center w-full text-2xl text-primary'>{t("alerts.nothingHere")}</h1>
+          ))}
       </div>
       <Link to="/blog" className="mx-auto hover:bg-primary hover:text-white transition-colors ease-in-out duration-300 flex items-center gap-x-2 font-bold border-2 text-primary border-primary px-6 py-3 rounded-lg">
         <span>{t('articles.moreArticles')}</span>

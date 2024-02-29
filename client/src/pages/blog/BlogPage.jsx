@@ -10,12 +10,17 @@ import MainLayout from '../../components/MainLayout';
 import Pagination from '../../components/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
+import { getAllCategories } from '../../services/index/postCategories';
+import MultiSelectTagDropdown from "../../components/select-dropdown/MultiSelectTagDropdown";
+import { filterCategories, categoryToOption } from '../../utils/multiSelectTagUtils';
+
 
 let isFirstRun = true;
 
 const BlogPage = () => {
     const searchInputRef = useRef(null);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [categories, setCategories] = useState([]);
     const searchParamsValue = Object.fromEntries([...searchParams]);
     const [currentPage, setCurrentPage] = useState(parseInt(searchParamsValue?.page) || 1);
     const [searchQuery, setSearchQuery] = useState(searchParamsValue?.search || '');
@@ -29,31 +34,49 @@ const BlogPage = () => {
         },
     });
 
+    const promiseOptions = async (inputValue) => {
+        const { data: categoriesData } = await getAllCategories();
+        return filterCategories(inputValue, categoriesData);
+    };
+
+    /* Get all categories */
+    const { data: categoriesData } = useQuery({
+        queryFn: () => getAllCategories(),
+        queryKey: ['categories'],
+    });
+
     useEffect(() => {
         if (isFirstRun) {
             isFirstRun = false;
             return;
         }
-        refetch({ page: currentPage, search: searchQuery });
+        refetch({ page: currentPage, search: searchQuery, category });
         window.scrollTo({ top: 0 });
-    }, [currentPage, refetch, searchQuery]);
+    }, [currentPage, refetch, searchQuery, category]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
-        setSearchParams({ page, search: searchQuery });
+        setSearchParams({ page, search: searchQuery, category });
     };
 
     const handleSearch = (search) => {
         setSearchQuery(search);
         setCurrentPage(1);
-        setSearchParams({ page: 1, search });
+        setSearchParams({ page: 1, search, category });
+    };
+
+    const handleCategoryChange = (selectedCategories) => {
+        const categoryNames = selectedCategories.map((category) => category.label).join(','); // Concatenar los nombres de las categorías seleccionadas
+        setCategory(categoryNames);
+        setCurrentPage(1);
+        setSearchParams({ page: 1, search: searchQuery, category: categoryNames }); // Incluir las categorías seleccionadas en los parámetros de búsqueda
     };
 
 
     return (
         <MainLayout>
             <section className="flex flex-col container px-5 md:px-12 mx-auto py-10 w-full">
-                <div className='mb-5 md:mb-8 lg:mb-10 flex w-full'>
+                <div className='mb-5 md:mb-8 lg:mb-10 flex w-full flex-col lg:flex-row justify-between gap-2'>
                     <div className="flex flex-col gap-y-2.5 relative w-full lg:w-1/2 lg:max-w-4xl">
                         <div className="relative">
                             <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-placeholder" />
@@ -66,9 +89,19 @@ const BlogPage = () => {
                                 value={searchQuery}
                             />
                         </div>
-                        <button onClick={() => handleSearch(searchInputRef.current.value)} className="w-full bg-primary hover:bg-primary-hover transition-colors ease-in-out text-white font-semibold rounded-lg px-5 py-3 md:absolute md:right-2 md:top-1/2 md:-translate-y-1/2 md:w-fit md:py-2">
-                            {t('hero.searchBtn')}
-                        </button>
+                    </div>
+                    {/* Category filter */}
+                    <div className="flex  flex-col gap-y-2.5 w-full md:max-w-xs self-end mt-5 lg:mt-0">
+
+                        {categoriesData && (
+                            <>
+                                <span htmlFor="categoryFilter" className="text-dark-soft font-semibold">{t('blog.categoryFilter')}</span>
+                                <MultiSelectTagDropdown
+                                    defaultValue={[]}
+                                    loadOptions={promiseOptions}
+                                    onChange={handleCategoryChange}
+                                />
+                            </>)}
                     </div>
                 </div>
                 <div className="flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
@@ -88,9 +121,9 @@ const BlogPage = () => {
                         <ErrorMessage message={t('alerts.somethingWentWrong')} />
                     ) : (
 
-                        data?.data.filter((post) => !post.isHidden).length > 0 ? (
+                        data?.data.filter((post) => !post.isHidden || post.isNew).length > 0 ? (
                             data?.data
-                                .filter((post) => !post.isHidden)
+                                .filter((post) => !post.isHidden || post.isNew)
                                 .map((post) => (
                                     <ArticleCard
                                         key={post._id}

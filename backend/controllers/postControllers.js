@@ -18,6 +18,8 @@ const createPost = async (req, res, next) => {
       photo: "",
       user: req.user._id,
       url: req.body.url || "",
+      isHidden: false,
+      isNew: true,
     });
 
     const createdPost = await post.save();
@@ -42,7 +44,7 @@ const updatePost = async (req, res, next) => {
     console.log(req);
 
     const handleUploadPostData = async (data) => {
-      const { title, caption, slug, body, tags, categories, url, isHidden } = JSON.parse(data);
+      const { title, caption, slug, body, tags, categories, url, isHidden, isNew } = JSON.parse(data);
       post.title = title || post.title;
       post.caption = caption || post.caption;
       post.slug = slug || post.slug;
@@ -51,6 +53,7 @@ const updatePost = async (req, res, next) => {
       post.categories = categories || post.categories;
       post.url = url || post.url;
       post.isHidden = isHidden !== undefined ? isHidden : post.isHidden;
+      post.isNew = false;
 
       const updatedPost = await post.save();
       return res.json(updatedPost);
@@ -157,8 +160,7 @@ const getAllPosts = async (req, res, next) => {
   try {
     const filter = req.query.searchKeyword;
     const userId = req.query.userId;
-    const categoryTitle = req.query.category;
-
+    const categoryTitles = req.query.category ? req.query.category.split(',') : null;
     let where = {};
 
     if (userId) {
@@ -172,15 +174,15 @@ const getAllPosts = async (req, res, next) => {
       ]
     }
 
-    if (categoryTitle) { 
-      const category = await PostCategories.findOne({ title: categoryTitle });
-      if (category) {
-        where.categories = category._id; 
+    // Modificación: Si categoryTitles está presente pero es un array vacío, no aplicar filtro por categoría
+    if (categoryTitles !== null && categoryTitles.length > 0) { 
+      const categories = await PostCategories.find({ title: { $in: categoryTitles } }); 
+      if (categories.length > 0) {
+        where.categories = { $in: categories.map(category => category._id) }; 
       } else {
         return res.json([]);
       }
     }
-
 
     let query = Post.find(where);
     const page = parseInt(req.query.page) || 1;
@@ -221,5 +223,6 @@ const getAllPosts = async (req, res, next) => {
     next(error);
   }
 };
+
 
 export { createPost, updatePost, deletePost, getPost, getAllPosts };

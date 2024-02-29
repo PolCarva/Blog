@@ -8,6 +8,7 @@ const resources = {
             admin: {
                 common: {
                     optional: "(opcional)",
+                    select: 'Seleccionar...',
                     filter: 'Filtrar',
                     loading: 'Cargando...',
                     noData: 'No hay datos',
@@ -178,6 +179,9 @@ const resources = {
                 moreArticles: "Más artículos",
                 projectLink: "Link al proyecto",
             },
+            blog: {
+                categoryFilter: 'Filtrar por categoría',
+            },
             cta: {
                 title: "¡Conviertete en creador de contenido!",
                 success: "Gracias por tu interés! Nos pondremos en contacto pronto.",
@@ -297,6 +301,7 @@ const resources = {
             admin: {
                 common: {
                     optional: "(optional)",
+                    select: 'Select...',
                     filter: 'Filter',
                     loading: 'Loading...',
                     noData: 'No data',
@@ -465,6 +470,9 @@ const resources = {
             articles: {
                 moreArticles: "More articles",
                 projectLink: "Project link",
+            },
+            blog: {
+                categoryFilter: 'Filter by category',
             },
             cta: {
                 title: "Become a content creator today!",
