@@ -2,6 +2,7 @@ import React from "react";
 import images from "../../../constants/images";
 import { useTranslation } from "react-i18next";
 
+
 const CTA = () => {
   const { t } = useTranslation();
   return (

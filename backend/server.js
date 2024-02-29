@@ -14,6 +14,7 @@ import postRoutes from "./routes/postRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import postCategoriesRoutes from "./routes/postCategoriesRoutes";
 import tagsRoutes from "./routes/postTagsRoutes";
+import emailRoutes from "./routes/emailRoutes";
 
 dotenv.config();
 connectDB();
@@ -44,6 +45,7 @@ app.use("/api/post-tags", tagsRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/post-categories", postCategoriesRoutes);
+app.use("/api/send-mail", emailRoutes)
 
 // Static assets
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));

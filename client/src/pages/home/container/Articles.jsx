@@ -38,7 +38,7 @@ const Articles = () => {
           <ErrorMessage message={t('alerts.somethingWentWrong')} />
         ) : (
           data?.data
-            .filter((post) => !post.isNew)
+            .filter((post) => !post.isHidden)
             .map((post) => (
               <ArticleCard
                 key={post._id}

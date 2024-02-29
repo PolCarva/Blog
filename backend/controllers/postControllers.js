@@ -48,7 +48,7 @@ const updatePost = async (req, res, next) => {
       post.tags = tags || post.tags;
       post.categories = categories || post.categories;
       post.url = url || post.url;
-      post.isNew = false;
+      post.isHidden = false;
 
       const updatedPost = await post.save();
       return res.json(updatedPost);

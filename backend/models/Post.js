@@ -10,7 +10,7 @@ const PostSchema = new Schema(
     user: { type: Schema.Types.ObjectId, ref: "User" },
     tags: { type: [String] },
     categories: [{ type: Schema.Types.ObjectId, ref: "PostCategories" }],
-    isNew: { type: Boolean, default: true },
+    isHidden: { type: Boolean, default: true },
     url: { type: String, required: false },
   },
   { timestamps: true, toJSON: { virtuals: true } }

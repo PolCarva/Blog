@@ -39,7 +39,7 @@ const EditPost = () => {
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [categories, setCategories] = useState(null);
-  const [isNewPost, setIsNewPost] = useState(false);
+  const [isHiddenPost, setisHiddenPost] = useState(false);
   const [tags, setTags] = useState(null);
   const [url, setUrl] = useState("");
   const [postSlug, setPostSlug] = useState(slug);
@@ -52,7 +52,7 @@ const EditPost = () => {
       setTitle(data?.title);
       setCaption(data?.caption);
       setCategories(data?.categories.map((category) => category._id));
-      setIsNewPost(data?.isNew);
+      setisHiddenPost(data?.isHidden);
       setTags(data?.tags);
       setUrl(data?.url);
     },
@@ -72,7 +72,7 @@ const EditPost = () => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries(["blog", slug]);
-      toast.success(isNewPost ? "Post created" : "Post updated");
+      toast.success(isHiddenPost ? "Post created" : "Post updated");
       navigate(`/admin/posts/manage/edit/${data?.slug}`, { replace: true });
     },
     onError: (error) => {
@@ -131,7 +131,7 @@ const EditPost = () => {
   };
 
   const handleCancelPost = async () => {
-    if (data.isNew) {
+    if (data.isHidden) {
       console.log("delete post");
       await deletePost({ slug, token: userState.userInfo.token }).then(() => {
         toast.success("Post is deleted");
@@ -326,7 +326,7 @@ const EditPost = () => {
                 onClick={handleCancelPost}
                 className="flex-1 bg-red-500 text-white font-semibold rounded-lg px-4 py-2 mt-5 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {isNewPost ? t("admin.common.actions.delete") : t("admin.common.actions.cancel")}
+                {isHiddenPost ? t("admin.common.actions.delete") : t("admin.common.actions.cancel")}
               </button>
               <button
                 disabled={isLoadingUpdatePostDetail}
@@ -334,7 +334,7 @@ const EditPost = () => {
                 onClick={handleUpdatePost}
                 className="flex-1 bg-green-500 text-white font-semibold rounded-lg px-4 py-2 mt-5 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {isNewPost ? t("admin.common.actions.publish") : t("admin.common.actions.update")}
+                {isHiddenPost ? t("admin.common.actions.publish") : t("admin.common.actions.update")}
               </button>
             </div>
           </article>

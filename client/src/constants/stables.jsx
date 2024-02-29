@@ -1,3 +1,4 @@
+import process from 'process';
 const LOCAL_URL = "http://localhost:5000/";
 const SOCIALMULTIMEDIA_URL = "https://blog-production-8da6.up.railway.app/";
 

@@ -14,30 +14,30 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
         {header}
       </h2>
       <div className="grid gap-y-5 mt-5 md:grid-cols-2 md:gap-x-5 lg:grid-cols-1">
-        {posts.filter(i => !i.isNew).map((item) => (
+        {posts.filter(post => !post.isHidden).map((post) => (
           <div
-            key={item._id}
+            key={post._id}
             className="flex space-x-3 flex-nowrap items-center"
           >
             <img
               src={
-                item?.photo
-                  ? stable.UPLOAD_FOLDER_BASE_URL + item.photo
+                post?.photo
+                  ? stable.UPLOAD_FOLDER_BASE_URL + post.photo
                   : images.samplePostImage
               }
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = images.samplePostImage;
               }}
-              alt={item.title}
+              alt={post.title}
               className="aspect-square object-cover rounded-lg w-1/5"
             />
             <div className="text-sm font-roboto text-dark-hard font-medium">
               <h3 className="text-sm font-roboto text-dark-hard font-medium md:text-base lg:text-lg">
-                <Link to={`/blog/${item.slug}`}>{item.title}</Link>
+                <Link to={`/blog/${post.slug}`}>{post.title}</Link>
               </h3>
               <span className="text-xs opacity-60">
-                {new Date(item.createdAt).toLocaleDateString("en-US", {
+                {new Date(post.createdAt).toLocaleDateString("en-US", {
                   day: "numeric",
                   month: "short",
                   year: "numeric",
