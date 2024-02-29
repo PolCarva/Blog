@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const CommentForm = ({
   btnLabel,
@@ -8,6 +9,7 @@ const CommentForm = ({
   initialText = "",
   loading = false,
 }) => {
+  const {t } = useTranslation();
   const [value, setValue] = useState(initialText);
 
   const submitHandler = (event) => {
@@ -22,7 +24,7 @@ const CommentForm = ({
         <textarea
           rows="5"
           className="w-full focus:outline-none bg-transparent"
-          placeholder="Leave your comment here."
+          placeholder={t("article.comments.placeholder")}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -35,7 +37,7 @@ const CommentForm = ({
               }}
               className="px-6 py-2.5 rounded-lg border border-red-500 text-red-500"
             >
-              Cancel
+              {t("article.comments.cancel")}
             </button>
           )}
           <button

@@ -80,7 +80,7 @@ const Comment = ({
         )}
         {isEditing && (
           <CommentForm
-            btnLabel="Update"
+            btnLabel={t("article.comments.update")}
             formSubmitHanlder={(value) => updateComment(value, comment._id)}
             formCancelHandler={() => setAffectedComment(null)}
             initialText={comment.desc}
@@ -95,7 +95,7 @@ const Comment = ({
               }
             >
               <FiMessageSquare className="w-4 h-auto" />
-              <span>Reply</span>
+              <span>{t("article.comments.reply")}</span>
             </button>
           )}
           {commentBelongsToUser && (
@@ -107,21 +107,21 @@ const Comment = ({
                 }
               >
                 <FiEdit2 className="w-4 h-auto" />
-                <span>Edit</span>
+                <span>{t("article.comments.edit")}</span>
               </button>
               <button
                 className="flex items-center space-x-2"
                 onClick={() => deleteComment(comment._id)}
               >
                 <FiTrash className="w-4 h-auto" />
-                <span>Delete</span>
+                <span>{t("article.comments.delete")}</span>
               </button>
             </>
           )}
         </div>
         {isReplying && (
           <CommentForm
-            btnLabel="Reply"
+            btnLabel={t("article.comments.reply")}
             formSubmitHanlder={(value) =>
               addComment(value, repliedCommentId, replyOnUserId)
             }

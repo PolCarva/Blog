@@ -16,6 +16,8 @@ const resources = {
                         update: 'Actualizar',
                         publish: 'Publicar',
                         delete: 'Eliminar',
+                        edit: 'Editar',
+                        reply: 'Responder',
                     },
                     verified: 'Verificado',
                     notVerified: 'No verificado',
@@ -160,6 +162,7 @@ const resources = {
             },
             articles: {
                 moreArticles: "Más artículos",
+                projectLink: "Link al proyecto",
             },
             cta: {
                 title: "¡Conviertete en creador de contenido!",
@@ -208,6 +211,15 @@ const resources = {
                 share: "Compartir",
                 tags: "Etiquetas",
                 noTags: "No hay etiquetas",
+                comments: {
+                    placeholder: "Escribe un comentario...",
+                    send: "Enviar",
+                    reply: "Responder",
+                    edit: "Editar",
+                    delete: "Eliminar",
+                    update: "Actualizar",
+                    cancel: "Cancelar",
+                }
             }
             // Agrega más traducciones aquí
         },
@@ -227,6 +239,8 @@ const resources = {
                         update: 'Update',
                         publish: 'Publish',
                         delete: 'Delete',
+                        edit: 'Edit',
+                        
                     },
                     table: {
                         author: 'Author',
@@ -368,6 +382,7 @@ const resources = {
             },
             articles: {
                 moreArticles: "More articles",
+                projectLink: "Project link",
             },
             cta: {
                 title: "Become a content creator today!",
@@ -415,6 +430,15 @@ const resources = {
                 share: "Share",
                 tags: "Tags",
                 noTags: "No tags",
+                comments: {
+                    placeholder: "Write a comment...",
+                    send: "Send",
+                    reply: "Reply",
+                    edit: "Edit",
+                    delete: "Delete",
+                    update: "Update",
+                    cancel: "Cancel",
+                }
             }
             // Agrega más traducciones aquí
         },

@@ -51,7 +51,7 @@ const Hero = () => {
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
-            <button onClick={handleSearch} className="w-full bg-primary text-white font-semibold rounded-lg px-5 py-3 md:absolute md:right-2 md:top-1/2 md:-translate-y-1/2 md:w-fit md:py-2">
+            <button onClick={handleSearch} className="w-full bg-primary hover:bg-primary-hover transition-colors ease-in-out text-white font-semibold rounded-lg px-5 py-3 md:absolute md:right-2 md:top-1/2 md:-translate-y-1/2 md:w-fit md:py-2">
               {t('hero.searchBtn')}
             </button>
           </div>

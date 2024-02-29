@@ -10,6 +10,7 @@ import {
 } from "../../services/index/comments";
 import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const CommentsContainer = ({
   className,
@@ -17,6 +18,7 @@ const CommentsContainer = ({
   comments,
   postSlug,
 }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const userState = useSelector((state) => state.user);
   const [affectedComment, setAffectedComment] = useState(null);
@@ -91,7 +93,7 @@ const CommentsContainer = ({
   return (
     <div className={`${className}`}>
       <CommentForm
-        btnLabel="Send"
+        btnLabel={t("article.comments.send")}
         formSubmitHanlder={(value) => addCommentHandler(value)}
         loading={isLoadingNewComment}
       />

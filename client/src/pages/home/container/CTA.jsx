@@ -41,7 +41,7 @@ const CTA = () => {
                 placeholder={t("cta.inputNamePlaceholder")}
                 className="px-4 py-3 rounded-lg w-full placeholder:text-dark-light"
               />
-              <button className="px-4 py-3 rounded-lg w-full bg-primary text-white font-bold md:w-fit md:whitespace-nowrap">
+              <button className="px-4 py-3 rounded-lg w-full bg-primary hover:bg-primary-hover transition-colors ease-in-out text-white font-bold md:w-fit md:whitespace-nowrap">
                 {t("cta.button")}
               </button>
             </form>

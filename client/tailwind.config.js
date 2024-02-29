@@ -4,7 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#4184E2",
+        primary: {
+          DEFAULT: "#4184E2",
+          hover: "#2261bb",
+        },
         dark: {
           hard: "#0D2436",
           soft: "#183B56",

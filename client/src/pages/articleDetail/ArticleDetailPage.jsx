@@ -81,9 +81,21 @@ const ArticleDetailPage = () => {
                 </Link>
               ))}
             </div>
-            <h1 className="text-xl font-medium font-roboto mt-4 text-dark-hard md:text-[26px]">
-              {data?.title}
-            </h1>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mt-4">
+              <h1 className="text-3xl order-2 md:order-1 font-medium font-roboto mt-4 text-dark-hard">
+                {data?.title} {data?.title} {data?.title} {data?.title} {data?.title}
+              </h1>
+              {data?.url && (
+                <a
+                  href={data?.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="order-1 md:order-2 w-full md:w-auto text-white min-w-fit bg-primary hover:bg-primary-hover transition-colors ease-in-out h-12 px-6 text-center rounded-full py-3 font-roboto block"
+                >
+                  {t("articles.projectLink")}
+                </a>
+              )}
+            </div>
 
             <div className="w-full">
               {!isLoading && !isError && (
