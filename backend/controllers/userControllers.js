@@ -92,6 +92,30 @@ const userProfile = async (req, res, next) => {
   }
 };
 
+const getUserProfile = async (req, res, next) => {
+  try {
+    let user = await User.findById(req.params.userId);
+
+    if (user) {
+      return res.status(201).json({
+        _id: user._id,
+        avatar: user.avatar,
+        name: user.name,
+        email: user.email,
+        verified: user.verified,
+        admin: user.admin,
+        op: user.op,
+      });
+    } else {
+      let error = new Error("User not found");
+      error.statusCode = 404;
+      next(error);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const updateProfile = async (req, res, next) => {
   try {
     const userToUpdate = req.params.userId;
@@ -137,7 +161,7 @@ const updateProfile = async (req, res, next) => {
 
     if (typeof req.body.verified !== 'undefined') {
       user.verified = req.body.verified;
-  }
+    }
 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
@@ -302,6 +326,7 @@ export {
   userProfile,
   updateProfile,
   updateProfilePicture,
+  getUserProfile,
   getAllUsers,
   deleteUser,
 };

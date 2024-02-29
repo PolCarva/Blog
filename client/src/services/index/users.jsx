@@ -56,6 +56,19 @@ export const getUserProfile = async ({ token }) => {
   }
 };
 
+export const getUserById = async ({ userId }) => {
+  try {
+    const { data } = await api.get(`/api/users/profile/${userId}`);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message);
+  }
+};
+
+
 export const updateProfile = async ({ token, userData, userId }) => {
   try {
     const config = {

@@ -9,8 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProfilePicture } from "../services/index/users";
 import { userActions } from "../store/reducers/userReducers";
+import { images } from "../constants";
+import { useTranslation } from "react-i18next";
 
 const ProfilePicture = ({ avatar }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
@@ -75,6 +78,10 @@ const ProfilePicture = ({ avatar }) => {
               src={stables.UPLOAD_FOLDER_BASE_URL + avatar}
               alt="Profile"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = images.defaultProfile;
+              }}
             />
           ) : (
             <div className="w-full h-full bg-blue-50/50 flex justify-center items-center">
@@ -94,7 +101,7 @@ const ProfilePicture = ({ avatar }) => {
         type="button"
         className="border border-red-500 rounded-lg px-4 py-2 text-red-500"
       >
-        Delete
+        {t("profile.deletePicture")}
       </button>
     </div>
   );

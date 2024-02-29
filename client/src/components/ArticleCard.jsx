@@ -46,7 +46,7 @@ const ArticleCard = ({ post, className }) => {
           </p>
         </Link>
         <div className="flex justify-between flex-nowrap items-center mt-6">
-          <div className="flex items-center gap-x-2 md:gap-x-2.5">
+          <Link to={`/profile/${post.user._id}`} className="flex items-center gap-x-2 md:gap-x-2.5">
             <img
               src={
                 post.user.avatar
@@ -80,7 +80,7 @@ const ArticleCard = ({ post, className }) => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
           <span className="font-bold text-dark-light italic text-sm md:text-base">
             {new Date(post.createdAt).getDate() +
               " " +

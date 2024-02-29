@@ -19,6 +19,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
 import Users from "./pages/admin/screens/users/Users";
 import BlogPage from "./pages/blog/BlogPage";
+import ProfileDetailPage from "./pages/profile/ProfileDetailPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/:id" element={<ProfileDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<ArticleDetailPage />} />
             <Route path="/admin" element={<AdminLayout />}>

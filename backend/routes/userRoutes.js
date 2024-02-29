@@ -3,6 +3,7 @@ const router = express.Router();
 import {
   deleteUser,
   getAllUsers,
+  getUserProfile,
   loginUser,
   registerUser,
   updateProfile,
@@ -14,6 +15,7 @@ import { adminGuard, authGuard } from "../middleware/authMiddleware";
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/profile", authGuard, userProfile);
+router.get("/profile/:userId", getUserProfile);
 router.put("/updateProfile/:userId", authGuard, updateProfile);
 router.put("/updateProfilePicture", authGuard, updateProfilePicture);
 router.get("/", authGuard, adminGuard, getAllUsers);
