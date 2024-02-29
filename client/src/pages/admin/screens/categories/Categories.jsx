@@ -90,7 +90,7 @@ const Categories = () => {
       <div className="col-span-8">
         <DataTable
           pageTitle={""}
-          dataListName={"Categories"}
+          dataListName={t("admin.posts.categories.title")}
           searchInputPlaceHolder={t('admin.posts.categories.filterPlaceholder')}
           searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
           searchKeywordOnChangeHandler={searchKeywordHandler}
