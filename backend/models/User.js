@@ -41,7 +41,11 @@ const UserSchema = new Schema(
       type: String,
       default: "",
     },
-    specializedIn: {
+    phone: {
+      type: String,
+      default: "",
+    },
+    specialization: {
       type: String,
       default: "",
     },

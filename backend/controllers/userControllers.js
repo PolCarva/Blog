@@ -165,6 +165,9 @@ const updateProfile = async (req, res, next) => {
 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
+    user.bio = req.body.bio || user.bio;
+    user.phone = req.body.phone || user.phone;
+    user.specialization = req.body.specialization || user.specialization;
 
     if (req.body.password && req.body.password.length < 6) {
       throw new Error("Password must be at least 6 characters");
@@ -182,6 +185,9 @@ const updateProfile = async (req, res, next) => {
       verified: updatedUserProfile.verified,
       admin: updatedUserProfile.admin,
       op: updatedUserProfile.op,
+      bio: updatedUserProfile.bio,
+      phone: updatedUserProfile.phone,
+      specialization: updatedUserProfile.specialization,
       token: await updatedUserProfile.generateJWT(),
     });
   } catch (error) {
