@@ -80,7 +80,7 @@ const resources = {
                             select: 'Seleccionar',
                         },
                         placeholders: {
-                            url: 'www.link-a-tu-proyecto.com',
+                            url: 'http://www.link-a-tu-proyecto.com',
                         }
 
 
@@ -373,7 +373,7 @@ const resources = {
                             select: 'Select',
                         },
                         placeholders: {
-                            url: 'www.link-to-your-project.com',
+                            url: 'http://www.link-to-your-project.com',
                         }
 
                     },
