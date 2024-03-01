@@ -12,9 +12,6 @@ const transporter = nodemailer.createTransport({
 
 const sendAdminRequestEmail = (req, res) => {
     const { email, name } = req.body;
-
-    console.log(process.env.ADMIN_EMAIL, process.env.ADMIN_EMAIL_PASSWORD);
-
     const mailOptions = {
         from: {
             name: "Social Multimedia",
@@ -31,7 +28,6 @@ const sendAdminRequestEmail = (req, res) => {
             console.log(error);
             res.status(500).json({ message: "Error sending email" });
         } else {
-            console.log("Email sent: " + info.response);
             res.status(200).json({ message: "Email succesfully sent" });
         }
     });

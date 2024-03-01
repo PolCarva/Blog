@@ -67,6 +67,7 @@ const resources = {
                         uncategorized: 'Sin categoría',
                     },
                     new: {
+                        isNew: 'Nuevo',
                         title: 'Editar Post',
                         create: 'Nuevo Post',
                         inputs: {
@@ -360,6 +361,7 @@ const resources = {
                         uncategorized: 'Uncategorized',
                     },
                     new: {
+                        isNew: 'New',
                         title: 'Edit Post',
                         create: 'New Post',
                         inputs: {

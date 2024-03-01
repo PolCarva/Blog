@@ -37,16 +37,17 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message={t('alerts.somethingWentWrong')} />
         ) : (
-          data?.data.filter((post) => !post.isHidden || post.isNew).length > 0 ? (
+          data?.data.filter((post) => !post.isHidden && post.isNew).length > 0 ? (
             data?.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-              .filter((post) => !post.isHidden || post.isNew)
-              .map((post) => (
-                <ArticleCard
-                  key={post._id}
-                  post={post}
-                  className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
-                />
-              ))
+              .filter((post) => !post.isHidden && !post.isNew)
+              .map((post) => {
+                return (
+                  <ArticleCard
+                    key={post._id}
+                    post={post}
+                    className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
+                  />)
+              })
           ) : (
             <h1 className='font-bold text-center w-full text-2xl text-primary'>{t("alerts.nothingHere")}</h1>
           ))}

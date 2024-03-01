@@ -157,7 +157,7 @@ const ManagePosts = () => {
               )}
             </div>
           </td>
-          <td className="overflow-x-auto space-x-5 px-5 py-5 text-sm bg-white border-b border-gray-200 items-center justify-stretch">
+          <td className="overflow-x-auto relative space-x-5 px-5 py-5 text-sm bg-white border-b border-gray-200 items-center justify-stretch">
             <div className="flex w-full gap-4 h-full bg-white ">
               <button
                 disabled={isLoadingDeleteData}
@@ -192,6 +192,17 @@ const ManagePosts = () => {
                 {post.isHidden ? t('admin.common.table.actions.show') : t('admin.common.table.actions.hide')}
               </button>
             </div>
+            {post.isNew && (
+              <span className="text-yellow-600 font-bold absolute top-1 right-2 group">
+                <span className="relative cursor-help">
+                  {t('admin.posts.new.isNew')}
+                  <span className="transition-opacity rounded-md z-[1000] ease-in-out py-2 px-4 bg-yellow-200 bg-opacity-60 fixed opacity-0 top-2 left-1/2 -translate-x-1/2 group-hover:opacity-100 text-yellow-600 font-semibold">
+                    Los posts nuevos no se muestran hasta ser publicados.
+                  </span>
+                </span>
+              </span>
+
+            )}
           </td>
         </tr>
       ))}

@@ -41,8 +41,6 @@ const updatePost = async (req, res, next) => {
 
     const upload = uploadPicture.single("postPicture");
 
-    console.log(req);
-
     const handleUploadPostData = async (data) => {
       const { title, caption, slug, body, tags, categories, url, isHidden, isNew } = JSON.parse(data);
       post.title = title || post.title;

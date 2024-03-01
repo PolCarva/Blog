@@ -134,7 +134,6 @@ const EditPost = () => {
 
   const handleCancelPost = async () => {
     if (data.isHidden) {
-      console.log("delete post");
       await deletePost({ slug, token: userState.userInfo.token }).then(() => {
         toast.success("Post is deleted");
         navigate("/admin/posts/manage");
@@ -252,7 +251,6 @@ const EditPost = () => {
               <input
                 id="title"
                 onChange={(e) => {
-                  console.log("Title changed:", e.target.value);
                   setTitle(e.target.value);
                 }}
                 type="text"
