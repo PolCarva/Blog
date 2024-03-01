@@ -96,8 +96,8 @@ const ProfileDetailPage = () => {
                                     <p className="font-bold">
                                         {t("profile.specializedIn")}:
                                     </p>
-                                    <p>
-                                        {profileData?.specializedIn || t("profile.noAnswer")}
+                                    <p className="line-clamp-1">
+                                        {profileData?.specialization || t("profile.noAnswer")}
                                     </p>
                                 </div>
                                 <div className="flex gap-2 items-center">

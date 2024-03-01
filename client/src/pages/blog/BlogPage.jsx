@@ -95,7 +95,7 @@ const BlogPage = () => {
 
                         {categoriesData && (
                             <>
-                                <span htmlFor="categoryFilter" className="text-dark-soft font-semibold">{t('blog.categoryFilter')}</span>
+                                <span htmlFor="categoryFilter" className="text-dark-soft font-semibold">{t('blog.categoryFilter')}:</span>
                                 <MultiSelectTagDropdown
                                     defaultValue={[]}
                                     loadOptions={promiseOptions}

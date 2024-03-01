@@ -60,12 +60,12 @@ const Hero = () => {
           <span className="text-dark-light font-semibold w-full max-w-fit italic mt-2 lg:mt-4 lg:text-sm xl:text-base">
             {t('hero.searchSuggestions')}
           </span>
-          <ul className="flex flex-wrap gap-x-2.5 gap-y-2.5 mt-3 w-full lg:text-sm xl:text-base">
+          <ul className="flex flex-wrap gap-x-2.5 gap-y-4 mt-3 w-full lg:text-sm xl:text-base">
             {popularTags
               .sort((a, b) => b.count - a.count)
               .map(tag => (
                 <li key={tag._id}>
-                  <Link to={`/blog/?page=1&search=${tag._id}`} className="rounded-lg text-primary bg-primary bg-opacity-10 hover:bg-opacity-20 transition-all ease-in-out px-3 py-1.5 font-semibold">
+                  <Link to={`/blog/?page=1&search=${tag._id}`} className="rounded-lg  text-primary bg-primary bg-opacity-10 hover:bg-opacity-20 transition-all ease-in-out px-3 py-1.5 font-semibold">
                     {tag._id}
                   </Link>
                 </li>))
