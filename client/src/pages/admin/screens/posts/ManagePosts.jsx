@@ -45,7 +45,7 @@ const ManagePosts = () => {
     useMutation({
       mutationFn: ({ updatedData, slug }) => {
         console.log(updatedData, slug);
-         return updatePost({
+        return updatePost({
           updatedData,
           slug,
           token: userState.userInfo.token,
@@ -70,10 +70,10 @@ const ManagePosts = () => {
       "document",
       JSON.stringify({ isHidden: status })
     );
-      mutateUpdatePost({
-        updatedData,
-        slug,
-      });
+    mutateUpdatePost({
+      updatedData,
+      slug,
+    });
   }
 
   return (
@@ -101,7 +101,7 @@ const ManagePosts = () => {
     >
       {postsData?.data.map((post, index) => (
         <tr key={index} className={post.isHidden || post.isNew ? "opacity-60" : undefined}>
-          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+          <td className="overflow-x-auto px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <Link to={`/blog/${post?.slug}`} className="relative block">
@@ -121,29 +121,29 @@ const ManagePosts = () => {
                 </Link>
               </div>
               <div className="ml-3">
-                <p className="text-gray-900 whitespace-no-wrap">
+                <p className="text-gray-900">
                   {post?.title}
                 </p>
               </div>
             </div>
           </td>
-          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <p className="text-gray-900 whitespace-no-wrap flex flex-wrap gap-1">
+          <td className="overflow-x-auto px-5 py-5 text-sm bg-white border-b border-gray-200">
+            <p className="text-gray-900 flex flex-wrap gap-1">
               {post.categories.length > 0
                 ? post.categories.slice(0, 3).map((category, index) => (
-                    <span key={index} className="bg-gray-200 p-1 rounded">
-                      {category.title}
-                    </span>
-                  ))
+                  <span key={index} className="bg-gray-200 p-1 rounded">
+                    {category.title}
+                  </span>
+                ))
                 : t('admin.posts.manage.uncategorized')}
             </p>
           </td>
-          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <p className="text-gray-900 whitespace-no-wrap">
+          <td className="overflow-x-auto px-5 py-5 text-sm bg-white border-b border-gray-200">
+            <p className="text-gray-900">
               {new Date(post?.createdAt).toLocaleDateString()}
             </p>
           </td>
-          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+          <td className="overflow-x-auto px-5 py-5 text-sm max-w-sm bg-white border-b border-gray-200">
             <div className="flex gap-x-2">
               {post.tags.length > 0 ? (
                 post.tags.map((tag, index) => (
@@ -157,39 +157,41 @@ const ManagePosts = () => {
               )}
             </div>
           </td>
-          <td className="space-x-5 px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <button
-              disabled={isLoadingDeleteData}
-              type="button"
-              className="text-red-600 hover:text-red-900 disabled:opacity-60 disabled:cursor-not-allowed"
-              onClick={() =>
-                deleteDataHandler({
-                  token: userState.userInfo.token,
-                  slug: post.slug,
-                })
-              }
-            >
-              {t('admin.common.table.actions.delete')}
-            </button>
-            <Link
-              to={`/admin/posts/manage/edit/${post.slug}`}
-              className="text-green-success hover:text-green-dark"
-            >
-              {t('admin.common.table.actions.edit')}
-            </Link>
-            <button
-              disabled={isLoadingPost}
-              type="button"
-              className="text-yellow-600 hover:text-red-900 disabled:opacity-60 disabled:cursor-not-allowed"
-              onClick={() =>
-                togglePostVisibility({
-                  status: !post.isHidden,
-                  slug: post.slug,
-                })
-              }
-            >
-              {post.isHidden ? t('admin.common.table.actions.show') : t('admin.common.table.actions.hide')}
-            </button>
+          <td className="overflow-x-auto space-x-5 px-5 py-5 text-sm bg-white border-b border-gray-200 items-center justify-stretch">
+            <div className="flex w-full gap-4 h-full bg-white ">
+              <button
+                disabled={isLoadingDeleteData}
+                type="button"
+                className="text-red-600 hover:text-red-900 h-full disabled:opacity-60 disabled:cursor-not-allowed"
+                onClick={() =>
+                  deleteDataHandler({
+                    token: userState.userInfo.token,
+                    slug: post.slug,
+                  })
+                }
+              >
+                {t('admin.common.table.actions.delete')}
+              </button>
+              <Link
+                to={`/admin/posts/manage/edit/${post.slug}`}
+                className="text-green-success hover:text-green-dark h-full disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {t('admin.common.table.actions.edit')}
+              </Link>
+              <button
+                disabled={isLoadingPost}
+                type="button"
+                className="text-yellow-600 hover:text-red-900 h-full disabled:opacity-60 disabled:cursor-not-allowed"
+                onClick={() =>
+                  togglePostVisibility({
+                    status: !post.isHidden,
+                    slug: post.slug,
+                  })
+                }
+              >
+                {post.isHidden ? t('admin.common.table.actions.show') : t('admin.common.table.actions.hide')}
+              </button>
+            </div>
           </td>
         </tr>
       ))}
