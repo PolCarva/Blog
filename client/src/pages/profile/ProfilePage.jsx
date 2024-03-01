@@ -47,6 +47,10 @@ const ProfilePage = () => {
   });
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  useEffect(() => {
     if (!userState.userInfo) {
       navigate("/");
     }

@@ -6,6 +6,7 @@ import { images, stable } from "../../constants";
 import { BsCheckLg } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Comment = ({
   comment,
@@ -37,17 +38,24 @@ const Comment = ({
       className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg"
       id={`comment-${comment?._id}`}
     >
-      <img
-        src={
-          comment?.user?.avatar
-            ? stable.UPLOAD_FOLDER_BASE_URL + comment.user.avatar
-            : images.defaultProfile
-        }
-        alt="user profile"
-        className="w-9 h-9 object-cover rounded-full"
-      />
+      <Link to={`/profile/${comment.user._id}`}>
+        <img
+          src={
+            comment?.user?.avatar
+              ? stable.UPLOAD_FOLDER_BASE_URL + comment.user.avatar
+              : images.defaultProfile
+          }
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = images.defaultProfile;
+          }
+          }
+          alt="user profile"
+          className="w-9 h-9 object-cover rounded-full"
+        />
+      </Link>
       <div className="flex-1 flex flex-col gap-1">
-        <h5 className="font-bold flex gap-2 items-center text-dark-hard text-xs lg:text-sm">
+        <Link to={`/profile/${comment.user._id}`} className="font-bold flex gap-2 items-center text-dark-hard text-xs lg:text-sm">
           {comment.user.name} {<div className="flex items-center gap-x-2">
             <span
               className={`${comment.user.verified ? "bg-green-success" : "bg-gray-detail"
@@ -60,7 +68,7 @@ const Comment = ({
               )}
             </span>
           </div>}
-        </h5>
+        </Link>
         <span className="text-xs text-dark-light">
           {new Date(comment.createdAt).toLocaleDateString("en-US", {
             day: "numeric",

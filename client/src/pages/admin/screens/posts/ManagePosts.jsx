@@ -101,7 +101,7 @@ const ManagePosts = () => {
     >
       {postsData?.data.map((post, index) => (
         <tr key={index} className={post.isHidden || post.isNew ? "opacity-60" : undefined}>
-          <td className="overflow-x-auto px-5 py-5 text-sm bg-white border-b border-gray-200">
+          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <Link to={`/blog/${post?.slug}`} className="relative block">

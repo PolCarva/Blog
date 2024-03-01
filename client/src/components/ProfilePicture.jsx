@@ -61,19 +61,6 @@ const ProfilePicture = ({ avatar }) => {
   };
   const handleDeleteImage = () => {
     openConfirmationModal();
-
-    /* if (
-      window.confirm("Are you sure you want to delete your profile picture?")
-    ) {
-      try {
-        const formData = new FormData();
-        formData.append("profilePicture", undefined);
-        mutate({ token: userState.userInfo.token, formData: formData });
-      } catch (err) {
-        toast.error(err.message);
-        console.log(err);
-      }
-    } */
   };
 
   const confirmDeleteProfilePicture = () => {
@@ -123,41 +110,46 @@ const ProfilePicture = ({ avatar }) => {
           <CropEasy photo={photo} setOpenCrop={setOpenCrop} />,
           document.querySelector("#portal")
         )}
-      <div className="relative w-20 h-20 rounded-full outline outline-offset-2 outline-1 overflow-hidden outline-primary">
-        <label
-          htmlFor="profilePicture"
-          className="cursor-pointer absolute inset-0 rounded-full bg-transparent"
-        >
-          {avatar ? (
-            <img
-              src={stables.UPLOAD_FOLDER_BASE_URL + avatar}
-              alt="Profile"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = images.defaultProfile;
-              }}
+      <div className="flex items-center gap-5">
+        <div className="flex relative flex-col gap-1">
+          <span className="text-sm text-gray-400 absolute z-50 -top-6 w-full text-center rigth-0">Max 2MB</span>
+          <div className="relative w-20 h-20 rounded-full outline outline-offset-2 outline-1 overflow-hidden outline-primary">
+            <label
+              htmlFor="profilePicture"
+              className="cursor-pointer absolute inset-0 rounded-full bg-transparent"
+            >
+              {avatar ? (
+                <img
+                  src={stables.UPLOAD_FOLDER_BASE_URL + avatar}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = images.defaultProfile;
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full bg-blue-50/50 flex justify-center items-center">
+                  <HiOutlineCamera className="w-7 h-auto text-primary" />
+                </div>
+              )}
+            </label>
+            <input
+              type="file"
+              id="profilePicture"
+              className="sr-only"
+              onChange={handleFileChange}
             />
-          ) : (
-            <div className="w-full h-full bg-blue-50/50 flex justify-center items-center">
-              <HiOutlineCamera className="w-7 h-auto text-primary" />
-            </div>
-          )}
-        </label>
-        <input
-          type="file"
-          id="profilePicture"
-          className="sr-only"
-          onChange={handleFileChange}
-        />
+          </div>
+        </div>
+        <button
+          onClick={handleDeleteImage}
+          type="button"
+          className="border border-red-500 hover:bg-red-500 hover:text-white transition-all ease-in-out rounded-lg px-4 py-2 text-red-500"
+        >
+          {t("profile.deletePicture")}
+        </button>
       </div>
-      <button
-        onClick={handleDeleteImage}
-        type="button"
-        className="border border-red-500 hover:bg-red-500 hover:text-white transition-all ease-in-out rounded-lg px-4 py-2 text-red-500"
-      >
-        {t("profile.deletePicture")}
-      </button>
     </div>
   );
 };

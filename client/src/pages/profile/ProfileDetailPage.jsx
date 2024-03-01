@@ -31,6 +31,10 @@ const ProfileDetailPage = () => {
         }
     };
 
+    useEffect(() => {
+        window.scrollTo({ top: 0 });
+      }, []);
+
     return (
         <MainLayout>
             <section className="container px-5 md:px-12 mx-auto py-10">

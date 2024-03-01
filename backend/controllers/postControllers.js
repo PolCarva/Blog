@@ -113,7 +113,7 @@ const getPost = async (req, res, next) => {
     const post = await Post.findOne({ slug: req.params.slug }).populate([
       {
         path: "user",
-        select: ["avatar", "name"],
+        select: ["avatar", "name", "verified"],
       },
       {
         path: "categories",

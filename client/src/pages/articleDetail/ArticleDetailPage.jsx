@@ -49,6 +49,7 @@ const ArticleDetailPage = () => {
     window.scrollTo({ top: 0 });
   }, [])
 
+
   return (
     <MainLayout>
       {isLoading ? (
@@ -59,14 +60,14 @@ const ArticleDetailPage = () => {
         <section className="container px-5 md:px-12 mx-auto max-w-5xl flex flex-col py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">
             <BreadCrumbs data={breadCrumbsData} />
-            <Link to={`/profile/${postsData?.data[0]?.user?._id}`} className="flex items-center gap-2 mb-2 w-fit">
+            <Link to={`/profile/${data?.user?._id}`} className="flex items-center gap-2 mb-2 w-fit">
               <img
                 className="w-12 h-12 rounded-full object-cover object-center"
-                src={postsData?.data[0]?.user && (
-                  stable.UPLOAD_FOLDER_BASE_URL + postsData?.data[0]?.user?.avatar
+                src={data?.user && (
+                  stable.UPLOAD_FOLDER_BASE_URL + data?.user?.avatar
                 )}
-                alt={postsData?.data[0]?.user && (
-                  postsData?.data[0]?.user?.name
+                alt={data?.user && (
+                  data?.user?.name
                 )}
                 onError={(e) => {
                   e.target.onerror = null;
@@ -76,23 +77,23 @@ const ArticleDetailPage = () => {
               />
               <div className="flex flex-col">
                 <p className="font-semibold text-dark-soft">
-                  {postsData?.data[0]?.user && (
-                    postsData?.data[0]?.user?.name
+                  {data?.user && (
+                    data?.user?.name
                   )}
                 </p>
                 <div className="flex items-center gap-x-2">
                   <span
-                    className={`${postsData?.data[0]?.user?.verified ? "bg-green-success" : "bg-gray-detail"
+                    className={`${data?.user?.verified ? "bg-green-success" : "bg-gray-detail"
                       } w-fit bg-opacity-20 p-0.5 rounded-full`}
                   >
-                    {postsData?.data[0]?.user?.verified ? (
+                    {data?.user?.verified ? (
                       <BsCheckLg className="w-3 h-3 text-green-success bold" />
                     ) : (
                       <AiOutlineClose className="w-3 h-3 text-gray-placeholder" />
                     )}
                   </span>
                   <span className="italic text-dark-light md:text-sm">
-                    {postsData?.data[0]?.user?.verified ? t("admin.common.verified") : t("admin.common.notVerified")}
+                    {data?.user?.verified ? t("admin.common.verified") : t("admin.common.notVerified")}
                   </span>
                 </div>
               </div>
