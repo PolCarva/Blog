@@ -165,6 +165,7 @@ const ProfilePage = () => {
                 </label>
                 <input
                   type="password"
+                  autoComplete="off"
                   id="password"
                   {...register("password")}
                   placeholder={t("profile.placeholders.password")}
