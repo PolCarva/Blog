@@ -46,12 +46,15 @@ const BlogPage = () => {
     });
 
     useEffect(() => {
+        window.scrollTo({ top: 0 });
+    }, []);
+
+    useEffect(() => {
         if (isFirstRun) {
             isFirstRun = false;
             return;
         }
         refetch({ page: currentPage, search: searchQuery, category });
-        window.scrollTo({ top: 0 });
     }, [currentPage, refetch, searchQuery, category]);
 
     const handlePageChange = (page) => {

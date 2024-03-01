@@ -2,24 +2,14 @@ import MainLayout from "../../components/MainLayout";
 import Hero from "./container/Hero";
 import Articles from "./container/Articles";
 import CTA from "./container/CTA";
-/*import { useTranslation } from "react-i18next";
- import { useEffect } from "react";
-import toast from "react-hot-toast"; */
+import { useEffect } from "react";
+
 
 const HomePage = () => {
-  /*const { t } = useTranslation();
-   useEffect(() => {
-    setTimeout(() => {
-      toast(t('alerts.underConstruction'), {
-        icon: "🚧",
-        duration: 5000,
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      }, 1000);
-    });
-  }, [t]); */
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
+
 
   return (
     <MainLayout>
