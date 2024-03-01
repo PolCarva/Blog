@@ -124,9 +124,9 @@ const BlogPage = () => {
                         <ErrorMessage message={t('alerts.somethingWentWrong')} />
                     ) : (
 
-                        data?.data.filter((post) => !post.isHidden && post.isNew).length > 0 ? (
+                        data?.data.filter((post) => !post.isHidden && !post.isNew).length > 0 ? (
                             data?.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                                .filter((post) => !post.isHidden && !post.isNew)
+                            .filter((post) => !post.isHidden).filter(p => !p.isNew)
                                 .map((post) => (
                                     <ArticleCard
                                         key={post._id}
