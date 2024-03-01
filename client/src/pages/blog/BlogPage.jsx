@@ -94,18 +94,18 @@ const BlogPage = () => {
                         </div>
                     </div>
                     {/* Category filter */}
-                    <div className="flex  flex-col gap-y-2.5 w-full md:max-w-xs self-end mt-5 lg:mt-0">
 
-                        {categoriesData && (
-                            <>
-                                <span htmlFor="categoryFilter" className="text-dark-soft font-semibold">{t('blog.categoryFilter')}:</span>
-                                <MultiSelectTagDropdown
-                                    defaultValue={[]}
-                                    loadOptions={promiseOptions}
-                                    onChange={handleCategoryChange}
-                                />
-                            </>)}
-                    </div>
+                    {categoriesData && (
+                        <div className="relative gap-y-2.5 w-full md:max-w-xs self-end mt-10 lg:mt-0">
+
+                            <span htmlFor="categoryFilter" className="text-sm absolute z-40 -top-6 text-dark-soft font-semibold">{t('blog.categoryFilter')}:</span>
+                            <MultiSelectTagDropdown
+                                defaultValue={[]}
+                                loadOptions={promiseOptions}
+                                onChange={handleCategoryChange}
+                            />
+                        </div>)}
+
                 </div>
                 <div className="flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
 
