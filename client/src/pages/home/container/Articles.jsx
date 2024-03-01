@@ -38,7 +38,7 @@ const Articles = () => {
           <ErrorMessage message={t('alerts.somethingWentWrong')} />
         ) : (
           data?.data.filter((post) => !post.isHidden || post.isNew).length > 0 ? (
-            data?.data
+            data?.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .filter((post) => !post.isHidden || post.isNew)
               .map((post) => (
                 <ArticleCard
