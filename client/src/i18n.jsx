@@ -67,6 +67,7 @@ const resources = {
                         uncategorized: 'Sin categoría',
                     },
                     new: {
+                        isNewTooltip: 'Los posts nuevos no se muestran hasta ser publicados.',
                         isNew: 'Nuevo',
                         title: 'Editar Post',
                         create: 'Nuevo Post',
@@ -361,6 +362,7 @@ const resources = {
                         uncategorized: 'Uncategorized',
                     },
                     new: {
+                        isNewTooltip: 'New posts are not shown until published.',
                         isNew: 'New',
                         title: 'Edit Post',
                         create: 'New Post',

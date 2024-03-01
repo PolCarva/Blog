@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const Articles = () => {
   const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getAllPosts("", 1, 6),
+    queryFn: () => getAllPosts("", 1, 1000),
     queryKey: ["posts"],
     onError: (error) => {
       toast.error(error.message);
@@ -24,7 +24,7 @@ const Articles = () => {
     <section className="flex flex-col container px-5 md:px-12 mx-auto py-10 w-full">
       <div className="flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
         {isLoading ? (
-          [...Array(3)].map((item, index) => {
+          [...Array(3)].map((_, index) => {
             return (
               <ArticleCardSkeleton
                 key={index}
@@ -37,9 +37,10 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message={t('alerts.somethingWentWrong')} />
         ) : (
-          data?.data.filter((post) => !post.isHidden && post.isNew).length > 0 ? (
+          data?.data?.filter((post) => !post.isHidden && !post.isNew).length > 0 ? (
             data?.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-              .filter((post) => !post.isHidden && !post.isNew)
+              .filter((post) => !post.isHidden).filter(p => !p.isNew)
+              .slice(0, 6)
               .map((post) => {
                 return (
                   <ArticleCard

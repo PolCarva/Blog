@@ -196,8 +196,8 @@ const ManagePosts = () => {
               <span className="text-yellow-600 font-bold absolute top-1 right-2 group">
                 <span className="relative cursor-help">
                   {t('admin.posts.new.isNew')}
-                  <span className="transition-opacity rounded-md z-[1000] ease-in-out py-2 px-4 bg-yellow-200 bg-opacity-60 fixed opacity-0 top-2 left-1/2 -translate-x-1/2 group-hover:opacity-100 text-yellow-600 font-semibold">
-                    Los posts nuevos no se muestran hasta ser publicados.
+                  <span className="transition-opacity rounded-md z-[1000] ease-in-out py-2 px-4 bg-yellow-200 bg-opacity-100 fixed opacity-0 top-2 left-1/2 -translate-x-1/2 group-hover:opacity-100 text-yellow-900 font-semibold">
+                    {t('admin.posts.new.isNewTooltip')}
                   </span>
                 </span>
               </span>
