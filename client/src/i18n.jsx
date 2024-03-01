@@ -93,7 +93,7 @@ const resources = {
                         addPlaceholder: 'Título de la categoría...',
                         addBtn: 'Agregar',
                         filterPlaceholder: 'Buscar categorías...',
-                        update: 'Actualizar Categor',
+                        update: 'Actualizar Categoría',
 
                     },
                 },
