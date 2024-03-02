@@ -20,7 +20,6 @@ let isFirstRun = true;
 const BlogPage = () => {
     const searchInputRef = useRef(null);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [categories, setCategories] = useState([]);
     const searchParamsValue = Object.fromEntries([...searchParams]);
     const [currentPage, setCurrentPage] = useState(parseInt(searchParamsValue?.page) || 1);
     const [searchQuery, setSearchQuery] = useState(searchParamsValue?.search || '');
@@ -36,20 +35,14 @@ const BlogPage = () => {
 
     const promiseOptions = async (inputValue) => {
         const { data: categoriesData } = await getAllCategories();
-        return filterCategories(inputValue, categoriesData);
+        const categoriesToFilter = category.split(',')
+        return filterCategories(inputValue, categoriesData.filter(c => !categoriesToFilter.includes(c.title)));
     };
 
     const { data: categoriesData } = useQuery({
         queryFn: () => getAllCategories(),
         queryKey: ['categories'],
     });
-
-    useEffect(() => {
-        const categoryFromSearchParams = searchParamsValue?.category;
-        setCategory(categoryFromSearchParams);
-        const categoryArray = categoryFromSearchParams.split(',').map(cat => ({ label: cat, value: cat }));
-        setCategories(categoryArray);
-    }, [searchParamsValue?.category]);
 
     useEffect(() => {
         if (isFirstRun) {
@@ -101,7 +94,7 @@ const BlogPage = () => {
 
                             <span htmlFor="categoryFilter" className="text-sm absolute z-40 -top-6 text-dark-soft font-semibold">{t('blog.categoryFilter')}:</span>
                             <MultiSelectTagDropdown
-                                defaultValue={categories}
+                                defaultValue={category ? category.split(",").map(c => ({ value: c, label: c })) : []}
                                 loadOptions={promiseOptions}
                                 onChange={handleCategoryChange}
                             />
