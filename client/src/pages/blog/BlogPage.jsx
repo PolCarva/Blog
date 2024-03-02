@@ -39,15 +39,17 @@ const BlogPage = () => {
         return filterCategories(inputValue, categoriesData);
     };
 
-    /* Get all categories */
     const { data: categoriesData } = useQuery({
         queryFn: () => getAllCategories(),
         queryKey: ['categories'],
     });
 
     useEffect(() => {
-        window.scrollTo({ top: 0 });
-    }, []);
+        const categoryFromSearchParams = searchParamsValue?.category;
+        setCategory(categoryFromSearchParams);
+        const categoryArray = categoryFromSearchParams.split(',').map(cat => ({ label: cat, value: cat }));
+        setCategories(categoryArray);
+    }, [searchParamsValue?.category]);
 
     useEffect(() => {
         if (isFirstRun) {
@@ -69,10 +71,10 @@ const BlogPage = () => {
     };
 
     const handleCategoryChange = (selectedCategories) => {
-        const categoryNames = selectedCategories.map((category) => category.label).join(','); // Concatenar los nombres de las categorías seleccionadas
+        const categoryNames = selectedCategories.map((category) => category.label).join(',');
         setCategory(categoryNames);
         setCurrentPage(1);
-        setSearchParams({ page: 1, search: searchQuery, category: categoryNames }); // Incluir las categorías seleccionadas en los parámetros de búsqueda
+        setSearchParams({ page: 1, search: searchQuery, category: categoryNames });
     };
 
 
@@ -93,14 +95,13 @@ const BlogPage = () => {
                             />
                         </div>
                     </div>
-                    {/* Category filter */}
 
                     {categoriesData && (
                         <div className="relative gap-y-2.5 w-full md:max-w-xs self-end mt-10 lg:mt-0">
 
                             <span htmlFor="categoryFilter" className="text-sm absolute z-40 -top-6 text-dark-soft font-semibold">{t('blog.categoryFilter')}:</span>
                             <MultiSelectTagDropdown
-                                defaultValue={[]}
+                                defaultValue={categories}
                                 loadOptions={promiseOptions}
                                 onChange={handleCategoryChange}
                             />
@@ -124,9 +125,9 @@ const BlogPage = () => {
                         <ErrorMessage message={t('alerts.somethingWentWrong')} />
                     ) : (
 
-                        data?.data.filter((post) => !post.isHidden && !post.isNew).length > 0 ? (
+                        data?.data.filter((post) => !post.isHidden && !post.isNewPost).length > 0 ? (
                             data?.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                            .filter((post) => !post.isHidden).filter(p => !p.isNew)
+                                .filter((post) => !post.isHidden).filter(p => !p.isNewPost)
                                 .map((post) => (
                                     <ArticleCard
                                         key={post._id}

@@ -100,7 +100,7 @@ const ManagePosts = () => {
       userState={userState}
     >
       {postsData?.data.map((post, index) => (
-        <tr key={index} className={post.isHidden || post.isNew ? "opacity-60" : undefined}>
+        <tr key={index} className={post.isHidden || post.isNewPost ? "opacity-60" : undefined}>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
               <div className="flex-shrink-0">
@@ -192,12 +192,12 @@ const ManagePosts = () => {
                 {post.isHidden ? t('admin.common.table.actions.show') : t('admin.common.table.actions.hide')}
               </button>
             </div>
-            {post.isNew && (
+            {post.isNewPost && (
               <span className="text-yellow-600 font-bold absolute top-1 right-2 group">
                 <span className="relative cursor-help">
-                  {t('admin.posts.new.isNew')}
+                  {t('admin.posts.new.isNewPost')}
                   <span className="transition-opacity rounded-md z-[1000] ease-in-out py-2 px-4 bg-yellow-200 bg-opacity-100 fixed opacity-0 top-2 left-1/2 -translate-x-1/2 group-hover:opacity-100 text-yellow-900 font-semibold">
-                    {t('admin.posts.new.isNewTooltip')}
+                    {t('admin.posts.new.isNewPostTooltip')}
                   </span>
                 </span>
               </span>

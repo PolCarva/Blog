@@ -12,7 +12,7 @@ const PostSchema = new Schema(
     categories: [{ type: Schema.Types.ObjectId, ref: "PostCategories" }],
     isHidden: { type: Boolean, default: true },
     url: { type: String, required: false },
-    isNew: { type: Boolean, default: true },
+    isNewPost: { type: Boolean, default: true },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

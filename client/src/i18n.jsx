@@ -67,8 +67,8 @@ const resources = {
                         uncategorized: 'Sin categoría',
                     },
                     new: {
-                        isNewTooltip: 'Los posts nuevos no se muestran hasta ser publicados.',
-                        isNew: 'Nuevo',
+                        isNewPostTooltip: 'Los posts nuevos no se muestran hasta ser publicados.',
+                        isNewPost: 'Nuevo',
                         title: 'Editar Post',
                         create: 'Nuevo Post',
                         inputs: {
@@ -362,8 +362,8 @@ const resources = {
                         uncategorized: 'Uncategorized',
                     },
                     new: {
-                        isNewTooltip: 'New posts are not shown until published.',
-                        isNew: 'New',
+                        isNewPostTooltip: 'New posts are not shown until published.',
+                        isNewPost: 'New',
                         title: 'Edit Post',
                         create: 'New Post',
                         inputs: {

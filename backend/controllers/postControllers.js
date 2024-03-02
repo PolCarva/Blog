@@ -19,7 +19,7 @@ const createPost = async (req, res, next) => {
       user: req.user._id,
       url: req.body.url || "",
       isHidden: false,
-      isNew: true,
+      isNewPost: true,
     });
 
     const createdPost = await post.save();
@@ -42,7 +42,7 @@ const updatePost = async (req, res, next) => {
     const upload = uploadPicture.single("postPicture");
 
     const handleUploadPostData = async (data) => {
-      const { title, caption, slug, body, tags, categories, url, isHidden, isNew } = JSON.parse(data);
+      const { title, caption, slug, body, tags, categories, url, isHidden, isNewPost } = JSON.parse(data);
       post.title = title || post.title;
       post.caption = caption || post.caption;
       post.slug = slug || post.slug;
@@ -51,7 +51,7 @@ const updatePost = async (req, res, next) => {
       post.categories = categories || post.categories;
       post.url = url || post.url;
       post.isHidden = isHidden !== undefined ? isHidden : post.isHidden;
-      post.isNew = false;
+      post.isNewPost = false;
 
       const updatedPost = await post.save();
       return res.json(updatedPost);

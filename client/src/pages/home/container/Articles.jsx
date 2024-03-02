@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const Articles = () => {
   const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getAllPosts("", 1, 1000),
+    queryFn: () => getAllPosts("", 1),
     queryKey: ["posts"],
     onError: (error) => {
       toast.error(error.message);
@@ -37,9 +37,9 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message={t('alerts.somethingWentWrong')} />
         ) : (
-          data?.data?.filter((post) => !post.isHidden && !post.isNew).length > 0 ? (
+          data?.data?.filter((post) => !post.isHidden && !post.isNewPost).length > 0 ? (
             data?.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-              .filter((post) => !post.isHidden).filter(p => !p.isNew)
+              .filter((post) => !post.isHidden).filter(p => !p.isNewPost)
               .slice(0, 6)
               .map((post) => {
                 return (
