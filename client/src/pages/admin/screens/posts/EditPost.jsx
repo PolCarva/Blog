@@ -85,8 +85,14 @@ const EditPost = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setPhoto(file);
+    if (initialPhoto) {
+        setInitialPhoto(null);
+        setPhoto(file);
+    } else {
+      setPhoto(file);
+    }
   };
+  
 
   const handleUpdatePost = async () => {
     let updatedData = new FormData();
