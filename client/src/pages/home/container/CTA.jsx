@@ -75,23 +75,6 @@ const CTA = () => {
               {t("cta.title")}
             </h2>
             <ContactForm />
-            {/*  <form className="w-full max-w[494px] mt-12 space-y-3 mx-auto md:space-y-0 md:flex md:items-center md:space-x-2 lg:mx-0">
-              <input
-                required
-                type="text"
-                placeholder={t("cta.inputMailPlaceholder")}
-                className="px-4 py-3 rounded-lg w-full placeholder:text-dark-light"
-              />
-              <input
-                required
-                type="text"
-                placeholder={t("cta.inputNamePlaceholder")}
-                className="px-4 py-3 rounded-lg w-full placeholder:text-dark-light"
-              />
-              <button className="px-4 py-3 rounded-lg w-full bg-primary hover:bg-primary-hover transition-colors ease-in-out text-white font-bold md:w-fit md:whitespace-nowrap">
-                {t("cta.button")}
-              </button>
-            </form> */}
             <p className="text-dark-light text-sm leading-7 mt-6 md:text-center md:text-base lg:text-left">
               <span className="font-bold italic text-gray-detail md:font-normal md:not-italic md:text-dark-light">
                 {t('cta.response')}</span>
@@ -105,7 +88,7 @@ const CTA = () => {
                 <img
                   src={images.CTAImg}
                   alt="Facebook and messanger logo"
-                  className="w-full object-cover object-center h-auto md:h-52 lg:h-48 xl:h-60"
+                  className="w-full object-cover rounded-md object-center h-auto md:h-52 lg:h-48 xl:h-60"
                 />
                 <div className="p-5">
                   <h2 className="font-roboto font-bold text-xl text-dark-soft md:text-2xl lg:text-[28px]">

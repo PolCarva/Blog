@@ -13,7 +13,7 @@
 
   /* Estilo general del scrollbar */
 ::-webkit-scrollbar {
-  width: 10px; /* Ancho del scrollbar */
+  width: 6px; /* Ancho del scrollbar */
 }
 
 /* Estilo de la barra de seguimiento (track) */
@@ -23,7 +23,7 @@
 
 /* Estilo del "thumb" o manija del scrollbar */
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/80 rounded-full
+  @apply bg-primary/40 rounded-full
 }
 
 /* Estilo del thumb al pasar el mouse sobre él */
