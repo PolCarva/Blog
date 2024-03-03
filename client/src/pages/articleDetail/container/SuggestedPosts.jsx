@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const SuggestedPosts = ({ className, header, posts = [], tags }) => {
   const { t } = useTranslation();
+  console.log(posts);
   return (
     <div
       className={`w-full shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] rounded-lg p-4 ${className}`}
@@ -14,7 +15,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
         {header}
       </h2>
       <div className="grid gap-y-5 mt-5 md:grid-cols-2 md:gap-x-5 lg:grid-cols-1">
-        {posts.filter(post => !post.isHidden).map((post) => (
+        {posts.filter(post => !post.isHidden && !post.isNewPost).map((post) => (
           <div
             key={post._id}
             className="flex space-x-3 flex-nowrap items-center"
@@ -48,7 +49,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
         ))}
       </div>
       <h2 className="font-roboto font-medium text-dark-hard mt-8 md:text-xl">
-        {t("article.tags")}	
+        {t("article.tags")}
       </h2>
       {tags.length === 0 ? (
         <p className="text-slate-500 text-xs mt-2">{t('article.noTags')}</p>
