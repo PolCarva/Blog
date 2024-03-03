@@ -81,7 +81,7 @@ const ProfileDetailPage = () => {
                     </div>
                     {
                         profileData?.bio &&
-                        <div className="flex flex-col w-full gap-2 px-10 max-w-2xl mx-auto">
+                        <div className="flex flex-col w-full gap-2 px-4 md:px-10 max-w-2xl mx-auto">
                             <h3 className="font-bold text-xl">
                                 {t("profile.aboutMe")}
                             </h3>
