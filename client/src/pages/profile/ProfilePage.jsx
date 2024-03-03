@@ -182,26 +182,11 @@ const ProfilePage = () => {
                   </p>
                 )}
               </div>
-              {/* BIO */}
-              <div className="flex flex-col mb-6 w-full">
-                <label htmlFor="bio" className="text-[#5a7184] font-semibold block">
-                  {t("profile.aboutMe")}
-                </label>
-                <textarea
-                  id="bio"
-                  {...register("bio")}
-                  placeholder={t("profile.placeholders.bio")}
-                  className={`placeholder:text-[#959ead] min-h-16 text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.bio ? "border-red-500" : "border-[#c3cad9]"
-                    }`}
-                />
-                {errors.bio?.message && (
-                  <p className="text-red-500 text-xs mt-1">{errors.bio?.message}</p>
-                )}
-              </div>
+
 
             </div>
             <div className="col-span-6">
-              <h3 className="font-bold text-2xl mt-5">{t("profile.contact")}</h3>
+              <h3 className="font-bold text-2xl mt-5">{t("profile.account")}</h3>
               {/* PHONE */}
               <div className="flex flex-col mb-6 mt-6 w-full">
                 <label htmlFor="phone" className="text-[#5a7184] font-semibold block">
@@ -234,6 +219,22 @@ const ProfilePage = () => {
                 />
                 {errors.specialization?.message && (
                   <p className="text-red-500 text-xs mt-1">{errors.specialization?.message}</p>
+                )}
+              </div>
+              {/* BIO */}
+              <div className="flex flex-col mb-6 w-full">
+                <label htmlFor="bio" className="text-[#5a7184] font-semibold block">
+                  {t("profile.aboutMe")}
+                </label>
+                <textarea
+                  id="bio"
+                  {...register("bio")}
+                  placeholder={t("profile.placeholders.bio")}
+                  className={`placeholder:text-[#959ead] min-h-16 text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.bio ? "border-red-500" : "border-[#c3cad9]"
+                    }`}
+                />
+                {errors.bio?.message && (
+                  <p className="text-red-500 text-xs mt-1">{errors.bio?.message}</p>
                 )}
               </div>
 

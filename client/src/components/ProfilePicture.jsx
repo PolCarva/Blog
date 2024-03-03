@@ -112,7 +112,7 @@ const ProfilePicture = ({ avatar }) => {
         )}
       <div className="flex items-center gap-5">
         <div className="flex relative flex-col gap-1">
-          <span className="text-sm text-gray-400 absolute z-50 -top-6 w-full text-center rigth-0">Max 2MB</span>
+          <span className="text-sm text-gray-400 absolute z-30 -top-6 w-full text-center rigth-0">{t("profile.maxImageSize")}</span>
           <div className="relative w-20 h-20 rounded-full outline outline-offset-2 outline-1 overflow-hidden outline-primary">
             <label
               htmlFor="profilePicture"
