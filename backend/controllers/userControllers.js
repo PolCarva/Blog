@@ -174,6 +174,25 @@ const updateProfile = async (req, res, next) => {
       user.verified = req.body.verified;
     }
 
+    
+    if (req.body.bio !== undefined && req.body.bio.trim() === "") {
+      user.bio = undefined;
+    } else {
+      user.bio = req.body.bio || user.bio;
+    }
+
+    if (req.body.phone !== undefined && req.body.phone.trim() === "") {
+      user.phone = undefined;
+    } else {
+      user.phone = req.body.phone || user.phone;
+    }
+
+    if (req.body.specialization !== undefined && req.body.specialization.trim() === "") {
+      user.specialization = undefined;
+    } else {
+      user.specialization = req.body.specialization || user.specialization;
+    }
+
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     user.bio = req.body.bio || user.bio;

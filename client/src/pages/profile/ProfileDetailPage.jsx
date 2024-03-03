@@ -85,7 +85,7 @@ const ProfileDetailPage = () => {
                             <h3 className="font-bold text-xl">
                                 {t("profile.aboutMe")}
                             </h3>
-                            <p>
+                            <p className="whitespace-pre-line">
                                 {profileData?.bio}
                             </p>
                         </div>

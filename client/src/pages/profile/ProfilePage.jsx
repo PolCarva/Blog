@@ -230,7 +230,7 @@ const ProfilePage = () => {
                   id="bio"
                   {...register("bio")}
                   placeholder={t("profile.placeholders.bio")}
-                  className={`placeholder:text-[#959ead] min-h-16 text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.bio ? "border-red-500" : "border-[#c3cad9]"
+                  className={`placeholder:text-[#959ead] min-h-[8rem] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.bio ? "border-red-500" : "border-[#c3cad9]"
                     }`}
                 />
                 {errors.bio?.message && (
