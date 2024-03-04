@@ -44,6 +44,8 @@ const EditPost = () => {
   const [tags, setTags] = useState(null);
   const [url, setUrl] = useState("");
   const [postSlug, setPostSlug] = useState(slug);
+  const [isDeleteImage, setIsDeleteImage] = useState(false);
+
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
@@ -119,6 +121,8 @@ const EditPost = () => {
       return;
     }
 
+    updatedData.append("isDeleteImage", isDeleteImage ? "T" : "F");
+
     updatedData.append(
       "document",
       JSON.stringify({ body, title, caption, categories, tags, slug: postSlug, url })
@@ -133,8 +137,9 @@ const EditPost = () => {
 
   const handleDeleteImage = () => {
     if (window.confirm("Do you want to delete your post?")) {
-      setInitialPhoto(null);
+      setIsDeleteImage(true);
       setPhoto(null);
+      setInitialPhoto(null);
     }
   };
 

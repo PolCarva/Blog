@@ -59,28 +59,25 @@ const updatePost = async (req, res, next) => {
 
     upload(req, res, async function (err) {
       if (err) {
-        // Maneja el error de carga
         const error = new Error("An unknown error occurred when uploading: " + err.message);
         next(error);
       } else {
-        // Si hay un archivo nuevo, procesa la actualización de la imagen
+        let isDeleteImage = req.body.isDeleteImage === "T";
+
         if (req.file) {
-          // Elimina la imagen existente si hay una nueva
           let filename = post.photo;
           if (filename) {
-            fileRemover(filename); // Asegúrate de que esta operación es segura
+            fileRemover(filename); 
           }
-          // Actualiza la referencia de la imagen en el post
           post.photo = req.file.filename;
+        } else if(isDeleteImage) {
+          fileRemover(post.photo);
+          post.photo = "";
         }
-        // Nota: La ausencia de un 'else' implica que no modificamos 'post.photo' si no hay archivo nuevo
-
-        // Procesa la actualización de otros datos del post
-        // Asegúrate de que 'req.body.document' existe y tiene el formato esperado
+     
         if (req.body.document) {
           await handleUploadPostData(req.body.document);
         } else {
-          // Maneja el caso donde 'req.body.document' no está presente o es inválido
           const error = new Error("No post data provided");
           next(error);
         }
