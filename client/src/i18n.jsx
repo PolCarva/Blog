@@ -188,7 +188,7 @@ const resources = {
             },
             cta: {
                 title: "¡Conviértete en creador de contenido!",
-                success: "¡Gracias por tu interés! Nos pondremos en contacto pronto.",
+                success: "¡Gracias por tu interés! Nos pondremos en contacto pronto...",
                 inputMailPlaceholder: "Tu Email",
                 inputNamePlaceholder: "Tu Nombre",
                 button: "Empezar",
