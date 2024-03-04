@@ -44,7 +44,6 @@ const ManagePosts = () => {
   const { mutate: mutateUpdatePost, isLoading: isLoadingPost } =
     useMutation({
       mutationFn: ({ updatedData, slug }) => {
-        console.log(updatedData, slug);
         return updatePost({
           updatedData,
           slug,

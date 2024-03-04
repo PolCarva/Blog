@@ -65,7 +65,6 @@ const Users = () => {
   };
 
   const handleVerificationCheck = (e, userId) => {
-    console.log(e.target.checked, userId);
     const isVerified = e.target.checked;
     mutateUpdateUser({
       userId,

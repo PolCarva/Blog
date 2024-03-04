@@ -42,7 +42,7 @@ const updatePost = async (req, res, next) => {
     const upload = uploadPicture.single("postPicture");
 
     const handleUploadPostData = async (data) => {
-      const { title, caption, slug, body, tags, categories, url, isHidden, isNewPost } = JSON.parse(data);
+      const { title, caption, slug, body, tags, categories, url, isHidden } = JSON.parse(data);
       post.title = title || post.title;
       post.caption = caption || post.caption;
       post.slug = slug || post.slug;
@@ -59,29 +59,34 @@ const updatePost = async (req, res, next) => {
 
     upload(req, res, async function (err) {
       if (err) {
-        const error = new Error(
-          "An unknown error occurred when uploading " + err.message
-        );
+        // Maneja el error de carga
+        const error = new Error("An unknown error occurred when uploading: " + err.message);
         next(error);
       } else {
-        // Everything went fine
+        // Si hay un archivo nuevo, procesa la actualización de la imagen
         if (req.file) {
+          // Elimina la imagen existente si hay una nueva
           let filename = post.photo;
           if (filename) {
-            fileRemover(filename);
+            fileRemover(filename); // Asegúrate de que esta operación es segura
           }
+          // Actualiza la referencia de la imagen en el post
           post.photo = req.file.filename;
+        }
+        // Nota: La ausencia de un 'else' implica que no modificamos 'post.photo' si no hay archivo nuevo
+
+        // Procesa la actualización de otros datos del post
+        // Asegúrate de que 'req.body.document' existe y tiene el formato esperado
+        if (req.body.document) {
           await handleUploadPostData(req.body.document);
         } else {
-          let filename = post.photo;
-          if (filename) {
-            fileRemover(filename);
-          }
-          post.photo = "";
-          await handleUploadPostData(req.body.document);
+          // Maneja el caso donde 'req.body.document' no está presente o es inválido
+          const error = new Error("No post data provided");
+          next(error);
         }
       }
     });
+
   } catch (error) {
     next(error);
   }
@@ -173,10 +178,10 @@ const getAllPosts = async (req, res, next) => {
     }
 
     // Modificación: Si categoryTitles está presente pero es un array vacío, no aplicar filtro por categoría
-    if (categoryTitles !== null && categoryTitles.length > 0) { 
-      const categories = await PostCategories.find({ title: { $in: categoryTitles } }); 
+    if (categoryTitles !== null && categoryTitles.length > 0) {
+      const categories = await PostCategories.find({ title: { $in: categoryTitles } });
       if (categories.length > 0) {
-        where.categories = { $in: categories.map(category => category._id) }; 
+        where.categories = { $in: categories.map(category => category._id) };
       } else {
         return res.json([]);
       }
