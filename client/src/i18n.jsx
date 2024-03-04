@@ -187,7 +187,7 @@ const resources = {
                 categoryFilter: 'Filtrar por categoría',
             },
             cta: {
-                title: "¡Conviertete en creador de contenido!",
+                title: "¡Conviértete en creador de contenido!",
                 success: "Gracias por tu interés! Nos pondremos en contacto pronto.",
                 inputMailPlaceholder: "Tu Email",
                 inputNamePlaceholder: "Tu Nombre",
