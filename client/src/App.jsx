@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
+
 
 import "./App.css";
 import HomePage from "./pages/home/HomePage";
@@ -48,6 +50,7 @@ function App() {
         </div>
       </I18nextProvider>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
