@@ -17,6 +17,7 @@
     "@tiptap/extension-color": "^2.0.4",
     "@tiptap/extension-dropcursor": "^2.1.6",
     "@tiptap/extension-image": "^2.1.6",
+    "@tiptap/extension-link": "^2.2.4",
     "@tiptap/html": "^2.0.4",
     "@tiptap/pm": "^2.0.4",
     "@tiptap/react": "^2.0.4",

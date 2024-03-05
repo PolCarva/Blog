@@ -10,6 +10,8 @@ import ts from "highlight.js/lib/languages/typescript";
 import html from "highlight.js/lib/languages/xml";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
+
 
 lowlight.registerLanguage("html", html);
 lowlight.registerLanguage("css", css);
@@ -34,4 +36,5 @@ export const extensions = [
   }),
   Dropcursor,
   Image,
+  Link,
 ];
