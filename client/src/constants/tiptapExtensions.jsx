@@ -36,5 +36,12 @@ export const extensions = [
   }),
   Dropcursor,
   Image,
-  Link,
+  Link.configure({
+    autolink: true,
+    HTMLAttributes: {
+      class: "text-primary",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
+  }),
 ];
