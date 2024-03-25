@@ -16,7 +16,7 @@ const HomePage = () => {
 
   }, []);
 
-  useEffect(() => {
+/*   useEffect(() => {
 
     settings.isUnderConstruction && toast(t("alerts.underConstruction"), {
       icon: '🚧'
@@ -25,7 +25,7 @@ const HomePage = () => {
         icon: '🚫'
       }),
       [settings.underConstruction, settings.db]
-  })
+  }) */
 
 
 
