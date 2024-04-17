@@ -200,7 +200,6 @@ const EditPost = () => {
                 type="text"
                 value={url}
                 placeholder={t('admin.posts.new.placeholders.url')}
-                maxLength={50}
                 className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl w-full font-medium font-roboto mb-4 text-dark-hard"
               />
             </div>
